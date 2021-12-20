@@ -78,9 +78,9 @@ const MarkerMap = forwardRef((props, ref) => {
   }
   useImperativeHandle(ref, () => ({ goToSelectedSite }), [mapObj])
 
-  useEffect(() => {
-    setSiteInfo(sites[0]);
-  }, [sites])
+  // useEffect(() => {
+  //   setSiteInfo(sites[0]);
+  // }, [sites])
 
   return (
     <div className={classes.root}>

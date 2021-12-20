@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 export const SideBar = ({ getSelectedItem, sites }) => {
     const classes = useStyles();
     const history = useNavigate();
-    const sideBarEl = useRef(null);
+    // const sideBarEl = useRef(null);
 
     const [selectedIndex, setSelected] = useState(null);
 
@@ -44,11 +44,14 @@ export const SideBar = ({ getSelectedItem, sites }) => {
     }
 
     
-    useEffect(() => {
-        console.log('width', sideBarEl.current ? sideBarEl.current.offsetWidth : 0);
-    }, [])
+    // useEffect(() => {
+    //     console.log('width', sideBarEl.current ? sideBarEl.current.offsetWidth : 0);
+    // }, [])
     return (
-        <div ref = {sideBarEl} className={classes.root}>
+        <div
+            // ref = {sideBarEl} 
+            className={classes.root}
+        >
             <List className="list" component="nav">
                 <ListItem
                     className={classes.siteBar}
