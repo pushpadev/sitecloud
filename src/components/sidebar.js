@@ -22,6 +22,9 @@ const useStyles = makeStyles({
         height: 80,
         color: 'white'
     },
+    selected: {
+        backgroundColor: '#0066ffef',
+    }
 });
 
 export const SideBar = ({ getSelectedItem, sites }) => {
@@ -44,7 +47,6 @@ export const SideBar = ({ getSelectedItem, sites }) => {
     useEffect(() => {
         console.log('width', sideBarEl.current ? sideBarEl.current.offsetWidth : 0);
     }, [])
-
     return (
         <div ref = {sideBarEl} className={classes.root}>
             <List className="list" component="nav">
@@ -56,10 +58,11 @@ export const SideBar = ({ getSelectedItem, sites }) => {
                 </ListItem>
                 {(sites.length > 0) && sites.map((item, i) => {
                         return (
-                            <React.Fragment key={item.sitemappingId}>
+                            <React.Fragment key={i}>
+                                {/* {console.log("item " + i + '====' + isSelected(i) ? 'selected' : null)} */}
                                 <ListItem
-                                    button 
-                                    className={isSelected(i) ? 'selected' : null} 
+                                    button={true} 
+                                    className={isSelected(i) ? classes.selected : null} 
                                     onClick={() => onSelected(i, item)}
                                     onDoubleClick={() => history(`/showsite/${item.sitemappingId}`)}
                                 >
