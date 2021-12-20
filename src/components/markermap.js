@@ -71,8 +71,10 @@ const MarkerMap = forwardRef((props, ref) => {
   }
 
   const goToSelectedSite = (item) => {
-    setSiteInfo(item);
-    mapObj.panTo([item.data.centroid[0], item.data.centroid[1]]);
+    if(mapObj){
+      setSiteInfo(item);
+      mapObj.panTo([item.data.centroid[0], item.data.centroid[1]]);
+    }
   }
   useImperativeHandle(ref, () => ({ goToSelectedSite }), [mapObj])
 
