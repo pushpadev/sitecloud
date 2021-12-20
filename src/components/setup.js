@@ -85,6 +85,7 @@ export const SetupSiteBar = forwardRef((props, ref) => {
         isMapLoading,
         isExistPolygon,
         isExistMarkup,
+        siteID,
     } = props;
     const classes = useStyles();
     const [bdStatus, setBdStatus] = useState(BOUNDARY_NONE);
@@ -197,8 +198,8 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                         )}
                     </div>
                     <div className={classes.end}>
-                        <ColorButton onClick={() => {createSite();history('/');}} width = '40%' bgcolor = {BG_COLOR_BULE} txtcolor={BG_COLOR_WHITE}>
-                            <span>Create Site</span>
+                        <ColorButton onClick={() => createSite()} width = '40%' bgcolor = {BG_COLOR_BULE} txtcolor={BG_COLOR_WHITE}>
+                            <span>{(siteID === null || siteID === undefined)?"Create Site":"Update Site"}</span>
                         </ColorButton>
                         <ColorButton 
                             width = '40%'

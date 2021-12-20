@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import PrimarySearchAppBar from '../components/appbar';
 import PolygonMap from '../components/polygonmap';
 import { makeStyles } from '@mui/styles';
 import { SetupSiteBar } from '../components/setup';
@@ -15,6 +16,7 @@ function ShowSite() {
 
   return (
       <>
+        <PrimarySearchAppBar/>
         <div className = {classes.root} >
             Show Site
         </div>

@@ -16,6 +16,7 @@ import {
 } from '../constant';
 import { CurrentSiteContext } from "../contexts/currentsite";
 import { getSite, saveSite, modifySite} from '../actions'
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -40,6 +41,7 @@ function EditSite() {
   const [isMapLoading, setMapLoading] = useState(true);
   const [isExistPolygon, setExistPolygon] = useState(false);
   const [isExistMarkup, setExistMakrup] = useState(false);
+  const history = useNavigate();
   const drawPolygon = () => {
     polygonEl.current.setCreatePolygonMode();
     setupEl.current.setMkStatus(MARKUP_NONE);
@@ -54,6 +56,10 @@ function EditSite() {
   }
 
   const createSite = async () => {
+    if( !siteName || !siteAddress ){
+      alert('input site name and site address!');
+      return;
+    }
     let rt;
     let info = {
       "Sitename": siteName, 
@@ -82,6 +88,7 @@ function EditSite() {
         alert('update error');
       }
     }
+    history('/');
   }
 
   const deletePolygon = () => {
@@ -147,6 +154,7 @@ function EditSite() {
               isMapLoading = {isMapLoading}
               isExistPolygon = {isExistPolygon}
               isExistMarkup = {isExistMarkup}
+              siteID = {id}
             />
             <PolygonMap
               ref = {polygonEl}
