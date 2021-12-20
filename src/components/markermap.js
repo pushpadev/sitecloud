@@ -88,7 +88,7 @@ const MarkerMap = forwardRef((props, ref) => {
         style="mapbox://styles/mapbox/streets-v9" // eslint-disable-line
         onStyleLoad={onStyleLoaded}
         containerStyle={{
-          height: "600px",
+          height: `calc(100vh - 84px)`,
           width: `calc(100vw - ${SIDEBAR_WIDTH}px)`
         }}
       >
@@ -98,7 +98,7 @@ const MarkerMap = forwardRef((props, ref) => {
           return(
             <Marker
               key = {index}
-              coordinates={item.data.centroid}
+              coordinates={item?.data?.centroid}
               captureClick={false}
               draggable={false}
               offsetTop={-30}

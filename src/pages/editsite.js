@@ -60,6 +60,14 @@ function EditSite() {
       alert('input site name and site address!');
       return;
     }
+    if(!currentSite || !currentSite.polyrings ){
+      alert('you should save polygon!');
+      return;
+    }
+    if(!currentSite || !currentSite.markup ){
+      alert('you should save markup!');
+      return;
+    }
     let rt;
     let info = {
       "Sitename": siteName, 
@@ -101,13 +109,13 @@ function EditSite() {
   
   const saveBoundary = (polygon) => {
     setupEl.current.setBdStatus(BOUNDARY_EDIT);
-    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: polygon, markup: (currentSite)?currentSite.iconList:[], centroid: polygon.points[0][0]});
+    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: polygon, markup: (currentSite)?currentSite?.iconList:[], centroid: polygon.points[0][0]});
     setEditingStatus(BOUNDARY_SAVE);
   }
 
   const saveMarkup = (iconList) => {
     setupEl.current.setMkStatus(MARKUP_EDIT);
-    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: (currentSite)?currentSite.polyrings:{}, markup: iconList, centroid: (currentSite)?currentSite.centroid:[]});
+    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: (currentSite)?currentSite?.polyrings:{}, markup: iconList, centroid: (currentSite)?currentSite?.centroid:[]});
     setEditingStatus(MARKUP_SAVE);
   }
 

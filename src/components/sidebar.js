@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -10,6 +10,12 @@ import { useNavigate } from 'react-router-dom';
 const useStyles = makeStyles({
     root: {
         width: SIDEBAR_WIDTH,
+        // ['@media (max-width:780px)']: { // eslint-disable-line no-useless-computed-key
+        //     display: 'none'
+        // },
+        // ['@media (min-width:790px)']: { // eslint-disable-line no-useless-computed-key
+        //     display: 'block'
+        // }
     },
     siteBar: {
         backgroundColor: '#0066ffef',
@@ -21,6 +27,7 @@ const useStyles = makeStyles({
 export const SideBar = ({ getSelectedItem, sites }) => {
     const classes = useStyles();
     const history = useNavigate();
+    const sideBarEl = useRef(null);
 
     const [selectedIndex, setSelected] = useState(null);
 
@@ -33,8 +40,13 @@ export const SideBar = ({ getSelectedItem, sites }) => {
         getSelectedItem(item);
     }
 
+    
+    useEffect(() => {
+        console.log('width', sideBarEl.current ? sideBarEl.current.offsetWidth : 0);
+    }, [])
+
     return (
-        <div className={classes.root}>
+        <div ref = {sideBarEl} className={classes.root}>
             <List className="list" component="nav">
                 <ListItem
                     className={classes.siteBar}

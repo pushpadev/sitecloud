@@ -2,7 +2,9 @@ import React, { useState, useRef } from 'react';
 import PrimarySearchAppBar from '../components/appbar';
 import PolygonMap from '../components/polygonmap';
 import { makeStyles } from '@mui/styles';
-import { SetupSiteBar } from '../components/setup';
+// import GmailTreeView from '../components/gmailtreeview';
+
+
 const useStyles = makeStyles({
   root: {
     display: 'flex',
@@ -18,7 +20,7 @@ function ShowSite() {
       <>
         <PrimarySearchAppBar/>
         <div className = {classes.root} >
-            Show Site
+            {/* <GmailTreeView /> */}
         </div>
       </>
   );
