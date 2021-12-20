@@ -1,0 +1,14 @@
+.contentdiv {
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px gainsboro, 0 8px 16px gainsboro, 0 8px 16px gainsboro;
+  background: white;
+  margin-top: 20px;
+}
+.mainlogo {
+  margin-right: 25px;
+}
+.bluetext {
+  font-weight: bolder;
+  color: blue;
+}

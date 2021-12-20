@@ -1,13 +1,14 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import { APP_NAME } from '../constant';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import { APP_NAME } from "../constant";
+import { Link } from "react-router-dom";
 
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -29,41 +30,44 @@ export default function PrimarySearchAppBar() {
     handleMobileMenuClose();
   };
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       id={menuId}
       keepMounted
       transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem>
+        <Link to="/accountsettings">Profile </Link>
+      </MenuItem>
+
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       id={mobileMenuId}
       keepMounted
       transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
+        vertical: "top",
+        horizontal: "right",
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
@@ -85,36 +89,52 @@ export default function PrimarySearchAppBar() {
 
   return (
     <>
-    {pathName !== '/login' &&
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" style = {{backgroundColor: 'white', color: 'black'}}>
-          <Toolbar>
-            <Box sx={{display: {xs: 'flex', md: 'flex'}}} style = {{alignItems: 'center'}}>
-              <a href = '/'><img style = {{width: '40px', marginRight: 5}} src = '/logo.png' alt = 'logo'/></a>
-              <span>{APP_NAME}</span>
-            </Box>
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style = {{alignItems: 'center'}}>
-              <Typography>Account Settings</Typography>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
+      {pathName !== "/login" && (
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar
+            position="fixed"
+            style={{ backgroundColor: "white", color: "black" }}
+            sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          >
+            <Toolbar>
+              <Box
+                sx={{ display: { xs: "flex", md: "flex" } }}
+                style={{ alignItems: "center" }}
               >
-                <AccountCircle />
-              </IconButton>
-            </Box>
-          </Toolbar>
-        </AppBar>
-        {renderMobileMenu}
-        {renderMenu}
-      </Box>
-    }
+                <a href="/">
+                  <img
+                    style={{ width: "40px", marginRight: 5 }}
+                    src="/logo.png"
+                    alt="logo"
+                  />
+                </a>
+                <span>{APP_NAME}</span>
+              </Box>
+              <Box sx={{ flexGrow: 1 }} />
+              <Box
+                sx={{ display: { xs: "flex", md: "flex" } }}
+                style={{ alignItems: "center" }}
+              >
+                <Typography>Account Settings</Typography>
+                <Typography>Account Settings</Typography>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-controls={menuId}
+                  aria-haspopup="true"
+                  onClick={handleProfileMenuOpen}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+              </Box>
+            </Toolbar>
+          </AppBar>
+          {renderMobileMenu}
+          {renderMenu}
+        </Box>
+      )}
     </>
-    
   );
 }

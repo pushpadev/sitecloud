@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import PrimarySearchAppBar from '../components/appbar';
 import PolygonMap from '../components/polygonmap';
 import { makeStyles } from '@mui/styles';
