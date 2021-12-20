@@ -11,29 +11,7 @@ const useStyles = makeStyles({
 });
 
 function ShowSite() {
-  const newSiteEl = useRef(null);
   const classes = useStyles();
-
-  const [showMarkup, setShowMarkup] = useState(false);
-
-  const drawPolygon = () => {
-    newSiteEl.current.setCreatePolygonMode();
-  }
-
-  const editPolygon = () => {
-
-  }
-
-  const markupSite = () => {
-    setShowMarkup(true);
-  }
-
-  const createSite = () => {
-  }
-
-  const deletePolygon = () => {
-    newSiteEl.current.deleteSelectedPolyon();
-  }
 
   return (
       <>

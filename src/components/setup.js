@@ -197,7 +197,7 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                         )}
                     </div>
                     <div className={classes.end}>
-                        <ColorButton onClick={() => createSite()} width = '40%' bgcolor = {BG_COLOR_BULE} txtcolor={BG_COLOR_WHITE}>
+                        <ColorButton onClick={() => {createSite();history('/');}} width = '40%' bgcolor = {BG_COLOR_BULE} txtcolor={BG_COLOR_WHITE}>
                             <span>Create Site</span>
                         </ColorButton>
                         <ColorButton 
