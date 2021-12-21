@@ -68,6 +68,8 @@ const MarkerMap = forwardRef((props, ref) => {
 
   const onStyleLoaded = (map)  => {
     setMapObj(map);
+    // if(map)
+    //   map.panTo([149.012375, -35.473469]);
   }
 
   const goToSelectedSite = (item) => {
@@ -92,6 +94,7 @@ const MarkerMap = forwardRef((props, ref) => {
           height: `calc(100vh - 84px)`,
           width: `calc(100vw - ${SIDEBAR_WIDTH}px)`
         }}
+        center = {[149.012375, -35.473469]}
       >
         {/* defaultMode = 'draw_polygon' */}
         <DrawControl ref={drawControl} displayControlsDefault={false} />
