@@ -153,7 +153,7 @@ export const SetupSiteBar = forwardRef((props, ref) => {
             <div className={classes.Root} style={{backgroundColor: bgcolor}}>
                 <div className={classes.container}>
                     <div className={classes.setupbar}>
-                        {(siteInfo && Object.keys(siteInfo).length === 0)?'Setup a New Site':'Edit Site'}
+                        {(siteInfo && Object.keys(siteInfo).length === 0)?'Setup a new site':'Edit Site'}
                     </div>
 
                     <div className={classes.text}>
