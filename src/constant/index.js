@@ -7,6 +7,20 @@ import RemoveCircleOutlineTwoToneIcon from '@mui/icons-material/RemoveCircleOutl
 import LabelIcon from '@mui/icons-material/Label';
 import HighlightIcon from '@mui/icons-material/Highlight';
 
+import SettingsIcon from '@mui/icons-material/Settings';
+import PersonIcon from '@mui/icons-material/Person';
+import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
+import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
+import MessageIcon from '@mui/icons-material/Message';
+import DescriptionIcon from '@mui/icons-material/Description';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import UpdateIcon from '@mui/icons-material/Update';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+
+
 export const APP_NAME = 'Site Management System';
 export const SERVER_URL = 'https://vuvqkquws0.execute-api.ap-southeast-1.amazonaws.com/test/sitemap';
 export const SITE_LIST = [
@@ -106,6 +120,81 @@ export const ICON_LIST = [
     },
 
 ]
+
+export const MAP_VIEW = {
+    data:{
+        Sitename: 'Site Overview',
+        Siteaddress: '12 Aughtie Dr, Albert Park VIC 3206, Australia',
+    }
+}
+
+export const SHOW_SITE_BAR = [
+    {
+        nodeId: '1',
+        lableText: 'Manage Site',
+        icon: SettingsIcon,
+    },
+    {
+        nodeId: '2',
+        lableText: 'Attendence',
+        icon: PersonIcon,
+    },
+    {
+        nodeId: '3',
+        lableText: 'Inductions',
+        icon: PlaylistAddCheckIcon,
+    },
+    {
+        nodeId: '4',
+        lableText: 'Pre-Start and Daily Briefing',
+        icon: InsertInvitationIcon,
+    },
+    {
+        nodeId: '5',
+        lableText: 'Safety and Notices',
+        icon: MessageIcon,
+    },
+    {
+        nodeId: '6',
+        lableText: 'Safety Work Method Statements',
+        icon: DescriptionIcon,
+    },
+    {
+        nodeId: '7',
+        lableText: 'Site Permits',
+        icon: NoteAddIcon,
+    },
+    {
+        nodeId: '8',
+        lableText: 'Hazard and Issues',
+        icon: ErrorOutlineIcon,
+    },
+   
+]
+
+export const SHOW_SITE_BAR_CHILD = [
+    {
+        nodeId: '9',
+        lableText: 'Live Attendence',
+        icon: AccessTimeIcon,
+    },
+    {
+        nodeId: '10',
+        lableText: 'Daily Attendence',
+        icon: DateRangeIcon,
+    },
+    {
+        nodeId: '11',
+        lableText: 'Attendence History',
+        icon: UpdateIcon,
+    },
+    {
+        nodeId: '12',
+        lableText: 'Manual Sign-In',
+        icon: ExitToAppIcon,
+    },
+]
+
 export const SAVE_MARKUP_MSG = 'Site markup will be visibile to workers and visitors on the mobile application';
 export const SAVE_BOUNDARY_MSG = 'The site boundary must be a contained area';
 export const SIDEBAR_WIDTH = 320;
@@ -131,3 +220,4 @@ export const BG_COLOR_WHITE = '#ffffff';
 export const BG_COLOR_GRAY = '#aaafb8ef';
 export const BG_COLOR_BULE = '#0066ffef';
 export const BG_COLOR_BLACK = '#413B5A';
+export const BG_COLOR_BULE_LITTLE = '#CEE2FF';

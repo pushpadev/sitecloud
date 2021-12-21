@@ -13,6 +13,7 @@ import {
   STATUS_NONE, 
   MARKUP_SAVE,
   BOUNDARY_SAVE,
+  BOUNDARY_CREATE,
 } from '../constant';
 import { CurrentSiteContext } from "../contexts/currentsite";
 import { getSite, saveSite, modifySite} from '../actions'
@@ -53,8 +54,9 @@ function EditSite() {
     setupEl.current.setBdStatus(BOUNDARY_NONE);
   }
 
-  const editPolygon = () => {
-
+  const editPolygon = (polygon) => {
+    setExistPolygon(true);
+    setEditingStatus(BOUNDARY_CREATE);
   }
 
   const markupSite = () => {
@@ -84,6 +86,8 @@ function EditSite() {
     };
 
     setCurrentSite(info);
+    console.log(info);
+
     if(id === undefined || id === null){
       rt = await saveSite(info);
       if(rt.status === 'success'){
@@ -106,8 +110,10 @@ function EditSite() {
   }
 
   const deletePolygon = () => {
-    if(polygonEl.current.deleteSelectedPolyon())
+    if(polygonEl.current.deleteSelectedPolyon()){
+      setEditingStatus(STATUS_NONE);
       setExistPolygon(false);
+    }
   }
   const deleteMarkup = () => {
     polygonEl.current.deleteMarkup();
@@ -150,6 +156,10 @@ function EditSite() {
     })()
   }, [])
 
+  useEffect(() => {
+    // console.log(editingStatus);
+  }, [editingStatus])
+
   return (
       <>
       {(isLoading)?(<></>):(
@@ -184,6 +194,7 @@ function EditSite() {
               setExistMakrup = {setExistMakrup}
               isExistMarkup = {isExistMarkup}
               endDrawPolygon = {endDrawPolygon}
+              editPolygon = {editPolygon}
             />
         </div>
       )}
