@@ -2,8 +2,7 @@ import React from 'react';
 import Routers from './router';
 import { SitesProvider } from './contexts/sites';
 import { CurrentSiteProvider } from './contexts/currentsite';
-import "bootstrap/dist/css/bootstrap.min.css";
-
+import { ToastProvider } from 'react-toast-notifications'
 import './App.css';
 
 function App() {
@@ -11,11 +10,13 @@ function App() {
 
   return (
     <div className='App'>
-      <SitesProvider>
-        <CurrentSiteProvider>
-          <Routers />
-        </CurrentSiteProvider>
-      </SitesProvider>
+      <ToastProvider>
+        <SitesProvider>
+          <CurrentSiteProvider>
+            <Routers />
+          </CurrentSiteProvider>
+        </SitesProvider>
+      </ToastProvider>
     </div>
 
   );

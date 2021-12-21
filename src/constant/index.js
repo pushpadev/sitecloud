@@ -1,11 +1,11 @@
-import GroupsIcon from '@mui/icons-material/Groups';
-import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
-import LocalParkingIcon from '@mui/icons-material/LocalParking';
-import { Icon } from '@iconify/react';
-import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
-import RemoveCircleOutlineTwoToneIcon from '@mui/icons-material/RemoveCircleOutlineTwoTone';
-import LabelIcon from '@mui/icons-material/Label';
-import HighlightIcon from '@mui/icons-material/Highlight';
+import { ReactComponent as MustterIcon } from '../images/markups/mustter.svg';
+import { ReactComponent as EntryIcon } from '../images/markups/entry.svg';
+import { ReactComponent as ParkingIcon } from '../images/markups/parking.svg';
+import { ReactComponent as HazardsIcon } from '../images/markups/hazards.svg';
+import { ReactComponent as CrossIcon } from '../images/markups/cross.svg';
+import { ReactComponent as StopIcon } from '../images/markups/stop.svg';
+import { ReactComponent as LabelIcon } from '../images/markups/label.svg';
+import { ReactComponent as HighlightIcon } from '../images/markups/highlight.svg';
 
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
@@ -81,32 +81,32 @@ export const ICON_LIST = [
     {
         'id': 1,
         'value': 'Mustter Points',
-        'icon':  <GroupsIcon />,
+        'icon':  <MustterIcon />,
     },
     {
         'id': 2,
         'value': 'Entry',
-        'icon':  <PrecisionManufacturingIcon />,
+        'icon':  <EntryIcon />,
     },
     {
         'id': 3,
         'value': 'Parking',
-        'icon':  <LocalParkingIcon />,
+        'icon':  <ParkingIcon />,
     },
     {
         'id': 4,
         'value': 'Hazards',
-        'icon':  <Icon icon="mdi:radioactive" />,
+        'icon':  <HazardsIcon />,
     },
     {
         'id': 5,
         'value': 'Cross',
-        'icon':  <AddTwoToneIcon />,
+        'icon':  <CrossIcon />,
     },
     {
         'id': 6,
         'value': 'Stop',
-        'icon':  <RemoveCircleOutlineTwoToneIcon />,
+        'icon':  <StopIcon />,
     },
     {
         'id': 7,
