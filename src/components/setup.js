@@ -62,6 +62,11 @@ const useStyles = makeStyles({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    markup: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
     column: {
         display: 'flex',
         flexDirection: 'column',
@@ -207,46 +212,42 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                                     brcolor = {BG_COLOR_GRAY}
                                     txtcolor = {(bdStatus === BOUNDARY_NONE)?BG_COLOR_BLACK:BG_COLOR_WHITE}
                                 >
-                                    Set Site Boundary
+                                    Set site boundary
                                     <EditIcon style = {{marginLeft: 10}}/>
                                 </ColorButton>
                             </>)}
                         </div>
                     }
-                    <div className={classes.end}>
-                        <div className={classes.column}>
-                            <p style={{fontSize: 10, fontWeight: 300, color: BG_COLOR_BLACK, paddingBottom: 10}}>Site boundary must be set before markup can be added</p>
-                            <div className={classes.row}>
-                                {(isExistMarkup === false)?(
-                                    <ColorButton 
-                                        onClick={() => {markupSite();}} 
-                                        width = '100%' 
-                                        bgcolor = {BG_COLOR_WHITE}
-                                        brcolor = {BG_COLOR_GRAY}
-                                        txtcolor = {BG_COLOR_BLACK}
-                                    >
-                                        <span>Markup Site</span>
-                                        <MarkupIcon  s  tyle = {{marginLeft: 10}}/>
-                                    </ColorButton>
-                                ):(
-                                    <>
-                                        <ColorButton 
-                                            onClick={() => editPolygon()} 
-                                            width = '80%' 
-                                            bgcolor = {BG_COLOR_WHITE}
-                                            brcolor = {BG_COLOR_BULE}
-                                            txtcolor = {BG_COLOR_BLACK}
-                                        >
-                                            Edit Site Markup
-                                            <MarkupIcon  style = {{marginLeft: 10}}/>
-                                        </ColorButton>
-                                        <IconButton aria-label="delete" onClick = {() => {deleteMarkup();}}>
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    </>
-                                )}
-                            </div>
-                        </div>
+                    <span style={{fontSize: 10, fontWeight: 300, color: BG_COLOR_BLACK, marginTop: 40, paddingBottom: 10}}>Site boundary must be set before markup can be added</span>
+                    <div className={classes.markup}>
+                        {(isExistMarkup === false)?(
+                            <ColorButton 
+                                onClick={() => {markupSite();}} 
+                                width = '100%' 
+                                bgcolor = {BG_COLOR_WHITE}
+                                brcolor = {BG_COLOR_GRAY}
+                                txtcolor = {BG_COLOR_BLACK}
+                            >
+                                <span>Markup site</span>
+                                <MarkupIcon  s  tyle = {{marginLeft: 10}}/>
+                            </ColorButton>
+                        ):(
+                            <>
+                                <ColorButton 
+                                    onClick={() => editPolygon()} 
+                                    width = '80%' 
+                                    bgcolor = {BG_COLOR_WHITE}
+                                    brcolor = {BG_COLOR_BULE}
+                                    txtcolor = {BG_COLOR_BLACK}
+                                >
+                                    Edit Site Markup
+                                    <MarkupIcon  style = {{marginLeft: 10}}/>
+                                </ColorButton>
+                                <IconButton aria-label="delete" onClick = {() => {deleteMarkup();}}>
+                                    <DeleteIcon />
+                                </IconButton>
+                            </>
+                        )}
                     </div>
                     <div className={classes.end} style = {{padding: '0 10px 0 10px'}}>
                         <SaveButton 
@@ -256,7 +257,7 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                             brcolor = {BG_COLOR_BULE} 
                             txtcolor={BG_COLOR_WHITE}
                         >
-                            <span>{(siteID === null || siteID === undefined)?"Create Site":"Update Site"}</span>
+                            <span>{(siteID === null || siteID === undefined)?"Create site":"Update site"}</span>
                         </SaveButton>
                         <ColorButton 
                             width = '45%'

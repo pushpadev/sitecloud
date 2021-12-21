@@ -197,8 +197,9 @@ export const SHOW_SITE_BAR_CHILD = [
 
 export const SAVE_MARKUP_MSG = 'Site markup will be visibile to workers and visitors on the mobile application';
 export const SAVE_BOUNDARY_MSG = 'The site boundary must be a contained area';
-export const SIDEBAR_WIDTH = 320;
-export const ICONBAR_WIDTH = 180;
+export const SIDEBAR_WIDTH = 365;
+export const SHOWBAR_WIDTH = 260;
+export const ICONBAR_WIDTH = 230;
 
 export const STATUS_NONE = -1;
 export const BOUNDARY_NONE = 0;
