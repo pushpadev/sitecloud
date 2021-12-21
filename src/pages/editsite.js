@@ -42,9 +42,15 @@ function EditSite() {
   const [isExistPolygon, setExistPolygon] = useState(false);
   const [isExistMarkup, setExistMakrup] = useState(false);
   const history = useNavigate();
+
+
   const drawPolygon = () => {
     polygonEl.current.setCreatePolygonMode();
     setupEl.current.setMkStatus(MARKUP_NONE);
+  }
+
+  const endDrawPolygon = () => {
+    setupEl.current.setBdStatus(BOUNDARY_NONE);
   }
 
   const editPolygon = () => {
@@ -100,21 +106,23 @@ function EditSite() {
   }
 
   const deletePolygon = () => {
-    polygonEl.current.deleteSelectedPolyon();
-    setExistPolygon(false);
+    if(polygonEl.current.deleteSelectedPolyon())
+      setExistPolygon(false);
   }
   const deleteMarkup = () => {
     polygonEl.current.deleteMarkup();
   }
   
   const saveBoundary = (polygon) => {
-    setupEl.current.setBdStatus(BOUNDARY_EDIT);
+    if(!polygon || Object.keys(polygon).length === 0){
+      alert('You should draw the polygon');
+      return;
+    }
     setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: polygon, markup: (currentSite)?currentSite?.iconList:[], centroid: polygon.points[0][0]});
     setEditingStatus(BOUNDARY_SAVE);
   }
 
   const saveMarkup = (iconList) => {
-    setupEl.current.setMkStatus(MARKUP_EDIT);
     setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: (currentSite)?currentSite?.polyrings:{}, markup: iconList, centroid: (currentSite)?currentSite?.centroid:[]});
     setEditingStatus(MARKUP_SAVE);
   }
@@ -175,6 +183,7 @@ function EditSite() {
               setExistPolygon = {setExistPolygon}
               setExistMakrup = {setExistMakrup}
               isExistMarkup = {isExistMarkup}
+              endDrawPolygon = {endDrawPolygon}
             />
         </div>
       )}

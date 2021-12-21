@@ -130,4 +130,4 @@ export const MARKUP_CREATE = 11;
 export const BG_COLOR_WHITE = '#ffffff';
 export const BG_COLOR_GRAY = '#aaafb8ef';
 export const BG_COLOR_BULE = '#0066ffef';
-export const BG_COLOR_BLACK = '#000000';
+export const BG_COLOR_BLACK = '#413B5A';

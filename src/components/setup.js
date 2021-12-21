@@ -20,6 +20,7 @@ import {
     BG_COLOR_BULE
 } from '../constant';
 import { useNavigate } from 'react-router-dom';
+import EditIcon from '@mui/icons-material/Edit';
 
 const useStyles = makeStyles({
     Root: {
@@ -32,21 +33,28 @@ const useStyles = makeStyles({
         padding: 20,
     },
     setupbar: {
-        height: 80,
+        display: 'flex',
+        height: 50,
         color: 'black',
         borderBottom: '1px solid black',
+        paddingBottom: 10,
+        fontSize: 20,
         alignItems: 'end',
+        marginBottom: 20
     },
 
     text: {
-        marginTop: 20,
+        marginTop: 40,
         width: '100%',
+        fontSize: 14,
     },
     fullWidth: {
         width: '100%',
+        height: 53,
+        backgroundColor: '#ECF4FF',
     },
     end: {
-        marginTop: 20,
+        marginTop: 40,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between'
@@ -56,19 +64,36 @@ const useStyles = makeStyles({
 const ColorButton = withStyles((theme) => ({
     root: {
         width: (props) => (props.width?props.width:'100%'),
-        height: '45px',
+        height: (props) => (props.height?props.height:'53px'),
         color: (props) => (props.txtcolor),
         paddingTop: '2px',
         paddingBottom: '2px',
         textTransform: 'none',
-        backgroundColor: (props) => (`${props.bgcolor} !important`),
-        border: (props) => (`2px solid ${props.bgcolor} !important`),
+        backgroundColor: (props) => (props.bgcolor),
+        border: (props) => (`1px solid ${props.brcolor} !important`),
         '&:hover': {
             opacity: '.7',
             borderColor: (props) => (`${props.brcolor} !important`),
         },
     },
 }))(Button);
+
+const SaveButton = withStyles((theme) => ({
+    root: {
+        width: '40%',
+        height: 40,
+        color: 'white',
+        paddingTop: '2px',
+        paddingBottom: '2px',
+        textTransform: 'none',
+        backgroundColor: '#0066ffef !important',
+        border: '#0066ffef !important',
+        '&:hover': {
+            opacity: '.7',
+            borderColor: '#0066ffef !important',
+        },
+    },
+  }))(Button);
 
 export const SetupSiteBar = forwardRef((props, ref) => {
     const {
@@ -99,8 +124,8 @@ export const SetupSiteBar = forwardRef((props, ref) => {
 
     const setPolygon = () => {
         setBdStatus(BOUNDARY_SET);
-        drawPolygon(true);
         setMkStatus(MARKUP_NONE);
+        drawPolygon(true);
     }
 
     useImperativeHandle(ref, () => ({ setBdStatus, setMkStatus }), [ ])
@@ -128,40 +153,45 @@ export const SetupSiteBar = forwardRef((props, ref) => {
             <div className={classes.Root} style={{backgroundColor: bgcolor}}>
                 <div className={classes.container}>
                     <div className={classes.setupbar}>
-                        {(siteInfo && Object.keys(siteInfo).length === 0)? <h3>Setup New Site</h3>:<h3>Edit Site</h3>}
+                        {(siteInfo && Object.keys(siteInfo).length === 0)?'Setup a New Site':'Edit Site'}
                     </div>
 
                     <div className={classes.text}>
-                        <p>Site Name</p>
-                        <OutlinedInput className = {classes.fullWidth} placeholder="Please Site Name" value={siteName} onChange={handleSiteName} />
+                        <p style = {{paddingBottom: 10}}>Site Name</p>
+                        <OutlinedInput className = {classes.fullWidth} value={siteName} onChange={handleSiteName} />
                     </div>
 
                     <div className={classes.text}>
-                        <p>Site Address</p>
-                        <OutlinedInput className = {classes.fullWidth} placeholder="Please Site Address" value={siteAddress} onChange={handleSiteAddress} />
+                        <p style = {{paddingBottom: 10}}>Site Address</p>
+                        <OutlinedInput className = {classes.fullWidth} value={siteAddress} onChange={handleSiteAddress} />
                     </div>
                     {!isMapLoading && 
                         <div className = {classes.end}>
                             {(isExistPolygon === true)?(
                                 <>
                                     <ColorButton 
+                                        width = '80%'
                                         onClick={() => editPolygon()} 
-                                        bgcolor = {BG_COLOR_GRAY}
+                                        bgcolor = {BG_COLOR_WHITE}
                                         brcolor = {BG_COLOR_BULE}
                                         txtcolor = {BG_COLOR_BLACK}
                                     >
                                         Edit Site Boundary
+                                        <EditIcon style = {{marginLeft: 10}}/>
                                     </ColorButton>
                                     <IconButton aria-label="delete" onClick = {() => {deletePolygon(); setBdStatus(BOUNDARY_NONE);}}>
-                                        <DeleteIcon />
+                                        <DeleteIcon style = {{color: '#EF4F4F'}}/>
                                     </IconButton>
                                 </>
                             ):(<>
                                 <ColorButton 
                                     onClick={() => setPolygon()} 
                                     width = '100%' 
-                                    bgcolor = {(bdStatus === BOUNDARY_NONE)?((mkStatus === MARKUP_NONE)?BG_COLOR_WHITE:BG_COLOR_GRAY):BG_COLOR_BULE} 
-                                    brcolor = {(bdStatus === BOUNDARY_NONE)?BG_COLOR_GRAY:BG_COLOR_BULE}
+                                    // bgcolor = {(bdStatus === BOUNDARY_NONE)?((mkStatus === MARKUP_NONE)?BG_COLOR_WHITE:BG_COLOR_GRAY):BG_COLOR_BULE} 
+                                    // brcolor = {(bdStatus === BOUNDARY_NONE)?BG_COLOR_GRAY:BG_COLOR_BULE}
+                                    // txtcolor = {(bdStatus === BOUNDARY_NONE)?BG_COLOR_BLACK:BG_COLOR_WHITE}
+                                    bgcolor = {(bdStatus === BOUNDARY_NONE)?BG_COLOR_WHITE:BG_COLOR_BULE}
+                                    brcolor = {BG_COLOR_GRAY}
                                     txtcolor = {(bdStatus === BOUNDARY_NONE)?BG_COLOR_BLACK:BG_COLOR_WHITE}
                                 >
                                     Set Site Boundary
@@ -171,47 +201,58 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                     }
                     <div className={classes.end}>
                         {(isExistMarkup === false)?(
+                            // setMkStatus(MARKUP_SET);
                             <ColorButton 
-                                onClick={() => {markupSite();setMkStatus(MARKUP_SET);}} 
+                                onClick={() => {markupSite();}} 
                                 width = '100%' 
-                                bgcolor = {(mkStatus === MARKUP_NONE)?((bdStatus === BOUNDARY_NONE)?BG_COLOR_WHITE:BG_COLOR_GRAY):BG_COLOR_BULE} 
-                                brcolor = {(mkStatus === MARKUP_NONE)?BG_COLOR_GRAY:BG_COLOR_BULE}
-                                txtcolor = {(mkStatus === MARKUP_NONE)?BG_COLOR_BLACK:BG_COLOR_WHITE}
+                                // bgcolor = {(mkStatus === MARKUP_NONE)?((bdStatus === BOUNDARY_NONE)?BG_COLOR_WHITE:BG_COLOR_GRAY):BG_COLOR_BULE} 
+                                // brcolor = {(mkStatus === MARKUP_NONE)?BG_COLOR_GRAY:BG_COLOR_BULE}
+                                // txtcolor = {(mkStatus === MARKUP_NONE)?BG_COLOR_BLACK:BG_COLOR_WHITE}
+                                bgcolor = {BG_COLOR_WHITE}
+                                brcolor = {BG_COLOR_GRAY}
+                                txtcolor = {BG_COLOR_BLACK}
                             >
                                 <span>Markup Site</span>
-                                <CollectionsBookmarkOutlinedIcon />
+                                <CollectionsBookmarkOutlinedIcon  style = {{marginLeft: 10}}/>
                             </ColorButton>
                         ):(
                             <>
                                 <ColorButton 
                                     onClick={() => editPolygon()} 
-                                    bgcolor = {BG_COLOR_GRAY}
+                                    width = '80%' 
+                                    bgcolor = {BG_COLOR_WHITE}
                                     brcolor = {BG_COLOR_BULE}
                                     txtcolor = {BG_COLOR_BLACK}
                                 >
                                     Edit Site Markup
                                 </ColorButton>
                                 <IconButton aria-label="delete" onClick = {() => {deleteMarkup();}}>
-                                    <DeleteIcon />
+                                    <DeleteIcon style = {{color: '#EF4F4F'}}/>
                                 </IconButton>
                             </>
                         )}
                     </div>
-                    <div className={classes.end}>
-                        <ColorButton onClick={() => createSite()} width = '40%' bgcolor = {BG_COLOR_BULE} txtcolor={BG_COLOR_WHITE}>
+                    <div className={classes.end} style = {{padding: '0 10px 0 10px'}}>
+                        <SaveButton 
+                            onClick={() => createSite()} 
+                            width = '45%'
+                            bgcolor = {BG_COLOR_BULE} 
+                            brcolor = {BG_COLOR_BULE} 
+                            txtcolor={BG_COLOR_WHITE}
+                        >
                             <span>{(siteID === null || siteID === undefined)?"Create Site":"Update Site"}</span>
-                        </ColorButton>
+                        </SaveButton>
                         <ColorButton 
-                            width = '40%'
+                            width = '45%'
+                            height = '40px'
                             onClick={() => cancelSite()} 
-                            bgcolor = {BG_COLOR_GRAY}
-                            brcolor = {BG_COLOR_BULE}
+                            bgcolor = {BG_COLOR_WHITE}
+                            brcolor = {BG_COLOR_WHITE}
                             txtcolor = {BG_COLOR_BLACK}
                         >
                             Cancel
                         </ColorButton>
                     </div>
-
                 </div>
             </div>
         </>
