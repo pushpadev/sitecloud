@@ -8,6 +8,8 @@ import ListItem from "@mui/material/ListItem";
 // import ListItemIcon from "@mui/material/ListItemIcon";
 import { Link } from "react-router-dom";
 import Content from "./Content";
+// import { contentdata } from "./contentdata";
+
 const drawerWidth = 230;
 
 export default function ClippedDrawer() {
@@ -33,6 +35,7 @@ export default function ClippedDrawer() {
     <Box sx={{ display: "flex" }}>
       <Drawer
         variant="permanent"
+        style={{ zIndex: "-100" }}
         sx={{
           width: drawerWidth,
           flexShrink: 0,

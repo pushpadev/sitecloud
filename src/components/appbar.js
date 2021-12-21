@@ -48,7 +48,12 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem>
-        <Link to="/accountsettings">Profile </Link>
+        <Link
+          to="/accountsettings"
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          Profile{" "}
+        </Link>
       </MenuItem>
 
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
@@ -94,7 +99,7 @@ export default function PrimarySearchAppBar() {
           <AppBar
             position="fixed"
             style={{ backgroundColor: "white", color: "black" }}
-            sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            // sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
           >
             <Toolbar>
               <Box
@@ -115,7 +120,6 @@ export default function PrimarySearchAppBar() {
                 sx={{ display: { xs: "flex", md: "flex" } }}
                 style={{ alignItems: "center" }}
               >
-                <Typography>Account Settings</Typography>
                 <Typography>Account Settings</Typography>
                 <IconButton
                   size="large"

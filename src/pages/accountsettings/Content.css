@@ -11,4 +11,24 @@
 .bluetext {
   font-weight: bolder;
   color: blue;
+  font-size: small;
+}
+.contentheading {
+  font-weight: bolder;
+}
+.contentdetail {
+  font-weight: bold;
+  font-size: small;
+}
+.companyname {
+  font-weight: bold;
+  font-size: small;
+}
+.contentsubheading {
+  font-weight: 520;
+  font-size: small;
+  color: gray;
+}
+.charges {
+  margin-left: 30px;
 }
