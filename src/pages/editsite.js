@@ -18,6 +18,7 @@ import {
 import { CurrentSiteContext } from "../contexts/currentsite";
 import { getSite, saveSite, modifySite} from '../actions'
 import { useNavigate } from 'react-router-dom';
+import { useToasts } from 'react-toast-notifications'
 
 const useStyles = makeStyles({
   root: {
@@ -42,6 +43,7 @@ function EditSite() {
   const [isMapLoading, setMapLoading] = useState(true);
   const [isExistPolygon, setExistPolygon] = useState(false);
   const [isExistMarkup, setExistMakrup] = useState(false);
+  const { addToast } = useToasts();
   const history = useNavigate();
 
 
@@ -65,15 +67,24 @@ function EditSite() {
 
   const createSite = async () => {
     if( !siteName || !siteAddress ){
-      alert('input site name and site address!');
+      addToast('input site name and site address!', {
+        appearance: 'warning',
+        autoDismiss: true,
+      })
       return;
     }
     if(!currentSite || !currentSite.polyrings ){
-      alert('you should save polygon!');
+      addToast('you should save polygon!', {
+        appearance: 'warning',
+        autoDismiss: true,
+      })
       return;
     }
     if(!currentSite || !currentSite.markup ){
-      alert('you should save markup!');
+      addToast('you should save markup!', {
+        appearance: 'warning',
+        autoDismiss: true,
+      })
       return;
     }
     let rt;
@@ -91,19 +102,31 @@ function EditSite() {
     if(id === undefined || id === null){
       rt = await saveSite(info);
       if(rt.status === 'success'){
-        alert('save success');
+        addToast('save success', {
+          appearance: 'success',
+          autoDismiss: true,
+        })
       }
       else{
-        alert('save error');
+        addToast('save error', {
+          appearance: 'error',
+          autoDismiss: true,
+        })
       }
     }
     else{
       rt = await modifySite(id, info);
       if(rt === 'updated success'){
-        alert('update success');
+        addToast('update success', {
+          appearance: 'success',
+          autoDismiss: true,
+        })
       }
       else{
-        alert('update error');
+        addToast('update error', {
+          appearance: 'error',
+          autoDismiss: true,
+        })
       }
     }
     history('/');
@@ -121,7 +144,10 @@ function EditSite() {
   
   const saveBoundary = (polygon) => {
     if(!polygon || Object.keys(polygon).length === 0){
-      alert('You should draw the polygon');
+      addToast('You should draw the polygon', {
+        appearance: 'warning',
+        autoDismiss: true,
+      })
       return;
     }
     setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: polygon, markup: (currentSite)?currentSite?.iconList:[], centroid: polygon.points[0][0]});

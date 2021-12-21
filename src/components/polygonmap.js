@@ -22,6 +22,7 @@ import { CurrentSiteContext } from "../contexts/currentsite";
 // import MapboxGeocoder from 'mapbox-gl-geocoder';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
+import { useToasts } from 'react-toast-notifications'
 
 const useStyles = makeStyles({
     root: {
@@ -60,6 +61,7 @@ const PolygonMap = forwardRef((props, ref) => {
   const [mapObj, setMap] = useState(null);
   const [selIcon, setSelIcon] = useState(null);
   const [msg, setMsg] = useState(SAVE_BOUNDARY_MSG);
+  const { addToast } = useToasts();
 
   const mapRef = useRef();
   const drawControl = useRef(null);
@@ -97,21 +99,6 @@ const PolygonMap = forwardRef((props, ref) => {
       let data = {type: "FeatureCollection", features};
       drawControl.current.draw.set(data);
     }
-
-    // const geocoder = new MapboxGeocoder({
-    //   // Initialize the geocoder
-    //   accessToken: "pk.eyJ1IjoiZmFrZXVzZXJnaXRodWIiLCJhIjoiY2pwOGlneGI4MDNnaDN1c2J0eW5zb2ZiNyJ9.mALv0tCpbYUPtzT7YysA2g", // Set the access token
-    //   mapboxgl: map, // Set the mapbox-gl instance
-    //   placeholder: 'Search for places in Berkeley', // Placeholder text for the search bar
-    //   bbox: [-122.30937, 37.84214, -122.23715, 37.89838], // Boundary for Berkeley
-    //   proximity: {
-    //     longitude: -122.25948,
-    //     latitude: 37.87221
-    //   } // Coordinates of UC Berkeley
-    // });
-
-    // map.addControl(geocoder);
-    
   }
 
   const dragItem = (item) => {
@@ -134,26 +121,26 @@ const PolygonMap = forwardRef((props, ref) => {
 
   const checkCoordinate = (lat, lon) => {
     if (lat.length == 0) {
-      alert("Please put latitude!");
       return;
     } else {
       if (!parseFloat(lat)) {
-        alert("Please put decimals only!");
         return;
       }
     }
   
     if (lon.length == 0) {
-      alert("Please put longitude!");
       return;
     } else {
       if (!parseFloat(lon)) {
-        alert("Please put decimals only!");
         return;
       }
     }
+
     if (polygon.id === undefined || polygon.id === null) {
-      alert("You should add polygon into the map");
+      addToast('You should add polygon into the map', {
+        appearance: 'warning',
+        autoDismiss: true,
+      })
       return;
     }
 
@@ -165,9 +152,11 @@ const PolygonMap = forwardRef((props, ref) => {
     let calculatedRegion = turf.polygon(simplified.geometry.coordinates);
     bInside = turf.inside(point, calculatedRegion);
     if(!bInside)
-      alert("Not inside polygons");
+      addToast('Not inside polygons', {
+        appearance: 'warning',
+        autoDismiss: true,
+      })
     return bInside;
-    // alert(bInside ? "Your coordinate is inside current polygons!" : "Not inside polygons");
   }
 
   const handleIcon = (index) => {
@@ -218,7 +207,8 @@ const PolygonMap = forwardRef((props, ref) => {
       props.setEditingStatus(MARKUP_CREATE);
       props.setExistMakrup(true);
     }
-  }, [currentSite])
+  }, [currentSite, props])
+  
   return (
     <Dropzone>
       {({ getRootProps, getInputProps }) => (
