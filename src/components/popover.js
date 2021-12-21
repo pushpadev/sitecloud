@@ -57,12 +57,14 @@ const useStyles = makeStyles({
 });
 export default function PopOver(props){
     const siteInfo = props.siteInfo;
-    const sitemappingId  = props.sitemappingId;
-    const isRoot = (siteInfo?.Sitename === 'Site Overview'?true: false);
+    const sitemappingId  = props.siteInfo.sitemappingId;
+    const isRoot = (siteInfo?.data?.Sitename === 'Site Overview'?true: false);
 
     const classes = useStyles();
     let history = useNavigate();
 
+
+    console.log(props.siteInfo);
     const manageSite = () => {
         history(`/showsite/${sitemappingId}`);
     }
@@ -101,11 +103,14 @@ export default function PopOver(props){
                             </div>
                         </div>
                     </Col>
-                    <Col sm = {12} xs = {12} md = {2} lg = {2} style={{display: isRoot?'none':'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <ColorButton onClick={() => manageSite()}>
-                            <SettingsIcon style = {{marginRight: 10}} /><span>Manage</span><ArrowForwardIosIcon style = {{marginLeft: 10}} />
-                        </ColorButton>
-                    </Col>
+                    {!isRoot && 
+                        <Col sm = {12} xs = {12} md = {2} lg = {2} style={{display: isRoot?'none':'flex', justifyContent: 'center', alignItems: 'center'}}>
+                            <ColorButton onClick={() => manageSite()}>
+                                <SettingsIcon style = {{marginRight: 10}} /><span>Manage</span><ArrowForwardIosIcon style = {{marginLeft: 10}} />
+                            </ColorButton>
+                        </Col>
+                    }
+                    
                 </Row>
             </Container>
         </div>
