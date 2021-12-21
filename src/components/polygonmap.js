@@ -207,7 +207,8 @@ const PolygonMap = forwardRef((props, ref) => {
       props.setEditingStatus(MARKUP_CREATE);
       props.setExistMakrup(true);
     }
-  }, [currentSite])
+  }, [currentSite, props])
+  
   return (
     <Dropzone>
       {({ getRootProps, getInputProps }) => (
