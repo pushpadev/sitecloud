@@ -57,12 +57,14 @@ const useStyles = makeStyles({
 });
 export default function PopOver(props){
     const siteInfo = props.siteInfo;
-    const sitemappingId  = props.sitemappingId;
-    const isRoot = (siteInfo?.Sitename === 'Site Overview'?true: false);
+    const sitemappingId  = props.siteInfo.sitemappingId;
+    const isRoot = (siteInfo?.data?.Sitename === 'Site Overview'?true: false);
 
     const classes = useStyles();
     let history = useNavigate();
 
+
+    console.log(props.siteInfo);
     const manageSite = () => {
         history(`/showsite/${sitemappingId}`);
     }
@@ -72,9 +74,9 @@ export default function PopOver(props){
                 <Row>
                     <Col sm = {11} xs = {11} md = {isRoot?8:6} lg = {isRoot?8:6}>
                         <div className={classes.column}>
-                            <div className={classes.row}><p style = {{fontSize: 20, fontWeight: 'bold'}}>{isRoot?("\"Company Name\": " + siteInfo?.Sitename):("Site Overview: " + siteInfo?.Sitename)}</p></div>
+                            <div className={classes.row}><p style = {{fontSize: 20, fontWeight: 'bold'}}>{isRoot?("\"Company Name\": " + siteInfo?.data?.Sitename):("Site Overview: " + siteInfo?.data?.Sitename)}</p></div>
                             <div className={classes.row}>
-                                <AddLocationOutlinedIcon className={classes.icon}/><p>{isRoot?("Company Address: " + siteInfo?.Siteaddress):("Address: " + siteInfo?.Siteaddress)}</p>
+                                <AddLocationOutlinedIcon className={classes.icon}/><p>{isRoot?("Company Address: " + siteInfo?.data?.Siteaddress):("Address: " + siteInfo?.data?.Siteaddress)}</p>
                             </div>
                             <div className={classes.row}>
                                 {isRoot?(<><BookmarkBorderOutlinedIcon className={classes.icon} /><p>{"Sites managed: " + 5}</p></>):
@@ -88,24 +90,27 @@ export default function PopOver(props){
                             <div style = {{marginLeft: 20}} className={classes.column}>
                                 <div className={classes.row}>
                                     <GroupsIcon className={classes.icon}/>
-                                    <p style={{color: 'blue'}}>{"Total workers on Sites: " + siteInfo?.worker}</p>
+                                    <p style={{color: 'blue'}}>{"Total workers on Sites: " + siteInfo?.data?.worker}</p>
                                 </div>
                                 <div className={classes.row}>
                                     <VisibilityOutlinedIcon className={classes.icon}/>
-                                    <p style={{color: 'blue'}}>{"Total visitors on Sites: " + siteInfo?.visitor}</p>
+                                    <p style={{color: 'blue'}}>{"Total visitors on Sites: " + siteInfo?.data?.visitor}</p>
                                 </div>
                                 <div className={classes.row}>
                                     <ReportGmailerrorredOutlinedIcon className={classes.icon} />
-                                    <p style = {{color: 'red'}}>{"Total open hazards on Sites: " + siteInfo?.hazard}</p>
+                                    <p style = {{color: 'red'}}>{"Total open hazards on Sites: " + siteInfo?.data?.hazard}</p>
                                 </div>
                             </div>
                         </div>
                     </Col>
-                    <Col sm = {12} xs = {12} md = {2} lg = {2} style={{display: isRoot?'none':'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <ColorButton onClick={() => manageSite()}>
-                            <SettingsIcon style = {{marginRight: 10}} /><span>Manage</span><ArrowForwardIosIcon style = {{marginLeft: 10}} />
-                        </ColorButton>
-                    </Col>
+                    {!isRoot && 
+                        <Col sm = {12} xs = {12} md = {2} lg = {2} style={{display: isRoot?'none':'flex', justifyContent: 'center', alignItems: 'center'}}>
+                            <ColorButton onClick={() => manageSite()}>
+                                <SettingsIcon style = {{marginRight: 10}} /><span>Manage</span><ArrowForwardIosIcon style = {{marginLeft: 10}} />
+                            </ColorButton>
+                        </Col>
+                    }
+                    
                 </Row>
             </Container>
         </div>

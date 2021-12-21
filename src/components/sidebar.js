@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { SIDEBAR_WIDTH, SITE_LIST} from '../constant';
+import { SIDEBAR_WIDTH, SITE_LIST, MAP_VIEW} from '../constant';
 import { Divider } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
@@ -10,19 +10,36 @@ import { useNavigate } from 'react-router-dom';
 const useStyles = makeStyles({
     root: {
         width: SIDEBAR_WIDTH,
+        padding: 0,
+        marginTop: 0,
     },
-    siteBar: {
+    selected: {
         backgroundColor: '#0066ffef',
-        height: 80,
-        color: 'white'
+        borderColor: '#0066ffef',
+        color: 'white',
+        '&:hover': {
+            opacity: '.7',
+            borderColor: '#39c46aef',
+            color: 'black'
+        },
     },
+    hrselected: {
+        backgroundColor: '#0066ffef',
+        borderColor: '#0066ffef',
+        color: 'white',
+    }
 });
+
+const mapStyle = {
+    height: 80,
+}
 
 export const SideBar = ({ getSelectedItem, sites }) => {
     const classes = useStyles();
     const history = useNavigate();
+    // const sideBarEl = useRef(null);
 
-    const [selectedIndex, setSelected] = useState(null);
+    const [selectedIndex, setSelected] = useState(0);
 
     const isSelected = (item) => {
         return selectedIndex === item;
@@ -33,22 +50,33 @@ export const SideBar = ({ getSelectedItem, sites }) => {
         getSelectedItem(item);
     }
 
+    
+    // useEffect(() => {
+    //     console.log('width', sideBarEl.current ? sideBarEl.current.offsetWidth : 0);
+    // }, [])
     return (
-        <div className={classes.root}>
-            <List className="list" component="nav">
+        <div
+            // ref = {sideBarEl} 
+            className={classes.root}
+        >
+            <List className="list" component="nav" >
                 <ListItem
-                    className={classes.siteBar}
+                    className={isSelected(0) ? classes.hrselected : null}
+                    style = {mapStyle}
+                    onClick={() => onSelected(0, MAP_VIEW)}
                 >
-                    <img src = '/map.png' alt='map'></img>
-                    <ListItemText primary='Map View' ></ListItemText>
+                    {isSelected(0)?<img src = '/map.png' alt='map' />:<></>}
+                    <ListItemText primary='Map View'></ListItemText>
                 </ListItem>
+                <Divider/>
                 {(sites.length > 0) && sites.map((item, i) => {
                         return (
-                            <React.Fragment key={item.sitemappingId}>
+                            <React.Fragment key={i}>
+                                {/* {console.log("item " + i + '====' + isSelected(i) ? 'selected' : null)} */}
                                 <ListItem
-                                    button 
-                                    className={isSelected(i) ? 'selected' : null} 
-                                    onClick={() => onSelected(i, item)}
+                                    button={true} 
+                                    className={isSelected(i + 1) ? classes.selected : null} 
+                                    onClick={() => onSelected(i + 1, item)}
                                     onDoubleClick={() => history(`/showsite/${item.sitemappingId}`)}
                                 >
                                     <ListItemText primary={item.data.Sitename} ></ListItemText>

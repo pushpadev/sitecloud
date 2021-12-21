@@ -13,9 +13,11 @@ import {
   STATUS_NONE, 
   MARKUP_SAVE,
   BOUNDARY_SAVE,
+  BOUNDARY_CREATE,
 } from '../constant';
 import { CurrentSiteContext } from "../contexts/currentsite";
 import { getSite, saveSite, modifySite} from '../actions'
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -40,13 +42,21 @@ function EditSite() {
   const [isMapLoading, setMapLoading] = useState(true);
   const [isExistPolygon, setExistPolygon] = useState(false);
   const [isExistMarkup, setExistMakrup] = useState(false);
+  const history = useNavigate();
+
+
   const drawPolygon = () => {
     polygonEl.current.setCreatePolygonMode();
     setupEl.current.setMkStatus(MARKUP_NONE);
   }
 
-  const editPolygon = () => {
+  const endDrawPolygon = () => {
+    setupEl.current.setBdStatus(BOUNDARY_NONE);
+  }
 
+  const editPolygon = (polygon) => {
+    setExistPolygon(true);
+    setEditingStatus(BOUNDARY_CREATE);
   }
 
   const markupSite = () => {
@@ -54,6 +64,18 @@ function EditSite() {
   }
 
   const createSite = async () => {
+    if( !siteName || !siteAddress ){
+      alert('input site name and site address!');
+      return;
+    }
+    if(!currentSite || !currentSite.polyrings ){
+      alert('you should save polygon!');
+      return;
+    }
+    if(!currentSite || !currentSite.markup ){
+      alert('you should save markup!');
+      return;
+    }
     let rt;
     let info = {
       "Sitename": siteName, 
@@ -64,6 +86,8 @@ function EditSite() {
     };
 
     setCurrentSite(info);
+    console.log(info);
+
     if(id === undefined || id === null){
       rt = await saveSite(info);
       if(rt.status === 'success'){
@@ -82,25 +106,30 @@ function EditSite() {
         alert('update error');
       }
     }
+    history('/');
   }
 
   const deletePolygon = () => {
-    polygonEl.current.deleteSelectedPolyon();
-    setExistPolygon(false);
+    if(polygonEl.current.deleteSelectedPolyon()){
+      setEditingStatus(STATUS_NONE);
+      setExistPolygon(false);
+    }
   }
   const deleteMarkup = () => {
     polygonEl.current.deleteMarkup();
   }
   
   const saveBoundary = (polygon) => {
-    setupEl.current.setBdStatus(BOUNDARY_EDIT);
-    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: polygon, markup: (currentSite)?currentSite.iconList:[], centroid: polygon.points[0][0]});
+    if(!polygon || Object.keys(polygon).length === 0){
+      alert('You should draw the polygon');
+      return;
+    }
+    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: polygon, markup: (currentSite)?currentSite?.iconList:[], centroid: polygon.points[0][0]});
     setEditingStatus(BOUNDARY_SAVE);
   }
 
   const saveMarkup = (iconList) => {
-    setupEl.current.setMkStatus(MARKUP_EDIT);
-    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: (currentSite)?currentSite.polyrings:{}, markup: iconList, centroid: (currentSite)?currentSite.centroid:[]});
+    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: (currentSite)?currentSite?.polyrings:{}, markup: iconList, centroid: (currentSite)?currentSite?.centroid:[]});
     setEditingStatus(MARKUP_SAVE);
   }
 
@@ -127,6 +156,10 @@ function EditSite() {
     })()
   }, [])
 
+  useEffect(() => {
+    // console.log(editingStatus);
+  }, [editingStatus])
+
   return (
       <>
       {(isLoading)?(<></>):(
@@ -147,6 +180,7 @@ function EditSite() {
               isMapLoading = {isMapLoading}
               isExistPolygon = {isExistPolygon}
               isExistMarkup = {isExistMarkup}
+              siteID = {id}
             />
             <PolygonMap
               ref = {polygonEl}
@@ -159,6 +193,8 @@ function EditSite() {
               setExistPolygon = {setExistPolygon}
               setExistMakrup = {setExistMakrup}
               isExistMarkup = {isExistMarkup}
+              endDrawPolygon = {endDrawPolygon}
+              editPolygon = {editPolygon}
             />
         </div>
       )}

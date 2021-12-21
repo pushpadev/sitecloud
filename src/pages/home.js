@@ -1,10 +1,9 @@
-import React, { useRef, useEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import MarkerMap from '../components/markermap';
 import { SideBar } from '../components/sidebar';
 import { makeStyles } from '@mui/styles';
 import { getAllSite } from '../actions';
 import { SitesContext } from '../contexts/sites';
-import { deleteSite } from '../actions';
 const useStyles = makeStyles({
   root: {
     display: 'flex',
@@ -14,10 +13,10 @@ const useStyles = makeStyles({
 });
 
 function Home() {
-  const homeEl = useRef(null);
   const classes = useStyles();
+  const homeEl = useRef(null);
   const [ sites, setSites ] = useContext(SitesContext);
-  
+
   const getSelectedItem = (item) => {
     homeEl.current.goToSelectedSite(item);
   }
@@ -31,7 +30,10 @@ function Home() {
 
   return (
       <div className = {classes.root} >
-        <SideBar sites = {sites} getSelectedItem = {getSelectedItem} />
+        <SideBar 
+          sites = {sites} 
+          getSelectedItem = {getSelectedItem} 
+        />
         <MarkerMap ref = {homeEl} />
       </div>
   );
