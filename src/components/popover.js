@@ -38,7 +38,7 @@ const useStyles = makeStyles({
         textAlign: 'center',
         boxShadow: '3px 3px 2px 1px rgb(242, 242,242)',
         position: 'absolute',
-        top: 500,
+        bottom: 30,
     },
     column: {
         display: 'flex',
@@ -55,6 +55,11 @@ const useStyles = makeStyles({
         marginRight: 10,
     }
 });
+
+const workers = 32;
+const visitors = 12;
+const hazards = 2;
+
 export default function PopOver(props){
     const siteInfo = props.siteInfo;
     const sitemappingId  = props.siteInfo.sitemappingId;
@@ -90,15 +95,15 @@ export default function PopOver(props){
                             <div style = {{marginLeft: 20}} className={classes.column}>
                                 <div className={classes.row}>
                                     <GroupsIcon className={classes.icon}/>
-                                    <p style={{color: 'blue'}}>{"Total workers on Sites: " + siteInfo?.data?.worker}</p>
+                                    <p style={{color: '#1875F0'}}>{"Total workers on Sites: " + workers}</p>
                                 </div>
                                 <div className={classes.row}>
                                     <VisibilityOutlinedIcon className={classes.icon}/>
-                                    <p style={{color: 'blue'}}>{"Total visitors on Sites: " + siteInfo?.data?.visitor}</p>
+                                    <p style={{color: '#1875F0'}}>{"Total visitors on Sites: " + visitors}</p>
                                 </div>
                                 <div className={classes.row}>
                                     <ReportGmailerrorredOutlinedIcon className={classes.icon} />
-                                    <p style = {{color: 'red'}}>{"Total open hazards on Sites: " + siteInfo?.data?.hazard}</p>
+                                    <p style = {{color: '#EF4F4F'}}>{"Total open hazards on Sites: " + hazards}</p>
                                 </div>
                             </div>
                         </div>

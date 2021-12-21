@@ -3,9 +3,7 @@ import { SIDEBAR_WIDTH} from '../constant';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Button from '@mui/material/Button';
 import { makeStyles, withStyles } from '@mui/styles';
-import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
-import CollectionsBookmarkOutlinedIcon from '@mui/icons-material/CollectionsBookmarkOutlined';
 import { 
     BOUNDARY_NONE,
     BOUNDARY_EDIT,
@@ -20,7 +18,11 @@ import {
     BG_COLOR_BULE
 } from '../constant';
 import { useNavigate } from 'react-router-dom';
-import EditIcon from '@mui/icons-material/Edit';
+import { ReactComponent as Star } from '../images/star.svg'
+import { ReactComponent as EditIcon } from '../images/edit.svg'
+import { ReactComponent as MarkupIcon } from '../images/markup.svg'
+import { ReactComponent as DeleteIcon } from '../images/delete.svg'
+
 
 const useStyles = makeStyles({
     Root: {
@@ -51,6 +53,7 @@ const useStyles = makeStyles({
     fullWidth: {
         width: '100%',
         height: 53,
+        marginTop: 10,
         backgroundColor: '#ECF4FF',
     },
     end: {
@@ -59,6 +62,19 @@ const useStyles = makeStyles({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    column: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    row: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    star:{
+        position: 'absolute',
+        top: -3,
+        right: -8,
+    }
 });
 
 const ColorButton = withStyles((theme) => ({
@@ -157,12 +173,12 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                     </div>
 
                     <div className={classes.text}>
-                        <p style = {{paddingBottom: 10}}>Site Name</p>
+                        <span style = {{position: 'relative'}}>Site Name<Star className = {classes.star}/></span>
                         <OutlinedInput className = {classes.fullWidth} value={siteName} onChange={handleSiteName} />
                     </div>
 
                     <div className={classes.text}>
-                        <p style = {{paddingBottom: 10}}>Site Address</p>
+                        <span style = {{position: 'relative'}}>Site Address<Star className = {classes.star}/></span>
                         <OutlinedInput className = {classes.fullWidth} value={siteAddress} onChange={handleSiteAddress} />
                     </div>
                     {!isMapLoading && 
@@ -180,57 +196,57 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                                         <EditIcon style = {{marginLeft: 10}}/>
                                     </ColorButton>
                                     <IconButton aria-label="delete" onClick = {() => {deletePolygon(); setBdStatus(BOUNDARY_NONE);}}>
-                                        <DeleteIcon style = {{color: '#EF4F4F'}}/>
+                                        <DeleteIcon />
                                     </IconButton>
                                 </>
                             ):(<>
                                 <ColorButton 
                                     onClick={() => setPolygon()} 
                                     width = '100%' 
-                                    // bgcolor = {(bdStatus === BOUNDARY_NONE)?((mkStatus === MARKUP_NONE)?BG_COLOR_WHITE:BG_COLOR_GRAY):BG_COLOR_BULE} 
-                                    // brcolor = {(bdStatus === BOUNDARY_NONE)?BG_COLOR_GRAY:BG_COLOR_BULE}
-                                    // txtcolor = {(bdStatus === BOUNDARY_NONE)?BG_COLOR_BLACK:BG_COLOR_WHITE}
                                     bgcolor = {(bdStatus === BOUNDARY_NONE)?BG_COLOR_WHITE:BG_COLOR_BULE}
                                     brcolor = {BG_COLOR_GRAY}
                                     txtcolor = {(bdStatus === BOUNDARY_NONE)?BG_COLOR_BLACK:BG_COLOR_WHITE}
                                 >
                                     Set Site Boundary
+                                    <EditIcon style = {{marginLeft: 10}}/>
                                 </ColorButton>
                             </>)}
                         </div>
                     }
                     <div className={classes.end}>
-                        {(isExistMarkup === false)?(
-                            // setMkStatus(MARKUP_SET);
-                            <ColorButton 
-                                onClick={() => {markupSite();}} 
-                                width = '100%' 
-                                // bgcolor = {(mkStatus === MARKUP_NONE)?((bdStatus === BOUNDARY_NONE)?BG_COLOR_WHITE:BG_COLOR_GRAY):BG_COLOR_BULE} 
-                                // brcolor = {(mkStatus === MARKUP_NONE)?BG_COLOR_GRAY:BG_COLOR_BULE}
-                                // txtcolor = {(mkStatus === MARKUP_NONE)?BG_COLOR_BLACK:BG_COLOR_WHITE}
-                                bgcolor = {BG_COLOR_WHITE}
-                                brcolor = {BG_COLOR_GRAY}
-                                txtcolor = {BG_COLOR_BLACK}
-                            >
-                                <span>Markup Site</span>
-                                <CollectionsBookmarkOutlinedIcon  style = {{marginLeft: 10}}/>
-                            </ColorButton>
-                        ):(
-                            <>
-                                <ColorButton 
-                                    onClick={() => editPolygon()} 
-                                    width = '80%' 
-                                    bgcolor = {BG_COLOR_WHITE}
-                                    brcolor = {BG_COLOR_BULE}
-                                    txtcolor = {BG_COLOR_BLACK}
-                                >
-                                    Edit Site Markup
-                                </ColorButton>
-                                <IconButton aria-label="delete" onClick = {() => {deleteMarkup();}}>
-                                    <DeleteIcon style = {{color: '#EF4F4F'}}/>
-                                </IconButton>
-                            </>
-                        )}
+                        <div className={classes.column}>
+                            <p style={{fontSize: 10, fontWeight: 300, color: BG_COLOR_BLACK, paddingBottom: 10}}>Site boundary must be set before markup can be added</p>
+                            <div className={classes.row}>
+                                {(isExistMarkup === false)?(
+                                    <ColorButton 
+                                        onClick={() => {markupSite();}} 
+                                        width = '100%' 
+                                        bgcolor = {BG_COLOR_WHITE}
+                                        brcolor = {BG_COLOR_GRAY}
+                                        txtcolor = {BG_COLOR_BLACK}
+                                    >
+                                        <span>Markup Site</span>
+                                        <MarkupIcon  s  tyle = {{marginLeft: 10}}/>
+                                    </ColorButton>
+                                ):(
+                                    <>
+                                        <ColorButton 
+                                            onClick={() => editPolygon()} 
+                                            width = '80%' 
+                                            bgcolor = {BG_COLOR_WHITE}
+                                            brcolor = {BG_COLOR_BULE}
+                                            txtcolor = {BG_COLOR_BLACK}
+                                        >
+                                            Edit Site Markup
+                                            <MarkupIcon  style = {{marginLeft: 10}}/>
+                                        </ColorButton>
+                                        <IconButton aria-label="delete" onClick = {() => {deleteMarkup();}}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </>
+                                )}
+                            </div>
+                        </div>
                     </div>
                     <div className={classes.end} style = {{padding: '0 10px 0 10px'}}>
                         <SaveButton 
