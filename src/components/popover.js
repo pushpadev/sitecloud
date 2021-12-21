@@ -39,6 +39,9 @@ const useStyles = makeStyles({
         boxShadow: '3px 3px 2px 1px rgb(242, 242,242)',
         position: 'absolute',
         bottom: 30,
+        ['@media (max-width:1250px)']: { // eslint-disable-line no-useless-computed-key
+            display: 'none',
+        },
     },
     column: {
         display: 'flex',

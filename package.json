@@ -29,6 +29,7 @@
     "react-router-dom": "^6.1.1",
     "react-script": "^2.0.5",
     "react-scripts": "4.0.3",
+    "react-toast-notifications": "^2.5.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
