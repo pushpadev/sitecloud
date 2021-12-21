@@ -1,0 +1,23 @@
+@import "./variables";
+
+%flex_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.float_left {
+    float: left;
+}
+
+.mb_0 {
+    margin-bottom: 0;
+}
+
+%font_basic_style {
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+}

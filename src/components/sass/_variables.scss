@@ -1,0 +1,35 @@
+// layout colors
+$primary-color:#1875F0;
+$light-grey:#E5E5E5;
+$secondary-text:#7A7A7A;
+
+$colors: ("blue": #1919e6,
+    "red-danger": #cf2929, //layout color
+    "yellow": #fdd835, //layour clr
+    "green": #19e635,
+    "orange": #ffa600,
+    "purple": #9900ff,
+    "gray": #999, //layour clr
+    "black":#000,
+    "white":#fff,
+) !default;
+
+// border 
+$base-border:1px;
+$base-border-color: #ebebeb;
+$border-radius-small:5px;
+
+//font size
+$smaller-font:12px;
+$small-font:13px;
+$medium-font:16px;
+$large-font:18px;
+$gaint-font:48px;
+
+//font weight
+$font-weight-medium:600;
+$font-weight-bold:700;
+
+//width
+$full-width:100%;
+$primary-width:95%;

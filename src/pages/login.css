@@ -1,0 +1,19 @@
+.login_bg{
+    width: 100%;
+    height: 100vh;
+    background-image: url("../assets/image/svg/login_bg.svg");
+    background-size: 100%;
+}
+.form_padding{
+    padding-left:65px;
+}
+.form-control{
+    width: 590px !important;
+    height: 60px !important;
+}
+.color_three{
+    color: #1875F0;
+}
+.color_two{
+    color: #7A7A7A;
+}

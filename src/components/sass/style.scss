@@ -1,0 +1,1086 @@
+//base scss(normalized css)
+@import './base';
+
+//varaiables
+@import './variables';
+
+//general(flex,transition)
+@import './general';
+
+//meadiQueries
+@import './mediaQueries';
+
+//animation
+@import './animation';
+
+@import './buttons';
+
+
+.full_components .ant-layout.ant-layout-has-sider {
+    background: #ffff !important;
+}
+
+.sidebar_menu .ant-menu-item-selected {
+    color: map-get($colors, "white");
+}
+
+.sidebar_menu .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: $primary-color;
+}
+
+.sidebar_menu .ant-menu-inline .ant-menu-selected::after,
+.sidebar_menu .ant-menu-inline .ant-menu-item-selected::after {
+    transform: none;
+}
+
+/*Desktop View*/
+.header {
+    display: flex;
+    background: map-get($colors, "white");
+    justify-content: space-between;
+    height: 70px;
+}
+
+.logo-nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    z-index: 2;
+    box-shadow: 0px 5px $light-grey;
+}
+
+.logo-container {
+    display: flex;
+
+}
+
+.logo-nav {
+    .logo {
+        width: 50px;
+        height: 50px;
+        margin: 18px 5px 0px 20px;
+    }
+
+    .logo-container {
+        #title-text {
+            font-family: 'Raleway', sans-serif;
+            font-style: normal;
+            font-weight: 550;
+            font-size: 30px;
+            color: $primary-color;
+        }
+    }
+}
+
+
+.formInput_container {
+    width: 100%;
+    height: 100vh;
+    @extend %flex_center;
+}
+
+.user_setting {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    @extend %flex_center;
+    background-color: #a3c9f7;
+    margin-left: 10px;
+    color: $primary-color;
+}
+
+.header_logo {
+    width: 55px;
+    height: 55px;
+    margin: 5px 5px 5px 0px;
+}
+
+.nav_bar .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    font-weight: 600;
+    color: map-get($colors, "black");
+}
+
+.nav_bar .css-hip9hq-MuiPaper-root-MuiAppBar-root {
+    background-color: map-get($colors, "white");
+    border-bottom: 5px solid #e5e5e5;
+}
+
+.nav_bar .css-hip9hq-MuiPaper-root-MuiAppBar-root {
+    color: $primary-color;
+}
+
+.nav_bar .css-1f8a19r-MuiTypography-root {
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.container_login,
+.container_forgotpw {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.login_page {
+    width: 100%;
+
+    .logo_img {
+        margin: auto;
+        text-align: center;
+        width: 79.09px;
+        height: 75px;
+        left: 1040px;
+        top: 121px;
+
+
+    }
+
+    h1 {
+        margin: auto;
+        text-align: center;
+        /* Site Management System */
+
+
+        width: 291px;
+        height: 29px;
+        left: 934px;
+        top: 243px;
+
+        font-family: Riviera Nights Trial;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 29px;
+        /* identical to box height */
+        letter-spacing: 0.065em;
+
+        /* primary text */
+        color: #33323D;
+
+
+    }
+
+    h2 {
+        /* Login */
+
+
+        width: 51px;
+        height: 24px;
+        left: 785px;
+        top: 323px;
+
+        @extend %font_basic_style;
+        /* identical to box height */
+        letter-spacing: 0.065em;
+
+        /* primary text */
+        color: #33323D;
+    }
+}
+
+.login_form {
+    width: 90%;
+    margin: auto;
+    padding: 30px 0px;
+    font-family: Riviera Nights Trial;
+
+
+    form {
+        width: 100%;
+        margin: auto;
+
+
+        .ant-input {
+            margin-top: 6px !important;
+        }
+
+        .forgot_password {
+            .ant-btn-link {
+                color: $primary-color;
+
+                &:hover {
+                    color: map-get($colors, "black");
+                }
+            }
+
+            .ant-btn {
+                padding: 4px 0px;
+                font-weight: 600;
+                font-size: 16px;
+
+            }
+        }
+    }
+}
+
+.validation_error {
+    color: map-get($colors, "red-danger");
+}
+
+.login_btn {
+    text-align: center;
+
+    button {
+
+        border: 0;
+        font-size: 13px;
+        font-weight: 600;
+        background-color: $primary-color;
+        border-color: $primary-color;
+        color: map-get($colors, "white");
+        cursor: pointer;
+        margin-top: 30px;
+        width: 146px;
+        height: 45px;
+        left: 1007px;
+        top: 680px;
+
+        &:hover {
+            background-color: map-get($colors, "blue");
+        }
+    }
+}
+
+.input_container {
+    margin-bottom: 15px;
+}
+
+.form_label {
+    /* Email Address */
+
+
+    width: 93px;
+    height: 17px;
+    left: 785px;
+    top: 388px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 17px;
+    /* identical to box height */
+    letter-spacing: 0.065em;
+    color: $secondary-text;
+}
+
+.login_pg_img {
+    width: 100%;
+    height: 100vh;
+    background-image: url("../../assets/image/svg/login_bg.svg");
+    background-size: 100%;
+}
+
+.formInput_container .ant-input-suffix {
+    display: none;
+}
+
+.login_btn_txt {
+    width: 37px;
+    height: 17px;
+    left: 1062px;
+    top: 694px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    color: map-get($colors, "white");
+}
+
+.login_input_text {
+    padding: 7px;
+}
+
+.login_button_text {
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 6px;
+    line-height: 17px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    color: map-get($colors, "white");
+}
+
+.resend_btn {
+    text-align: center;
+
+    button {
+
+        /* primary color */
+
+        background: $primary-color;
+        border: 0;
+        font-size: 13px;
+        font-weight: 600;
+        background-color: $primary-color;
+        border-color: $primary-color;
+        color: map-get($colors, "white");
+        cursor: pointer;
+        margin-top: 30px;
+        width: 258px;
+        height: 45px;
+        left: 951px;
+        top: 558px;
+
+        &:hover {
+            background-color: map-get($colors, "blue");
+        }
+    }
+}
+
+.forget_page {
+    width: 156px;
+    height: 24px;
+    left: 785px;
+    top: 323px;
+    @extend %font_basic_style;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary text */
+
+    color: #33323D;
+}
+
+.forget_page_head {
+    width: 156px;
+    height: 24px;
+    left: 785px;
+    top: 323px;
+    padding-bottom: 32px;
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 24px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary text */
+
+    color: #33323D;
+}
+
+.figma_font {
+    font-family: Riviera Nights Trial;
+}
+
+//tablet
+//767px
+@include m_md {
+    .login_pg_img {
+        display: none;
+    }
+}
+
+.ant-input-prefix {
+    display: none;
+}
+
+.ant-input-suffix {
+    display: none;
+}
+
+//600px
+@include x_md {
+    .login_pg_img {
+        display: none;
+    }
+}
+
+
+//320px
+@include xs {
+    .login_pg_img {
+        display: none;
+    }
+}
+
+//Tab
+//768px
+@include md {
+    .login_pg_img {
+        display: block;
+    }
+}
+
+.live_att_address {
+
+    height: 193px;
+    left: 272px;
+    top: 84px;
+    background: map-get($colors, "white");
+    padding: 20px;
+}
+
+.live_att_address h1 {
+    width: 422px;
+    height: 29px;
+    left: 294px;
+    top: 105px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 29px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary text */
+
+    color: #33323D;
+}
+
+.live_att_address h2 {
+    width: 389px;
+    height: 17px;
+    left: 295px;
+    top: 139px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary text */
+
+    color: #33323D;
+}
+
+.total_workers_no {
+    width: 34px;
+    height: 24px;
+    left: 294px;
+    top: 180px;
+
+    @extend %font_basic_style;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    color: #33323D;
+}
+
+.total_workers_present {
+    width: 34px;
+    height: 24px;
+    left: 422px;
+    top: 180px;
+
+    @extend %font_basic_style;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* bar one */
+
+    color: #753AF4;
+}
+
+.total_workers_visitors {
+    width: 22px;
+    height: 24px;
+    left: 510px;
+    top: 180px;
+
+    @extend %font_basic_style;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* bar two */
+
+    color: #EC4E86;
+}
+
+.people_on_site {
+    width: 87px;
+    height: 16px;
+    left: 294px;
+    top: 209px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* secondary text */
+
+    color: $secondary-text;
+}
+
+.workers {
+    width: 50px;
+    height: 16px;
+    left: 422px;
+    top: 209px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* bar one */
+
+    color: #753AF4;
+
+}
+
+.visitors {
+    width: 47px;
+    height: 16px;
+    left: 510px;
+    top: 209px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* bar two */
+
+    color: #EC4E86;
+}
+
+.live_att_thead {
+
+    width: 1156px;
+    height: 46px;
+    left: 272px;
+    top: 277px;
+
+    background: #FAFAFA;
+
+}
+
+.thead_cmpy_name {
+    position: absolute;
+    width: 120px;
+    height: 16px;
+    left: 583px;
+    top: 292px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* secondary text */
+
+    color: $secondary-text;
+
+
+}
+
+.thead_workers {
+    position: absolute;
+    width: 93px;
+    height: 16px;
+    left: 891px;
+    top: 292px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* secondary text */
+
+    color: $secondary-text;
+
+}
+
+.thead_inducted {
+    position: absolute;
+    width: 55px;
+    height: 16px;
+    left: 1039px;
+    top: 292px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+    /* secondary text */
+    color: $secondary-text;
+}
+
+.thead_present {
+    position: absolute;
+    width: 86px;
+    height: 16px;
+    left: 1204px;
+    top: 292px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+    letter-spacing: 0.065em;
+    color: $secondary-text;
+}
+
+.live_att_trow {
+    width: 1156px;
+    height: 65px;
+    left: 272px;
+    top: 323px;
+    background: map-get($colors, "white");
+}
+
+.trow_image {
+    width: 40px;
+    height: 40px;
+    left: 300px;
+    top: 336px;
+    border-radius: 27.5px;
+}
+
+.trow_name {
+    width: 81px;
+    height: 16px;
+    left: 367px;
+    top: 348px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary color */
+    color: $primary-color;
+}
+
+.trow_cmy_name {
+
+    width: 107px;
+    height: 16px;
+    left: 583px;
+    top: 348px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+    letter-spacing: 0.065em;
+    /* primary text */
+    color: #33323D;
+}
+
+.trow_worker {
+    width: 44px;
+    height: 16px;
+    left: 891px;
+    top: 348px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary text */
+
+    color: #33323D;
+}
+
+.trow_inducted {
+    width: 11px;
+    height: 11px;
+    left: 1064px;
+    top: 350px;
+
+}
+
+.trow_present {
+    width: 11px;
+    height: 11px;
+    left: 1223px;
+    top: 350px;
+
+}
+
+.txt_center {
+    text-align: center;
+    align-items: center;
+}
+
+.edit_basic_body {
+    width: 754px;
+    height: 609px;
+    background: map-get($colors, "white");
+}
+
+.edit_basic_h1 {
+
+    width: 210px;
+    height: 24px;
+    left: 615px;
+    top: 174px;
+
+    @extend %font_basic_style;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary text */
+
+    color: #33323D;
+}
+
+.edit_basic_hlogo {
+    width: 154px;
+    height: 17px;
+
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 13px;
+    line-height: 17px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary color */
+
+    color: $primary-color;
+}
+
+.edit_basic_label1 {
+    width: 200px;
+    height: 17px;
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 17px;
+    /* identical to box height */
+    letter-spacing: 0.065em;
+    color: $secondary-text;
+
+}
+
+.edit_basic_border {
+    width: 590px;
+    height: 60px;
+    border: 1px solid #DBDBDB;
+    box-sizing: border-box;
+}
+
+.edit_basic_input {
+    width: 120px;
+    height: 18px;
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.065em;
+    padding-left: 10px;
+
+    /* primary text */
+
+    color: #33323D;
+
+
+}
+
+.edit_basic_cancel_bt {
+    width: 46px;
+    height: 17px;
+
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.065em;
+
+    /* warning red */
+
+    color: #EF4F4F;
+}
+
+.edit_basic_save_bt {
+    width: 146px;
+    height: 45px;
+
+    /* primary color */
+
+    background: $primary-color;
+}
+
+.edit_basic_save-text {
+    width: 32px;
+    height: 17px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    color: map-get($colors, "white");
+
+}
+
+.edit_card_body {
+    width: 754px;
+    height: 581px;
+    background: map-get($colors, "white");
+}
+
+.edit_card_h1 {
+    width: 207px;
+    height: 24px;
+    @extend %font_basic_style;
+    /* identical to box height */
+    letter-spacing: 0.065em;
+    /* primary text */
+    color: #33323D;
+}
+
+.change_password_body {
+    width: 754px;
+    height: 581px;
+    background: map-get($colors, "white");
+}
+
+.setting_address_body {
+    height: 160px;
+    padding: 20px;
+    background: map-get($colors, "white");
+}
+
+.setting_address_h1 {
+    height: 29px;
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 29px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary text */
+
+    color: #33323D;
+}
+
+.setting_address_h2 {
+
+    height: 17px;
+
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary text */
+
+    color: #33323D;
+}
+
+.setting_address_h3 {
+
+    height: 17px;
+
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary text */
+
+    color: #33323D;
+}
+
+.setting_address_h4 {
+    height: 17px;
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary text */
+
+    color: #33323D;
+}
+
+.setting_address_editor {
+    height: 17px;
+
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 13px;
+    line-height: 17px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary color */
+
+    color: $primary-color;
+
+}
+
+.subricption_plan_body {
+    height: 302px;
+    padding: 25px 35px 25px 35px;
+    background: map-get($colors, "white");
+}
+
+.subricption_plan_h1 {
+    height: 29px;
+
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 29px;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary text */
+
+    color: #33323D;
+
+}
+
+.subricption_plan_label {
+    height: 14px;
+
+
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 0.065em;
+    color: $secondary-text;
+}
+
+.transction_history_body {
+    height: 420px;
+    background: map-get($colors, "white");
+    padding: 25px 35px 25px 35px;
+
+}
+
+.need_help_body {
+    height: 250px;
+    background: map-get($colors, "white");
+    padding: 25px 35px 25px 35px;
+}
+
+.setting_btn {
+    width: 164px;
+    height: 45px;
+    /* primary color */
+    border: 1.5px solid $primary-color;
+    box-sizing: border-box;
+}
+
+.setting_btn_text {
+    height: 17px;
+    font-family: Riviera Nights Trial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    text-align: center !important;
+    /* identical to box height */
+
+    letter-spacing: 0.065em;
+
+    /* primary color */
+
+    color: $primary-color;
+}
+
+.background_color {
+
+    left: 0px;
+    top: 0px;
+    background: #FAFAFA;
+}

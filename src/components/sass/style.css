@@ -1,0 +1,1306 @@
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/* Sections
+       ========================================================================== */
+/**
+     * Remove the margin in all browsers.
+     */
+body {
+  margin: 0;
+}
+
+/**
+     * Render the `main` element consistently in IE.
+     */
+main {
+  display: block;
+}
+
+/**
+     * Correct the font size and margin on `h1` elements within `section` and
+     * `article` contexts in Chrome, Firefox, and Safari.
+     */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+       ========================================================================== */
+/**
+     * 1. Add the correct box sizing in Firefox.
+     * 2. Show the overflow in Edge and IE.
+     */
+hr {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */
+}
+
+/**
+     * 1. Correct the inheritance and scaling of font size in all browsers.
+     * 2. Correct the odd `em` font sizing in all browsers.
+     */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/* Text-level semantics
+       ========================================================================== */
+/**
+     * Remove the gray background on active links in IE 10.
+     */
+a {
+  background-color: transparent;
+}
+
+/**
+     * 1. Remove the bottom border in Chrome 57-
+     * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+     */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+  /* 2 */
+}
+
+/**
+     * Add the correct font weight in Chrome, Edge, and Safari.
+     */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+     * 1. Correct the inheritance and scaling of font size in all browsers.
+     * 2. Correct the odd `em` font sizing in all browsers.
+     */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/**
+     * Add the correct font size in all browsers.
+     */
+small {
+  font-size: 80%;
+}
+
+/**
+     * Prevent `sub` and `sup` elements from affecting the line height in
+     * all browsers.
+     */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+       ========================================================================== */
+/**
+     * Remove the border on images inside links in IE 10.
+     */
+img {
+  border-style: none;
+}
+
+/* Forms
+       ========================================================================== */
+/**
+     * 1. Change the font styles in all browsers.
+     * 2. Remove the margin in Firefox and Safari.
+     */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+
+/**
+     * Show the overflow in IE.
+     * 1. Show the overflow in Edge.
+     */
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+     * Remove the inheritance of text transform in Edge, Firefox, and IE.
+     * 1. Remove the inheritance of text transform in Firefox.
+     */
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+     * Correct the inability to style clickable types in iOS and Safari.
+     */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+     * Remove the inner border and padding in Firefox.
+     */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+     * Restore the focus styles unset by the previous rule.
+     */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+     * Correct the padding in Firefox.
+     */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+     * 1. Correct the text wrapping in Edge and IE.
+     * 2. Correct the color inheritance from `fieldset` elements in IE.
+     * 3. Remove the padding so developers are not caught out when they zero out
+     *    `fieldset` elements in all browsers.
+     */
+legend {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */
+}
+
+/**
+     * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+     */
+progress {
+  vertical-align: baseline;
+}
+
+/**
+     * Remove the default vertical scrollbar in IE 10+.
+     */
+textarea {
+  overflow: auto;
+}
+
+/**
+     * 1. Add the correct box sizing in IE 10.
+     * 2. Remove the padding in IE 10.
+     */
+[type="checkbox"],
+[type="radio"] {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+     * Correct the cursor style of increment and decrement buttons in Chrome.
+     */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+     * 1. Correct the odd appearance in Chrome and Safari.
+     * 2. Correct the outline style in Safari.
+     */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/**
+     * Remove the inner padding in Chrome and Safari on macOS.
+     */
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+     * 1. Correct the inability to style clickable types in iOS and Safari.
+     * 2. Change font properties to `inherit` in Safari.
+     */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/* Interactive
+       ========================================================================== */
+/*
+     * Add the correct display in Edge, IE 10+, and Firefox.
+     */
+details {
+  display: block;
+}
+
+/*
+     * Add the correct display in all browsers.
+     */
+summary {
+  display: list-item;
+}
+
+/* Misc
+       ========================================================================== */
+/**
+     * Add the correct display in IE 10+.
+     */
+template {
+  display: none;
+}
+
+/**
+     * Add the correct display in IE 10.
+     */
+[hidden] {
+  display: none;
+}
+
+.formInput_container, .user_setting {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.float_left {
+  float: left;
+}
+
+.mb_0 {
+  margin-bottom: 0;
+}
+
+.login_page h2, .forget_page, .total_workers_no, .total_workers_present, .total_workers_visitors, .edit_basic_h1, .edit_card_h1 {
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+/** Validation error msg animation **/
+.text-focus-in {
+  -webkit-animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+@-webkit-keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.full_components .ant-layout.ant-layout-has-sider {
+  background: #ffff !important;
+}
+
+.sidebar_menu .ant-menu-item-selected {
+  color: #fff;
+}
+
+.sidebar_menu .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: #1875F0;
+}
+
+.sidebar_menu .ant-menu-inline .ant-menu-selected::after,
+.sidebar_menu .ant-menu-inline .ant-menu-item-selected::after {
+  -webkit-transform: none;
+          transform: none;
+}
+
+/*Desktop View*/
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #fff;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 70px;
+}
+
+.logo-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  z-index: 2;
+  -webkit-box-shadow: 0px 5px #E5E5E5;
+          box-shadow: 0px 5px #E5E5E5;
+}
+
+.logo-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.logo-nav .logo {
+  width: 50px;
+  height: 50px;
+  margin: 18px 5px 0px 20px;
+}
+
+.logo-nav .logo-container #title-text {
+  font-family: 'Raleway', sans-serif;
+  font-style: normal;
+  font-weight: 550;
+  font-size: 30px;
+  color: #1875F0;
+}
+
+.formInput_container {
+  width: 100%;
+  height: 100vh;
+}
+
+.user_setting {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #a3c9f7;
+  margin-left: 10px;
+  color: #1875F0;
+}
+
+.header_logo {
+  width: 55px;
+  height: 55px;
+  margin: 5px 5px 5px 0px;
+}
+
+.nav_bar .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  font-weight: 600;
+  color: #000;
+}
+
+.nav_bar .css-hip9hq-MuiPaper-root-MuiAppBar-root {
+  background-color: #fff;
+  border-bottom: 5px solid #e5e5e5;
+}
+
+.nav_bar .css-hip9hq-MuiPaper-root-MuiAppBar-root {
+  color: #1875F0;
+}
+
+.nav_bar .css-1f8a19r-MuiTypography-root {
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+.container_login,
+.container_forgotpw {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.login_page {
+  width: 100%;
+}
+
+.login_page .logo_img {
+  margin: auto;
+  text-align: center;
+  width: 79.09px;
+  height: 75px;
+  left: 1040px;
+  top: 121px;
+}
+
+.login_page h1 {
+  margin: auto;
+  text-align: center;
+  /* Site Management System */
+  width: 291px;
+  height: 29px;
+  left: 934px;
+  top: 243px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 29px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.login_page h2 {
+  /* Login */
+  width: 51px;
+  height: 24px;
+  left: 785px;
+  top: 323px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.login_form {
+  width: 90%;
+  margin: auto;
+  padding: 30px 0px;
+  font-family: Riviera Nights Trial;
+}
+
+.login_form form {
+  width: 100%;
+  margin: auto;
+}
+
+.login_form form .ant-input {
+  margin-top: 6px !important;
+}
+
+.login_form form .forgot_password .ant-btn-link {
+  color: #1875F0;
+}
+
+.login_form form .forgot_password .ant-btn-link:hover {
+  color: #000;
+}
+
+.login_form form .forgot_password .ant-btn {
+  padding: 4px 0px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.validation_error {
+  color: #cf2929;
+}
+
+.login_btn {
+  text-align: center;
+}
+
+.login_btn button {
+  border: 0;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: #1875F0;
+  border-color: #1875F0;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 30px;
+  width: 146px;
+  height: 45px;
+  left: 1007px;
+  top: 680px;
+}
+
+.login_btn button:hover {
+  background-color: #1919e6;
+}
+
+.input_container {
+  margin-bottom: 15px;
+}
+
+.form_label {
+  /* Email Address */
+  width: 93px;
+  height: 17px;
+  left: 785px;
+  top: 388px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  color: #7A7A7A;
+}
+
+.login_pg_img {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../assets/image/svg/login_bg.svg");
+  background-size: 100%;
+}
+
+.formInput_container .ant-input-suffix {
+  display: none;
+}
+
+.login_btn_txt {
+  width: 37px;
+  height: 17px;
+  left: 1062px;
+  top: 694px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  color: #fff;
+}
+
+.login_input_text {
+  padding: 7px;
+}
+
+.login_button_text {
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 6px;
+  line-height: 17px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  color: #fff;
+}
+
+.resend_btn {
+  text-align: center;
+}
+
+.resend_btn button {
+  /* primary color */
+  background: #1875F0;
+  border: 0;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: #1875F0;
+  border-color: #1875F0;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 30px;
+  width: 258px;
+  height: 45px;
+  left: 951px;
+  top: 558px;
+}
+
+.resend_btn button:hover {
+  background-color: #1919e6;
+}
+
+.forget_page {
+  width: 156px;
+  height: 24px;
+  left: 785px;
+  top: 323px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.forget_page_head {
+  width: 156px;
+  height: 24px;
+  left: 785px;
+  top: 323px;
+  padding-bottom: 32px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 19px;
+  line-height: 24px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.figma_font {
+  font-family: Riviera Nights Trial;
+}
+
+@media only screen and (max-width: 767px) {
+  .login_pg_img {
+    display: none;
+  }
+}
+
+.ant-input-prefix {
+  display: none;
+}
+
+.ant-input-suffix {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .login_pg_img {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .login_pg_img {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .login_pg_img {
+    display: block;
+  }
+}
+
+.live_att_address {
+  height: 193px;
+  left: 272px;
+  top: 84px;
+  background: #fff;
+  padding: 20px;
+}
+
+.live_att_address h1 {
+  width: 422px;
+  height: 29px;
+  left: 294px;
+  top: 105px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 29px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.live_att_address h2 {
+  width: 389px;
+  height: 17px;
+  left: 295px;
+  top: 139px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.total_workers_no {
+  width: 34px;
+  height: 24px;
+  left: 294px;
+  top: 180px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  color: #33323D;
+}
+
+.total_workers_present {
+  width: 34px;
+  height: 24px;
+  left: 422px;
+  top: 180px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* bar one */
+  color: #753AF4;
+}
+
+.total_workers_visitors {
+  width: 22px;
+  height: 24px;
+  left: 510px;
+  top: 180px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* bar two */
+  color: #EC4E86;
+}
+
+.people_on_site {
+  width: 87px;
+  height: 16px;
+  left: 294px;
+  top: 209px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* secondary text */
+  color: #7A7A7A;
+}
+
+.workers {
+  width: 50px;
+  height: 16px;
+  left: 422px;
+  top: 209px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* bar one */
+  color: #753AF4;
+}
+
+.visitors {
+  width: 47px;
+  height: 16px;
+  left: 510px;
+  top: 209px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* bar two */
+  color: #EC4E86;
+}
+
+.live_att_thead {
+  width: 1156px;
+  height: 46px;
+  left: 272px;
+  top: 277px;
+  background: #FAFAFA;
+}
+
+.thead_cmpy_name {
+  position: absolute;
+  width: 120px;
+  height: 16px;
+  left: 583px;
+  top: 292px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* secondary text */
+  color: #7A7A7A;
+}
+
+.thead_workers {
+  position: absolute;
+  width: 93px;
+  height: 16px;
+  left: 891px;
+  top: 292px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* secondary text */
+  color: #7A7A7A;
+}
+
+.thead_inducted {
+  position: absolute;
+  width: 55px;
+  height: 16px;
+  left: 1039px;
+  top: 292px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* secondary text */
+  color: #7A7A7A;
+}
+
+.thead_present {
+  position: absolute;
+  width: 86px;
+  height: 16px;
+  left: 1204px;
+  top: 292px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  color: #7A7A7A;
+}
+
+.live_att_trow {
+  width: 1156px;
+  height: 65px;
+  left: 272px;
+  top: 323px;
+  background: #fff;
+}
+
+.trow_image {
+  width: 40px;
+  height: 40px;
+  left: 300px;
+  top: 336px;
+  border-radius: 27.5px;
+}
+
+.trow_name {
+  width: 81px;
+  height: 16px;
+  left: 367px;
+  top: 348px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary color */
+  color: #1875F0;
+}
+
+.trow_cmy_name {
+  width: 107px;
+  height: 16px;
+  left: 583px;
+  top: 348px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.trow_worker {
+  width: 44px;
+  height: 16px;
+  left: 891px;
+  top: 348px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.trow_inducted {
+  width: 11px;
+  height: 11px;
+  left: 1064px;
+  top: 350px;
+}
+
+.trow_present {
+  width: 11px;
+  height: 11px;
+  left: 1223px;
+  top: 350px;
+}
+
+.txt_center {
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.edit_basic_body {
+  width: 754px;
+  height: 609px;
+  background: #fff;
+}
+
+.edit_basic_h1 {
+  width: 210px;
+  height: 24px;
+  left: 615px;
+  top: 174px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.edit_basic_hlogo {
+  width: 154px;
+  height: 17px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary color */
+  color: #1875F0;
+}
+
+.edit_basic_label1 {
+  width: 200px;
+  height: 17px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  color: #7A7A7A;
+}
+
+.edit_basic_border {
+  width: 590px;
+  height: 60px;
+  border: 1px solid #DBDBDB;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.edit_basic_input {
+  width: 120px;
+  height: 18px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.065em;
+  padding-left: 10px;
+  /* primary text */
+  color: #33323D;
+}
+
+.edit_basic_cancel_bt {
+  width: 46px;
+  height: 17px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height */
+  text-align: center;
+  letter-spacing: 0.065em;
+  /* warning red */
+  color: #EF4F4F;
+}
+
+.edit_basic_save_bt {
+  width: 146px;
+  height: 45px;
+  /* primary color */
+  background: #1875F0;
+}
+
+.edit_basic_save-text {
+  width: 32px;
+  height: 17px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  color: #fff;
+}
+
+.edit_card_body {
+  width: 754px;
+  height: 581px;
+  background: #fff;
+}
+
+.edit_card_h1 {
+  width: 207px;
+  height: 24px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.change_password_body {
+  width: 754px;
+  height: 581px;
+  background: #fff;
+}
+
+.setting_address_body {
+  height: 160px;
+  padding: 20px;
+  background: #fff;
+}
+
+.setting_address_h1 {
+  height: 29px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 29px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.setting_address_h2 {
+  height: 17px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.setting_address_h3 {
+  height: 17px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.setting_address_h4 {
+  height: 17px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.setting_address_editor {
+  height: 17px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary color */
+  color: #1875F0;
+}
+
+.subricption_plan_body {
+  height: 302px;
+  padding: 25px 35px 25px 35px;
+  background: #fff;
+}
+
+.subricption_plan_h1 {
+  height: 29px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 29px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary text */
+  color: #33323D;
+}
+
+.subricption_plan_label {
+  height: 14px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.065em;
+  color: #7A7A7A;
+}
+
+.transction_history_body {
+  height: 420px;
+  background: #fff;
+  padding: 25px 35px 25px 35px;
+}
+
+.need_help_body {
+  height: 250px;
+  background: #fff;
+  padding: 25px 35px 25px 35px;
+}
+
+.setting_btn {
+  width: 164px;
+  height: 45px;
+  /* primary color */
+  border: 1.5px solid #1875F0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.setting_btn_text {
+  height: 17px;
+  font-family: Riviera Nights Trial;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 17px;
+  text-align: center !important;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  /* primary color */
+  color: #1875F0;
+}
+
+.background_color {
+  left: 0px;
+  top: 0px;
+  background: #FAFAFA;
+}
+/*# sourceMappingURL=style.css.map */
