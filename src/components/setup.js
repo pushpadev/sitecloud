@@ -20,7 +20,11 @@ import {
     BG_COLOR_BULE
 } from '../constant';
 import { useNavigate } from 'react-router-dom';
-import EditIcon from '@mui/icons-material/Edit';
+import { ReactComponent as Star } from '../images/star.svg'
+import { ReactComponent as EditIcon } from '../images/edit.svg'
+import { ReactComponent as MarkupIcon } from '../images/markup.svg'
+import { ReactComponent as DeleteIcon } from '../images/delete.svg'
+import Loading from './Spinner';
 
 const useStyles = makeStyles({
     Root: {
@@ -59,6 +63,24 @@ const useStyles = makeStyles({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    markup: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    column: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    row: {
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    star:{
+        position: 'absolute',
+        top: -3,
+        right: -8,
+    }
 });
 
 const ColorButton = withStyles((theme) => ({
@@ -165,7 +187,7 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                         <p style = {{paddingBottom: 10}}>Site Address</p>
                         <OutlinedInput className = {classes.fullWidth} value={siteAddress} onChange={handleSiteAddress} />
                     </div>
-                    {!isMapLoading && 
+                    {isMapLoading?<Loading />:(
                         <div className = {classes.end}>
                             {(isExistPolygon === true)?(
                                 <>
@@ -194,26 +216,25 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                                     brcolor = {BG_COLOR_GRAY}
                                     txtcolor = {(bdStatus === BOUNDARY_NONE)?BG_COLOR_BLACK:BG_COLOR_WHITE}
                                 >
-                                    Set Site Boundary
+                                    Set site boundary
+                                    <EditIcon style = {{marginLeft: 10}}/>
                                 </ColorButton>
                             </>)}
                         </div>
-                    }
-                    <div className={classes.end}>
+                    )}
+                    
+                    <span style={{fontSize: 10, fontWeight: 300, color: BG_COLOR_BLACK, marginTop: 40, paddingBottom: 10}}>Site boundary must be set before markup can be added</span>
+                    <div className={classes.markup}>
                         {(isExistMarkup === false)?(
-                            // setMkStatus(MARKUP_SET);
                             <ColorButton 
                                 onClick={() => {markupSite();}} 
                                 width = '100%' 
-                                // bgcolor = {(mkStatus === MARKUP_NONE)?((bdStatus === BOUNDARY_NONE)?BG_COLOR_WHITE:BG_COLOR_GRAY):BG_COLOR_BULE} 
-                                // brcolor = {(mkStatus === MARKUP_NONE)?BG_COLOR_GRAY:BG_COLOR_BULE}
-                                // txtcolor = {(mkStatus === MARKUP_NONE)?BG_COLOR_BLACK:BG_COLOR_WHITE}
                                 bgcolor = {BG_COLOR_WHITE}
                                 brcolor = {BG_COLOR_GRAY}
                                 txtcolor = {BG_COLOR_BLACK}
                             >
-                                <span>Markup Site</span>
-                                <CollectionsBookmarkOutlinedIcon  style = {{marginLeft: 10}}/>
+                                <span>Markup site</span>
+                                <MarkupIcon  s  tyle = {{marginLeft: 10}}/>
                             </ColorButton>
                         ):(
                             <>
@@ -225,9 +246,10 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                                     txtcolor = {BG_COLOR_BLACK}
                                 >
                                     Edit Site Markup
+                                    <MarkupIcon  style = {{marginLeft: 10}}/>
                                 </ColorButton>
                                 <IconButton aria-label="delete" onClick = {() => {deleteMarkup();}}>
-                                    <DeleteIcon style = {{color: '#EF4F4F'}}/>
+                                    <DeleteIcon />
                                 </IconButton>
                             </>
                         )}
@@ -240,7 +262,7 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                             brcolor = {BG_COLOR_BULE} 
                             txtcolor={BG_COLOR_WHITE}
                         >
-                            <span>{(siteID === null || siteID === undefined)?"Create Site":"Update Site"}</span>
+                            <span>{(siteID === null || siteID === undefined)?"Create site":"Update site"}</span>
                         </SaveButton>
                         <ColorButton 
                             width = '45%'

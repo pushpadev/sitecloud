@@ -124,7 +124,8 @@ function EditSite() {
       alert('You should draw the polygon');
       return;
     }
-    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: polygon, markup: (currentSite)?currentSite?.iconList:[], centroid: polygon.points[0][0]});
+    
+    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: polygon, markup: (currentSite)?currentSite?.iconList:[], centroid: polygon.center});
     setEditingStatus(BOUNDARY_SAVE);
   }
 
@@ -195,6 +196,7 @@ function EditSite() {
               isExistMarkup = {isExistMarkup}
               endDrawPolygon = {endDrawPolygon}
               editPolygon = {editPolygon}
+              siteID = {id}
             />
         </div>
       )}

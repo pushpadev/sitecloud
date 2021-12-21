@@ -16,9 +16,14 @@ function Home() {
   const classes = useStyles();
   const homeEl = useRef(null);
   const [ sites, setSites ] = useContext(SitesContext);
+  const [selId, setSelId] = useState(0);
 
-  const getSelectedItem = (item) => {
-    homeEl.current.goToSelectedSite(item);
+  const getSelectedItem = (id, item) => {
+    setSelId(id);
+    if(id === 0)
+      homeEl.current.goToInitialPos();
+    else
+      homeEl.current.goToSelectedSite(item);
   }
 
   useEffect(() => {
@@ -26,6 +31,7 @@ function Home() {
       let res = await getAllSite();
       setSites(res.AllSiteinfo)
     })()
+
   }, [])
 
   return (
@@ -34,7 +40,7 @@ function Home() {
           sites = {sites} 
           getSelectedItem = {getSelectedItem} 
         />
-        <MarkerMap ref = {homeEl} />
+        <MarkerMap ref = {homeEl} selId = {selId}/>
       </div>
   );
 }

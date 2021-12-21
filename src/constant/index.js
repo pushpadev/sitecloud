@@ -197,8 +197,9 @@ export const SHOW_SITE_BAR_CHILD = [
 
 export const SAVE_MARKUP_MSG = 'Site markup will be visibile to workers and visitors on the mobile application';
 export const SAVE_BOUNDARY_MSG = 'The site boundary must be a contained area';
-export const SIDEBAR_WIDTH = 320;
-export const ICONBAR_WIDTH = 180;
+export const SIDEBAR_WIDTH = 365;
+export const SHOWBAR_WIDTH = 260;
+export const ICONBAR_WIDTH = 230;
 
 export const STATUS_NONE = -1;
 export const BOUNDARY_NONE = 0;
@@ -221,3 +222,5 @@ export const BG_COLOR_GRAY = '#aaafb8ef';
 export const BG_COLOR_BULE = '#0066ffef';
 export const BG_COLOR_BLACK = '#413B5A';
 export const BG_COLOR_BULE_LITTLE = '#CEE2FF';
+
+export const MAP_CENTER_COORDINATE = [149.012375, -35.473469];

@@ -47,9 +47,8 @@ export const SideBar = ({ getSelectedItem, sites }) => {
 
     const onSelected = (id, item) => {
         setSelected(id);
-        getSelectedItem(item);
+        getSelectedItem(id, item);
     }
-
     
     // useEffect(() => {
     //     console.log('width', sideBarEl.current ? sideBarEl.current.offsetWidth : 0);

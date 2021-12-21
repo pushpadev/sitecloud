@@ -3,14 +3,17 @@ import { makeStyles, withStyles } from '@mui/styles';
 import { Container, Row, Col } from 'react-grid-system';
 import AddLocationOutlinedIcon from '@mui/icons-material/AddLocationOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
-import GroupsIcon from '@mui/icons-material/Groups';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useNavigate } from "react-router-dom";
 import Divider from '@mui/material/Divider';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
+import { ReactComponent as WorkersIcon } from '../images/workers.svg';
+import { ReactComponent as VisitorsIcon } from '../images/visitors.svg';
+import { ReactComponent as WarningIcon } from '../images/warning.svg';
+
+
 import '../css/style.css';
 
 const ColorButton = withStyles((theme) => ({
@@ -84,7 +87,7 @@ export default function PopOver(props){
                     </Col>
                     <Col sm = {12} xs = {12} md = {isRoot?4:4} lg = {isRoot?4:4}>
                         <div style = {{display: 'flex', flexDirection: 'row'}}>
-                            <Divider orientation="vertical" flexItem />
+                            <Divider orientation="vertical" flexItem style = {{marginTop: 30}}/>
                             <div style = {{marginLeft: 20}} className={classes.column}>
                                 <div className={classes.row}>
                                     <GroupsIcon className={classes.icon}/>
@@ -97,6 +100,16 @@ export default function PopOver(props){
                                 <div className={classes.row}>
                                     <ReportGmailerrorredOutlinedIcon className={classes.icon} />
                                     <p style = {{color: 'red'}}>{"Total open hazards on Sites: " + siteInfo?.data?.hazard}</p>
+                                    <WorkersIcon className={classes.icon}/>
+                                    <p style={{color: '#1875F0'}}>{"Total workers on Sites: " + workers}</p>
+                                </div>
+                                <div className={classes.row}>
+                                    <VisitorsIcon className={classes.icon}/>
+                                    <p style={{color: '#1875F0'}}>{"Total visitors on Sites: " + visitors}</p>
+                                </div>
+                                <div className={classes.row}>
+                                    <WarningIcon className={classes.icon} />
+                                    <p style = {{color: '#EF4F4F'}}>{"Total open hazards on Sites: " + hazards}</p>
                                 </div>
                             </div>
                         </div>
@@ -106,6 +119,13 @@ export default function PopOver(props){
                             <SettingsIcon style = {{marginRight: 10}} /><span>Manage</span><ArrowForwardIosIcon style = {{marginLeft: 10}} />
                         </ColorButton>
                     </Col>
+                    {!isRoot && 
+                        <Col sm = {12} xs = {12} md = {2} lg = {2} style={{display: isRoot?'none':'flex', justifyContent: 'center', alignItems: 'center'}}>
+                            <ColorButton onClick={() => manageSite()}>
+                                <SettingsIcon style = {{marginRight: 10}} /><span>Manage</span><ArrowForwardIosIcon style = {{marginLeft: 10}} />
+                            </ColorButton>
+                        </Col>
+                    }
                 </Row>
             </Container>
         </div>

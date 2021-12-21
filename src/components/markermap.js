@@ -3,13 +3,18 @@ import ReactMapboxGl, { Marker } from "react-mapbox-gl";
 import DrawControl from "react-mapbox-gl-draw";
 import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 import marker from '../marker.png';
-import { MAP_VIEW, SIDEBAR_WIDTH, SITE_LIST } from "../constant";
+import { MAP_VIEW, SIDEBAR_WIDTH, MAP_CENTER_COORDINATE } from "../constant";
 import MapPin from './mappin';
 import PopOver from './popover'
 import { useNavigate } from "react-router-dom";
 import { makeStyles, withStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 import { SitesContext } from "../contexts/sites";
+// import SearchBox from './searchbox';
+
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '../css/style.css';
 
 const useStyles = makeStyles({
   root: {
@@ -68,6 +73,23 @@ const MarkerMap = forwardRef((props, ref) => {
 
   const onStyleLoaded = (map)  => {
     setMapObj(map);
+    const geocoder = new MapboxGeocoder({
+      // Initialize the geocoder
+      accessToken: "pk.eyJ1IjoiZmFrZXVzZXJnaXRodWIiLCJhIjoiY2pwOGlneGI4MDNnaDN1c2J0eW5zb2ZiNyJ9.mALv0tCpbYUPtzT7YysA2g", // Set the access token
+      mapboxgl: map, // Set the mapbox-gl instance
+      placeholder: 'Search here', // Placeholder text for the search bar
+      // bbox: [-122.30937, 37.84214, -122.23715, 37.89838], // Boundary for Berkeley
+      // proximity: {
+      //   longitude: -122.25948,
+      //   latitude: 37.87221
+      // } // Coordinates of UC Berkeley
+    });
+    map.setZoom(6);
+
+    map.addControl(geocoder);
+    if(props.selId === 0){
+      map.panTo(MAP_CENTER_COORDINATE);
+    }
   }
 
   const goToSelectedSite = (item) => {
@@ -77,7 +99,14 @@ const MarkerMap = forwardRef((props, ref) => {
         mapObj.panTo([item?.data?.centroid[0], item?.data?.centroid[1]]);
     }
   }
-  useImperativeHandle(ref, () => ({ goToSelectedSite }), [mapObj])
+  const goToInitialPos = () => {
+    setSiteInfo(MAP_VIEW);
+    if(mapObj){
+        mapObj.panTo(MAP_CENTER_COORDINATE);
+    }
+  }
+  // [149.012375, -35.473469]
+  useImperativeHandle(ref, () => ({ goToSelectedSite, goToInitialPos }), [mapObj])
 
   useEffect(() => {
     setSiteInfo(MAP_VIEW);
@@ -92,6 +121,7 @@ const MarkerMap = forwardRef((props, ref) => {
           height: `calc(100vh - 84px)`,
           width: `calc(100vw - ${SIDEBAR_WIDTH}px)`
         }}
+        center={MAP_CENTER_COORDINATE}
       >
         {/* defaultMode = 'draw_polygon' */}
         <DrawControl ref={drawControl} displayControlsDefault={false} />

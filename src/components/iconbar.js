@@ -11,8 +11,8 @@ const useStyles = makeStyles({
         width: ICONBAR_WIDTH, 
         backgroundColor: 'white',
         position: 'absolute',
-        top: 120,
-        left: SIDEBAR_WIDTH + 20,
+        top: 85,
+        left: SIDEBAR_WIDTH,
     },
     siteBar: {
         backgroundColor: '#0066ffef',

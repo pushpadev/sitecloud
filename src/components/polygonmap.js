@@ -6,7 +6,7 @@ import IconBar from './iconbar';
 import Button from '@mui/material/Button';
 import { makeStyles, withStyles } from '@mui/styles';
 import { 
-  BOUNDARY_SAVE,
+  MAP_CENTER_COORDINATE,
   SIDEBAR_WIDTH, 
   STATUS_NONE, 
   BOUNDARY_CREATE, 
@@ -19,9 +19,12 @@ import * as turf from "@turf/turf";
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import IconPin from './iconpin';
 import { CurrentSiteContext } from "../contexts/currentsite";
-// import MapboxGeocoder from 'mapbox-gl-geocoder';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
+
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '../css/style.css';
 
 const useStyles = makeStyles({
     root: {
@@ -37,11 +40,11 @@ const ColorButton = withStyles((theme) => ({
       paddingTop: '2px',
       paddingBottom: '2px',
       textTransform: 'none',
-      backgroundColor: '#39c46aef !important',
-      border: '2px solid #39c46aef',
+      backgroundColor: '#18941D !important',
+      border: '2px solid #18941D',
       '&:hover': {
           opacity: '.7',
-          borderColor: '#39c46aef !important',
+          borderColor: '#18941D !important',
       },
   },
 }))(Button);
@@ -70,7 +73,9 @@ const PolygonMap = forwardRef((props, ref) => {
       if (features.length > 0) {
           let polyID = features[0].id;
           let points = features[0].geometry.coordinates;
-          setPolygon({"id": polyID, "points": points});
+          var trufpolygon = turf.polygon(points);
+          var center = turf.centerOfMass(trufpolygon);
+          setPolygon({"id": polyID, "points": points, "center": center.geometry.coordinates});
           props.setExistPolygon(true);
           props.setEditingStatus(BOUNDARY_CREATE);
       }
@@ -81,14 +86,29 @@ const PolygonMap = forwardRef((props, ref) => {
     if (features.length > 0) {
       let polyID = features[0].id;
       let points = features[0].geometry.coordinates;
-      console.log(points);
-      setPolygon({"id": polyID, "points": points});
-      props.editPolygon({"id": polyID, "points": points});
+      var trufpolygon = turf.polygon(points);
+      var center = turf.centerOfMass(trufpolygon);
+      setPolygon({"id": polyID, "points": points, "center": center.geometry.coordinates});
+      props.editPolygon({"id": polyID, "points": points, "center": center.geometry.coordinates});
     }
   };
 
  const onStyleLoaded = (map, event)  => {
     setMap(map);
+    const geocoder = new MapboxGeocoder({
+      // Initialize the geocoder
+      accessToken: "pk.eyJ1IjoiZmFrZXVzZXJnaXRodWIiLCJhIjoiY2pwOGlneGI4MDNnaDN1c2J0eW5zb2ZiNyJ9.mALv0tCpbYUPtzT7YysA2g", // Set the access token
+      mapboxgl: map, // Set the mapbox-gl instance
+      placeholder: 'Search here', // Placeholder text for the search bar
+    });
+    map.addControl(geocoder);
+    map.setZoom(6.5);
+
+    // if(props.siteID === undefined || props.siteID === null)
+    //   map.panTo(MAP_CENTER_COORDINATE);
+    // else
+    //   map.flyTo({center: currentSite?.centroid, zoom:6});
+      // map.panTo(currentSite?.centroid);
     props.setMapLoading(false);
     console.log(currentSite);
     if( currentSite && Object.keys(currentSite).length !== 0){
@@ -215,7 +235,6 @@ const PolygonMap = forwardRef((props, ref) => {
     if (currentSite && Array.isArray(currentSite?.markup)) {
       setIconList(currentSite?.markup);
       setPolygon(currentSite?.polyrings);
-      props.setEditingStatus(MARKUP_CREATE);
       props.setExistMakrup(true);
     }
   }, [currentSite])
@@ -234,6 +253,7 @@ const PolygonMap = forwardRef((props, ref) => {
                   width: `calc(100vw - ${SIDEBAR_WIDTH}px)`,
                   position: 'relative',
                 }}
+                center={(props.siteID === undefined || props.siteInfo === null)?MAP_CENTER_COORDINATE:currentSite?.centroid}
               >
                 <DrawControl ref={drawControl} displayControlsDefault={false} onDrawCreate={onDrawCreate} onDrawUpdate={onDrawUpdate}/>
                 {(iconList.length > 0)?iconList.map((item, index) => {
@@ -262,11 +282,24 @@ const PolygonMap = forwardRef((props, ref) => {
                   )
                 }): (<></>)}
               </Map>
+              {console.log(props.editingStatus)}
               {/* <IconBar dragItem = {dragItem} /> */}
               <div style={{ position: 'absolute', display: 'flex', justifyContent: 'center', top: 620, width: '80%' }}>
                 <div>
                   {(props.editingStatus === STATUS_NONE)?
-                    (<></>):
+                    ((props.isExistMarkup?(
+                      <ColorButton 
+                          aria-describedby={id} 
+                          variant="contained" 
+                          onClick={(event) => {props.saveMarkup(iconList);setMsg(SAVE_MARKUP_MSG);handleClick(event)}}
+                        >
+                          <CheckCircleRoundedIcon 
+                            style = {{marginRight: 10}} 
+                          />
+                          <span>Save Markup</span>
+                        </ColorButton>
+                        ):(<></>)
+                    )):
                     ((props.editingStatus === BOUNDARY_CREATE)?
                     (<ColorButton 
                       aria-describedby={id} 
