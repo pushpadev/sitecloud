@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { makeStyles, withStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 import { SitesContext } from "../contexts/sites";
-import CustomizedInputBase from './searchbox';
+//import CustomizedInputBase from './searchbox';
 
 const useStyles = makeStyles({
   root: {
