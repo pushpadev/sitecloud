@@ -3,6 +3,8 @@
   --secondary-grey-text: #7a7a7a;
   --grey-border: #dbdbdb;
   --primary-blue: #1875f0;
+  --dark-pink: #ec4e86;
+  --dark-violet: #753af4;
 }
 
 p {
@@ -126,10 +128,123 @@ p {
   color: var(--primary-text);
 }
 
+.sideMenu_bar .css-smkl36-MuiCollapse-wrapper {
+  width: 82%;
+  margin-left: auto;
+}
+
+.sideMenu_bar .css-cveggr-MuiListItemIcon-root {
+  min-width: 36px;
+}
+
+.sideMenu_bar .css-10hburv-MuiTypography-root {
+  font-family: "RivieraNightsTrial";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 17px;
+  /* identical to box height */
+  letter-spacing: 0.065em;
+  color: var(--primary-text);
+}
+
+.sideMenu_bar .css-bshv44-MuiButtonBase-root-MuiListItem-root,
+.sideMenu_bar .css-cveggr-MuiListItemIcon-root {
+  color: var(--primary-text);
+}
+
+.sideMenu_bar .css-bshv44-MuiButtonBase-root-MuiListItem-root {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.attendence_details {
+  font-family: "RivieraNightsTrial";
+  display: block;
+  padding: 15px;
+  background-color: #ffff;
+  margin: 10px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.04),
+    0px 0px 1px rgba(0, 0, 0, 0.04);
+}
+
+.attendence_details h2 {
+  font-size: 22px;
+  font-family: Riviera-Font;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 29px;
+  letter-spacing: 0.065em;
+  text-align: left;
+}
+
+.attendence_details address {
+  font-family: Riviera-Font;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0.065em;
+  text-align: left;
+}
+
+.site_detail {
+  width: 40%;
+}
+
+.site_detail b {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.065em;
+  text-align: left;
+}
+
+.worker_detail {
+  color: var(--dark-violet);
+}
+
+.visitors_detail {
+  color: var(--dark-pink);
+}
+
+.visitors_detail small,
+.worker_detail small {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.065em;
+}
+
+.progress_bar {
+  height: 15px;
+  border-radius: 6.5px;
+  display: inline-block;
+}
+.visiter_progress {
+  width: 5%;
+  background-color: var(--dark-pink);
+}
+.worker_progress {
+  width: 28%;
+  background-color: var(--dark-violet);
+}
+
 /** Media Queries **/
 @media only screen and (max-width: 767px) {
   .login_forgotpassword_bg {
     display: none;
+  }
+  .site_detail {
+    width: 100%;
+  }
+  .visiter_progress {
+    width: 30%;
+  }
+  .worker_progress {
+    width: 60%;
   }
 }
 
@@ -148,5 +263,45 @@ p {
 @media only screen and (min-width: 768px) {
   .login_forgotpassword_bg {
     display: block;
+  }
+
+  .site_detail {
+    width: 80%;
+  }
+  .visiter_progress {
+    width: 18%;
+  }
+  .worker_progress {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .site_detail {
+    width: 60%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .site_detail {
+    width: 40%;
+  }
+  .visiter_progress {
+    width: 8%;
+  }
+  .worker_progress {
+    width: 30%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .site_detail {
+    width: 30%;
+  }
+  .visiter_progress {
+    width: 5%;
+  }
+  .worker_progress {
+    width: 28%;
   }
 }

@@ -5,14 +5,12 @@ import LogIn from '../pages/login';
 import ForgotPassWord from "../pages/forgotPassWord"
 import EditSite from '../pages/editsite';
 import ShowSite from '../pages/showsite';
+import LiveAttendence from "../pages/liveAttendence"
 import ProtectedRoutes from "./ProtectedRoutes"
 
 const Routers = () => {
-
-
   return (
     <>
-
       <Router>
         <Routes>
           <Route exact path="/login" element={<LogIn />} />
@@ -21,6 +19,10 @@ const Routers = () => {
           <Route element={<ProtectedRoutes />}>
             <Route exact path="/" element={<Home />} />
           </Route>
+          <Route element={<ProtectedRoutes />}>
+            <Route exact path="/liveAttendence" element={<LiveAttendence />} />
+          </Route>
+
           <Route element={<ProtectedRoutes />}>
             <Route path="/home" element={<Home />} />
           </Route>
