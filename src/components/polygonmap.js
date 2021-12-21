@@ -234,6 +234,7 @@ const PolygonMap = forwardRef((props, ref) => {
                   width: `calc(100vw - ${SIDEBAR_WIDTH}px)`,
                   position: 'relative',
                 }}
+                center = {[149.012375, -35.473469]}
               >
                 <DrawControl ref={drawControl} displayControlsDefault={false} onDrawCreate={onDrawCreate} onDrawUpdate={onDrawUpdate}/>
                 {(iconList.length > 0)?iconList.map((item, index) => {

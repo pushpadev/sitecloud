@@ -1,4 +1,5 @@
-import GroupsIcon from '@mui/icons-material/Groups';
+import { ReactComponent as MustterIcon } from '../images/markups/mustter.svg';
+
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import { Icon } from '@iconify/react';
@@ -81,7 +82,7 @@ export const ICON_LIST = [
     {
         'id': 1,
         'value': 'Mustter Points',
-        'icon':  <GroupsIcon />,
+        'icon':  <MustterIcon />,
     },
     {
         'id': 2,
