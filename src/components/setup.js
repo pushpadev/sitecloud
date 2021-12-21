@@ -264,7 +264,7 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                             onClick={() => cancelSite()} 
                             bgcolor = {BG_COLOR_WHITE}
                             brcolor = {BG_COLOR_WHITE}
-                            txtcolor = {BG_COLOR_BLACK}
+                            txtcolor = '#1875F0'
                         >
                             Cancel
                         </ColorButton>
