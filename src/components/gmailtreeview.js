@@ -9,20 +9,22 @@ import MailIcon from '@mui/icons-material/Mail';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Label from '@mui/icons-material/Label';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
-import InfoIcon from '@mui/icons-material/Info';
-import ForumIcon from '@mui/icons-material/Forum';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { SHOW_SITE_BAR, SIDEBAR_WIDTH, SHOW_SITE_BAR_CHILD, BG_COLOR_BLACK, BG_COLOR_WHITE, BG_COLOR_BULE, BG_COLOR_BULE_LITTLE} from '../constant';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router-dom';
+
 
 const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
   color: theme.palette.text.secondary,
   [`& .${treeItemClasses.content}`]: {
     color: theme.palette.text.secondary,
-    borderTopRightRadius: theme.spacing(2),
-    borderBottomRightRadius: theme.spacing(2),
     paddingRight: theme.spacing(1),
     fontWeight: theme.typography.fontWeightMedium,
+    height: 50,
+    display: 'flex',
+    alignItems: 'center',
     '&.Mui-expanded': {
       fontWeight: theme.typography.fontWeightRegular,
     },
@@ -86,7 +88,13 @@ StyledTreeItem.propTypes = {
   labelText: PropTypes.string.isRequired,
 };
 
-export default function GmailTreeView() {
+const rootItem = {
+  nodeId: '0',
+  icon: ArrowBackIcon,
+}
+export default function GmailTreeView({siteName}) {
+  const history = useNavigate();
+
   return (
     <TreeView
       aria-label="gmail"
@@ -94,45 +102,46 @@ export default function GmailTreeView() {
       defaultCollapseIcon={<ArrowDropDownIcon />}
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
-      sx={{ height: 264, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+      sx={{ width: SIDEBAR_WIDTH }}
     >
-      <StyledTreeItem nodeId="1" labelText="All Mail" labelIcon={MailIcon} />
-      <StyledTreeItem nodeId="2" labelText="Trash" labelIcon={DeleteIcon} />
-      <StyledTreeItem nodeId="3" labelText="Categories" labelIcon={Label}>
-        <StyledTreeItem
-          nodeId="5"
-          labelText="Social"
-          labelIcon={SupervisorAccountIcon}
-          labelInfo="90"
-          color="#1a73e8"
-          bgColor="#e8f0fe"
-        />
-        <StyledTreeItem
-          nodeId="6"
-          labelText="Updates"
-          labelIcon={InfoIcon}
-          labelInfo="2,294"
-          color="#e3742f"
-          bgColor="#fcefe3"
-        />
-        <StyledTreeItem
-          nodeId="7"
-          labelText="Forums"
-          labelIcon={ForumIcon}
-          labelInfo="3,566"
-          color="#a250f5"
-          bgColor="#f3e8fd"
-        />
-        <StyledTreeItem
-          nodeId="8"
-          labelText="Promotions"
-          labelIcon={LocalOfferIcon}
-          labelInfo="733"
-          color="#3c8039"
-          bgColor="#e6f4ea"
-        />
-      </StyledTreeItem>
-      <StyledTreeItem nodeId="4" labelText="History" labelIcon={Label} />
+      <StyledTreeItem
+        nodeId={rootItem.nodeId} 
+        labelText={siteName} 
+        labelIcon={rootItem.icon}
+        color={BG_COLOR_BLACK}
+        bgColor={BG_COLOR_BULE_LITTLE}
+        onClick = {() => history('/')}
+      />
+      {SHOW_SITE_BAR.map((item) => {
+        return (
+          <div key = {item.lableText}>
+            {item.nodeId === '2'?(
+              <StyledTreeItem nodeId={item.nodeId} labelText={item.lableText} labelIcon={item.icon}>
+                {SHOW_SITE_BAR_CHILD.map((item) => {
+                  return (
+                    <StyledTreeItem
+                      key = {item.lableText}
+                      nodeId={item.nodeId}
+                      labelText={item.lableText}
+                      labelIcon={item.icon}
+                      color={BG_COLOR_BLACK}
+                      bgColor={BG_COLOR_BULE_LITTLE}
+                    />
+                  )
+                })}
+              </StyledTreeItem>
+            ):(
+              <StyledTreeItem
+                nodeId={item.nodeId} 
+                labelText={item.lableText} 
+                labelIcon={item.icon}
+                color={BG_COLOR_WHITE}
+                bgColor={BG_COLOR_BULE}
+              />
+            )}
+          </div>
+        )
+      })}
     </TreeView>
   );
 }

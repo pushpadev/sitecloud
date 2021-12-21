@@ -81,8 +81,9 @@ const PolygonMap = forwardRef((props, ref) => {
     if (features.length > 0) {
       let polyID = features[0].id;
       let points = features[0].geometry.coordinates;
+      console.log(points);
       setPolygon({"id": polyID, "points": points});
-      props.setExistPolygon(true);
+      props.editPolygon({"id": polyID, "points": points});
     }
   };
 

@@ -3,13 +3,14 @@ import ReactMapboxGl, { Marker } from "react-mapbox-gl";
 import DrawControl from "react-mapbox-gl-draw";
 import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 import marker from '../marker.png';
-import { SIDEBAR_WIDTH, SITE_LIST } from "../constant";
+import { MAP_VIEW, SIDEBAR_WIDTH, SITE_LIST } from "../constant";
 import MapPin from './mappin';
 import PopOver from './popover'
 import { useNavigate } from "react-router-dom";
 import { makeStyles, withStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 import { SitesContext } from "../contexts/sites";
+import CustomizedInputBase from './searchbox';
 
 const useStyles = makeStyles({
   root: {
@@ -73,14 +74,15 @@ const MarkerMap = forwardRef((props, ref) => {
   const goToSelectedSite = (item) => {
     if(mapObj){
       setSiteInfo(item);
-      mapObj.panTo([item.data.centroid[0], item.data.centroid[1]]);
+      if(item.data.centroid)
+        mapObj.panTo([item?.data?.centroid[0], item?.data?.centroid[1]]);
     }
   }
   useImperativeHandle(ref, () => ({ goToSelectedSite }), [mapObj])
 
-  // useEffect(() => {
-  //   setSiteInfo(sites[0]);
-  // }, [sites])
+  useEffect(() => {
+    setSiteInfo(MAP_VIEW);
+  }, [])
 
   return (
     <div className={classes.root}>

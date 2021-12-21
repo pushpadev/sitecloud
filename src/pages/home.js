@@ -4,7 +4,6 @@ import { SideBar } from '../components/sidebar';
 import { makeStyles } from '@mui/styles';
 import { getAllSite } from '../actions';
 import { SitesContext } from '../contexts/sites';
-import { deleteSite } from '../actions';
 const useStyles = makeStyles({
   root: {
     display: 'flex',
