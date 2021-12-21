@@ -1,4 +1,3 @@
-import PrimarySearchAppBar from './components/appbar';
 import React from 'react';
 import Routers from './router';
 import { SitesProvider } from './contexts/sites';
@@ -8,11 +7,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
 function App() {
+
+
   return (
     <div className='App'>
       <SitesProvider>
         <CurrentSiteProvider>
-          <PrimarySearchAppBar />
           <Routers />
         </CurrentSiteProvider>
       </SitesProvider>
