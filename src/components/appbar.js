@@ -8,6 +8,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { APP_NAME } from '../constant';
+import { Link } from "react-router-dom"
+
 
 export default function PrimarySearchAppBar() {
 
@@ -48,7 +50,10 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
+      {/* <MenuItem onClick={handleMenuClose}>Log out</MenuItem> */}
+      <Link to="/login" className='link_text'>
+        <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      </Link>
     </Menu>
   );
 
