@@ -10,6 +10,8 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { SHOW_SITE_BAR, SHOWBAR_WIDTH, SHOW_SITE_BAR_CHILD, BG_COLOR_BLACK, BG_COLOR_WHITE, BG_COLOR_BULE, BG_COLOR_BULE_LITTLE} from '../constant';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
+import AccountSettings from "../pages/accountsettings"
+
 
 
 const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
@@ -141,8 +143,8 @@ export default function GmailTreeView({siteName}) {
       })}
     </TreeView>
     
-    <div>
-content area...
+    <div style={{ backgroundColor: "yellow"}}>
+    <AccountSettings />
     </div>
     
     </>
