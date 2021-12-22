@@ -47,7 +47,7 @@ export const SideBar = ({ getSelectedItem, sites }) => {
 
     const onSelected = (id, item) => {
         setSelected(id);
-        getSelectedItem(item);
+        getSelectedItem(id, item);
     }
 
     

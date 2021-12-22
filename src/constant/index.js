@@ -222,3 +222,5 @@ export const BG_COLOR_GRAY = '#aaafb8ef';
 export const BG_COLOR_BULE = '#0066ffef';
 export const BG_COLOR_BLACK = '#413B5A';
 export const BG_COLOR_BULE_LITTLE = '#CEE2FF';
+
+export const MAP_CENTER_COORDINATE = [149.012375, -35.473469];

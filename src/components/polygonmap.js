@@ -6,7 +6,7 @@ import IconBar from './iconbar';
 import Button from '@mui/material/Button';
 import { makeStyles, withStyles } from '@mui/styles';
 import { 
-  BOUNDARY_SAVE,
+  MAP_CENTER_COORDINATE,
   SIDEBAR_WIDTH, 
   STATUS_NONE, 
   BOUNDARY_CREATE, 
@@ -38,11 +38,11 @@ const ColorButton = withStyles((theme) => ({
       paddingTop: '2px',
       paddingBottom: '2px',
       textTransform: 'none',
-      backgroundColor: '#39c46aef !important',
-      border: '2px solid #39c46aef',
+      backgroundColor: '#18941D !important',
+      border: '2px solid #18941D',
       '&:hover': {
           opacity: '.7',
-          borderColor: '#39c46aef !important',
+          borderColor: '#18941D !important',
       },
   },
 }))(Button);
@@ -92,6 +92,10 @@ const PolygonMap = forwardRef((props, ref) => {
 
  const onStyleLoaded = (map, event)  => {
     setMap(map);
+    if(props.siteID === undefined || props.siteID === null)
+      map.panTo(MAP_CENTER_COORDINATE);
+    else
+      map.panTo(currentSite?.centroid);
     props.setMapLoading(false);
     if( currentSite && Object.keys(currentSite).length !== 0){
       var storedPolygons = currentSite?.polyrings;

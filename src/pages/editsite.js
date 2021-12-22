@@ -221,6 +221,7 @@ function EditSite() {
               isExistMarkup = {isExistMarkup}
               endDrawPolygon = {endDrawPolygon}
               editPolygon = {editPolygon}
+              siteID = {id}
             />
         </div>
       )}

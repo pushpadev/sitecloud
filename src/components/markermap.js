@@ -3,7 +3,7 @@ import ReactMapboxGl, { Marker } from "react-mapbox-gl";
 import DrawControl from "react-mapbox-gl-draw";
 import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 import marker from '../marker.png';
-import { MAP_VIEW, SIDEBAR_WIDTH, SITE_LIST } from "../constant";
+import { MAP_VIEW, SIDEBAR_WIDTH, MAP_CENTER_COORDINATE } from "../constant";
 import MapPin from './mappin';
 import PopOver from './popover'
 import { useNavigate } from "react-router-dom";
@@ -69,6 +69,10 @@ const MarkerMap = forwardRef((props, ref) => {
 
   const onStyleLoaded = (map)  => {
     setMapObj(map);
+    console.log(props.selId);
+    if(props.selId === 0){
+      map.panTo(MAP_CENTER_COORDINATE);
+    }
   }
 
   const goToSelectedSite = (item) => {
@@ -78,7 +82,13 @@ const MarkerMap = forwardRef((props, ref) => {
         mapObj.panTo([item?.data?.centroid[0], item?.data?.centroid[1]]);
     }
   }
-  useImperativeHandle(ref, () => ({ goToSelectedSite }), [mapObj])
+  const goToInitialPos = () => {
+    if(mapObj){
+        mapObj.panTo([149.012375, -35.473469]);
+    }
+  }
+  // [149.012375, -35.473469]
+  useImperativeHandle(ref, () => ({ goToSelectedSite, goToInitialPos }), [mapObj])
 
   useEffect(() => {
     setSiteInfo(MAP_VIEW);
