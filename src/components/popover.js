@@ -90,15 +90,15 @@ export default function PopOver(props){
                             <Divider orientation="vertical" flexItem style = {{marginTop: 30}}/>
                             <div style = {{marginLeft: 20}} className={classes.column}>
                                 <div className={classes.row}>
-                                    <GroupsIcon className={classes.icon}/>
+                                    <WorkersIcon className={classes.icon}/>
                                     <p style={{color: 'blue'}}>{"Total workers on Sites: " + siteInfo?.data?.worker}</p>
                                 </div>
                                 <div className={classes.row}>
-                                    <VisibilityOutlinedIcon className={classes.icon}/>
+                                    <VisitorsIcon className={classes.icon}/>
                                     <p style={{color: 'blue'}}>{"Total visitors on Sites: " + siteInfo?.data?.visitor}</p>
                                 </div>
                                 <div className={classes.row}>
-                                    <ReportGmailerrorredOutlinedIcon className={classes.icon} />
+                                    <WarningIcon className={classes.icon} />
                                     <p style = {{color: 'red'}}>{"Total open hazards on Sites: " + siteInfo?.data?.hazard}</p>
                                     <WorkersIcon className={classes.icon}/>
                                     <p style={{color: '#1875F0'}}>{"Total workers on Sites: " + workers}</p>
