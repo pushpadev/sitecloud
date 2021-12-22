@@ -1,7 +1,6 @@
 import Button from '@mui/material/Button';
 import { makeStyles, withStyles } from '@mui/styles';
 import { Container, Row, Col } from 'react-grid-system';
-import AddLocationOutlinedIcon from '@mui/icons-material/AddLocationOutlined';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -12,7 +11,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { ReactComponent as WorkersIcon } from '../images/workers.svg';
 import { ReactComponent as VisitorsIcon } from '../images/visitors.svg';
 import { ReactComponent as WarningIcon } from '../images/warning.svg';
-
+import { ReactComponent as PinIcon } from '../images/pin.svg';
 
 import '../css/style.css';
 
@@ -39,9 +38,10 @@ const useStyles = makeStyles({
         height: 150,
         width: '70%',
         textAlign: 'center',
-        boxShadow: '3px 3px 2px 1px rgb(242, 242,242)',
+        // boxShadow: '3px 3px 2px 1px rgb(242, 242,242)',
         position: 'absolute',
         bottom: 30,
+        borderRadius: 10,
         ['@media (max-width:1250px)']: { // eslint-disable-line no-useless-computed-key
             display: 'none',
         },
@@ -62,8 +62,8 @@ const useStyles = makeStyles({
     }
 });
 
-const workers = 32;
-const visitors = 12;
+const workers = 320;
+const visitors = 52;
 const hazards = 2;
 
 export default function PopOver(props){
@@ -83,9 +83,9 @@ export default function PopOver(props){
                 <Row>
                     <Col sm = {11} xs = {11} md = {isRoot?8:6} lg = {isRoot?8:6}>
                         <div className={classes.column}>
-                            <div className={classes.row}><p style = {{fontSize: 20, fontWeight: 'bold'}}>{isRoot?("\"Company Name\": " + siteInfo?.data?.Sitename):("Site Overview: " + siteInfo?.data?.Sitename)}</p></div>
+                            <div className={classes.row}><p style = {{fontSize: 20, fontWeight: 'bold'}}>{isRoot?("\"Company Name\" " + siteInfo?.data?.Sitename):("Site Overview: " + siteInfo?.data?.Sitename)}</p></div>
                             <div className={classes.row}>
-                                <AddLocationOutlinedIcon className={classes.icon}/><p>{isRoot?("Company Address: " + siteInfo?.data?.Siteaddress):("Address: " + siteInfo?.data?.Siteaddress)}</p>
+                                <PinIcon className={classes.icon}/><p>{isRoot?("Company Address: " + siteInfo?.data?.Siteaddress):("Address: " + siteInfo?.data?.Siteaddress)}</p>
                             </div>
                             <div className={classes.row}>
                                 {isRoot?(<><BookmarkBorderOutlinedIcon className={classes.icon} /><p>{"Sites managed: " + 5}</p></>):

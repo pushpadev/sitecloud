@@ -27,7 +27,7 @@ export const modifySite = (id, data) => {
 export const getSite = (id) => {
     return axios.get(`${SERVER_URL}?id=${id}`)
     .then(res => {
-        return res.data;
+        return res;
     })
     .catch(err => {
         console.log(err.message);
