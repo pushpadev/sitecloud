@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from '../pages/home';
 import AccountSettings from '../pages/accountsettings';
+import Profile from "../pages/Profile"
 import LogIn from '../pages/login';
 import ForgotPassWord from "../pages/forgotPassWord"
 import EditSite from '../pages/editsite';
@@ -27,6 +28,13 @@ const Routers = () => {
           <Route element={<ProtectedRoutes />}>
             <Route path="/home" element={<Home />} />
           </Route>
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/profie" element={<Profile />} />
+          </Route>
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/accountSetting" element={<AccountSettings />} />
+          </Route>
+
           <Route element={<ProtectedRoutes />}>
             <Route exact path="/showsite/:id" element={<ShowSite />} />
           </Route>

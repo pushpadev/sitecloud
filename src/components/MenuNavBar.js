@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Collapse from '@mui/material/Collapse';
+import { List, ListItem, ListItemText, ListItemIcon, Collapse, Divider } from '@mui/material';
 import ExpandLessOutlinedIcon from '@mui/icons-material/ExpandLessOutlined';
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
@@ -20,9 +16,8 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import PersonIcon from '@mui/icons-material/Person';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { MENUBAR_WIDTH } from '../constant';
-import { Divider } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
     root: {
@@ -49,7 +44,7 @@ const useStyles = makeStyles({
 
 
 
-export const MenuBar = () => {
+export const MenuBar = (props) => {
     const classes = useStyles();
     const navigate = useNavigate();
 
@@ -69,7 +64,7 @@ export const MenuBar = () => {
                         <ListItemIcon>
                             <ArrowBackIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Site 1" />
+                        <ListItemText primary={props.siteName} />
                     </ListItem>
                     <Divider />
                     <ListItem button >
@@ -90,13 +85,14 @@ export const MenuBar = () => {
                     <Collapse in={openSubMenu} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
                             {/* Sub element 1st Starts */}
-
-                            <ListItem button >
-                                <ListItemIcon>
-                                    <AccessTimeIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Live Attendence" />
-                            </ListItem>
+                            <Link to="/liveAttendence" className='link_text'>
+                                <ListItem button >
+                                    <ListItemIcon>
+                                        <AccessTimeIcon />
+                                    </ListItemIcon>
+                                    <ListItemText primary="Live Attendence" />
+                                </ListItem>
+                            </Link>
 
                             {/* Sub element 1st ends */}
 

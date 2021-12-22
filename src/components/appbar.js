@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { Link } from "react-router-dom"
 import { APP_NAME } from '../constant';
 
 export default function PrimarySearchAppBar() {
@@ -47,8 +48,12 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <Link to="/profie" className='link_text'>
+        <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
+      </Link>
+      <Link to="/login" className='link_text'>
+        <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      </Link>
     </Menu>
   );
 
@@ -98,7 +103,10 @@ export default function PrimarySearchAppBar() {
             </Box>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style={{ alignItems: 'center' }}>
-              <Typography>Account Settings</Typography>
+              <Link to="/accountSetting" className='link_text'>
+
+                <Typography>Account Settings</Typography>
+              </Link>
               <IconButton
                 size="large"
                 edge="end"

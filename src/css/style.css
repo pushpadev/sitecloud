@@ -11,6 +11,11 @@ p {
   margin: 0 !important;
 }
 
+.link_text {
+  color: var(--primary-text);
+  text-decoration: none;
+}
+
 /* Font css for Riviera Nights Trial */
 @font-face {
   font-family: Riviera-Font;

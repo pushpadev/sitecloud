@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@mui/styles';
 import GmailTreeView from '../components/gmailtreeview';
 import { useParams } from "react-router-dom";
-import { getSite, saveSite, modifySite} from '../actions'
+import { MenuBar } from '../components/MenuNavBar';
+
+import { getSite, saveSite, modifySite } from '../actions'
 
 const useStyles = makeStyles({
   root: {
@@ -20,7 +22,7 @@ function ShowSite() {
 
   useEffect(() => {
     (async () => {
-      if(id !== undefined && id !== null){
+      if (id !== undefined && id !== null) {
         let res = await getSite(id);
         setSiteInfo(res.data);
       }
@@ -29,13 +31,14 @@ function ShowSite() {
   }, [id])
 
   return (
-      <>
-        {!isLoading && 
-          <div className = {classes.root} >
-              <GmailTreeView siteName={siteInfo.Sitename}/>
-          </div>
-        }
-      </>
+    <>
+      {!isLoading &&
+        <div className={classes.root} >
+          <MenuBar siteName={siteInfo.Sitename} />
+          {/* <GmailTreeView siteName={siteInfo.Sitename}/> */}
+        </div>
+      }
+    </>
   );
 }
 
