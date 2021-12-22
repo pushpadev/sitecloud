@@ -3,7 +3,7 @@ import { SIDEBAR_WIDTH} from '../constant';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Button from '@mui/material/Button';
 import { makeStyles, withStyles } from '@mui/styles';
-import DeleteIcon from '@mui/icons-material/Delete';
+// import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import CollectionsBookmarkOutlinedIcon from '@mui/icons-material/CollectionsBookmarkOutlined';
 import { 
