@@ -4,6 +4,7 @@ import Home from '../pages/home';
 import LogIn from '../pages/login';
 import EditSite from '../pages/editsite';
 import ShowSite from '../pages/showsite';
+import Profile from '../pages/profile';
 
 function Routers() {
   return (
@@ -15,6 +16,7 @@ function Routers() {
         <Route exact path="/showsite/:id" element={<ShowSite/>}/>
         <Route exact path="/editsite/:id" element={<EditSite/>}/>
         <Route exact path="/editsite" element={<EditSite/>}/>
+        <Route exact path="/profile" element={<Profile/>}/>
       </Routes>
     </Router>
   );
