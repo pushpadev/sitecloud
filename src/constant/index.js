@@ -136,7 +136,7 @@ export const SHOW_SITE_BAR = [
     },
     {
         nodeId: '2',
-        lableText: 'Attendence',
+        lableText: 'Attendance',
         icon: PersonIcon,
     },
     {

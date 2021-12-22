@@ -92,6 +92,7 @@ export default function GmailTreeView({siteName}) {
   const history = useNavigate();
 
   return (
+    <>
     <TreeView
       aria-label="gmail"
       defaultExpanded={['3']}
@@ -139,5 +140,13 @@ export default function GmailTreeView({siteName}) {
         )
       })}
     </TreeView>
+    
+    <div>
+content area...
+    </div>
+    
+    </>
+
+
   );
 }
