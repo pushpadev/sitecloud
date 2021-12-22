@@ -58,6 +58,11 @@ const useStyles = makeStyles({
         marginRight: 10,
     }
 });
+
+const workers = 32;
+const visitors = 12;
+const hazards = 2;
+
 export default function PopOver(props){
     const siteInfo = props.siteInfo;
     const sitemappingId  = props.sitemappingId;
