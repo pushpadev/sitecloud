@@ -11,6 +11,7 @@ import { SHOW_SITE_BAR, SHOWBAR_WIDTH, SHOW_SITE_BAR_CHILD, BG_COLOR_BLACK, BG_C
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
 import AccountSettings from "../pages/accountsettings"
+import AttendenceDetails from '../components/AttendenceDetails';
 
 
 
@@ -143,8 +144,13 @@ export default function GmailTreeView({siteName}) {
       })}
     </TreeView>
     
-    <div style={{ backgroundColor: "yellow"}}>
+    <div>
+
     <AccountSettings />
+{/* Live attendace */}
+    <AttendenceDetails />
+
+   
     </div>
     
     </>

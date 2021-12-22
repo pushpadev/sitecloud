@@ -18,7 +18,7 @@ const LiveAttendence = () => {
 
     return (
         <div className={classes.root} >
-            <MenuBar />
+            {/* <MenuBar /> */}
             <AttendenceDetails />
         </div>
     );
