@@ -12,20 +12,20 @@ const Login = () => {
         <>    {/*Login Page*/}
 
             <Row>
-                <Col lg={6} md={12} sm={12} >
+                <Col lg={6} md={6} sm={12} >
                     {/*Back ground image*/}
                     <div className="login_bg"></div>
                 </Col>
                 {/*login form*/}
-                <Col lg={6} md={12} sm={12} >
-                    <div className="row">
-                        <div className="col-1"></div>
-                        <div className="col-9 ">
-
+                <Col lg={6} md={6} sm={12} >
+                    
+                    <div className="row ">
+                        <div className="col-1 "></div>
+                        <div className="col-10 ">
                             <div className="py-5 mt-4">
                                 <div className="text-center justify-content-center ">
                                     <img src={Logo} alt="logo" />
-                                    <h1 className="pt-4">Site Cloud</h1>
+                                    <h1 className="pt-5">Site Cloud</h1>
                                 </div>
                                 <div className="pt-4 ">
                                     <h4>Login</h4>
@@ -43,12 +43,12 @@ const Login = () => {
 
                                     <p className="color_three">Forgot Password?</p>
                                 </div>
-                                <div className="text-center justify-content-center pt-5 ">
-                                    <Button className="px-6">Login</Button>
+                                <div className="text-center justify-content-center pt-4 ">
+                                    <Button >Login</Button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-1"></div>
+                        <div className="col-2"></div>
                     </div>
                 </Col>
             </Row>

@@ -8,9 +8,11 @@
     padding-left:65px;
 }
 .form-control{
-    width: 590px !important;
+    
     height: 60px !important;
+    border-radius: 0.1em ;
 }
+{/*width: 590px !important;*/}
 .color_three{
     color: #1875F0;
 }
@@ -20,4 +22,7 @@
 .btn-primary {
     width: 146px;
     height: 45px;
+}
+.btn{
+    border-radius: 0.1em ;
 }
