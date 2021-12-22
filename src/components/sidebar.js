@@ -6,12 +6,12 @@ import { SIDEBAR_WIDTH, SITE_LIST, MAP_VIEW} from '../constant';
 import { Divider } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
+import '../css/style.css';
 
 const useStyles = makeStyles({
     root: {
         width: SIDEBAR_WIDTH,
-        padding: 0,
-        marginTop: 0,
+        overflow: 'auto'
     },
     selected: {
         backgroundColor: '#0066ffef',

@@ -18,7 +18,7 @@ import '../css/style.css';
 
 const useStyles = makeStyles({
   root: {
-      padding: 10,
+      padding: 12,
   },
 });
 

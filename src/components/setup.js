@@ -1,5 +1,5 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
-import { SIDEBAR_WIDTH} from '../constant';
+import { BG_COLOR_LITTLE_GRAY, SIDEBAR_WIDTH} from '../constant';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Button from '@mui/material/Button';
 import { makeStyles, withStyles } from '@mui/styles';
@@ -15,30 +15,36 @@ import {
     BG_COLOR_WHITE, 
     BG_COLOR_GRAY,
     BG_COLOR_BLACK,
-    BG_COLOR_BULE
+    BG_COLOR_BULE,
+    BG_COLOR_BULE_LITTLE
 } from '../constant';
 import { useNavigate } from 'react-router-dom';
-import { ReactComponent as Star } from '../images/star.svg'
-import { ReactComponent as EditIcon } from '../images/edit.svg'
-import { ReactComponent as MarkupIcon } from '../images/markup.svg'
-import { ReactComponent as DeleteIcon } from '../images/delete.svg'
+import { ReactComponent as Star } from '../images/star.svg';
+import { ReactComponent as EditIcon } from '../images/edit.svg';
+import { ReactComponent as MarkupIcon } from '../images/markup.svg';
+import { ReactComponent as DeleteIcon } from '../images/delete.svg';
+import { ReactComponent as WhiteEditIcon } from '../images/whiteedit.svg';
+
 import Loading from './Spinner';
 
 const useStyles = makeStyles({
-    Root: {
+    root: {
         width: SIDEBAR_WIDTH,
         marginTop: 10,
+        height: '100%',
+        overflow: 'auto',
+        paddingLeft: 23,
+        paddingRight: 27,
     },
     container: {
         display: 'flex',
         flexDirection: 'column',
-        padding: 20,
     },
     setupbar: {
         display: 'flex',
         height: 50,
         color: 'black',
-        borderBottom: '1px solid black',
+        borderBottom: '1px solid #E5E5E5',
         paddingBottom: 10,
         fontSize: 20,
         alignItems: 'end',
@@ -50,11 +56,21 @@ const useStyles = makeStyles({
         width: '100%',
         fontSize: 14,
     },
-    fullWidth: {
+    input: {
         width: '100%',
         height: 53,
         marginTop: 10,
         backgroundColor: '#ECF4FF',
+        '& > fieldset': {
+            backgroundColor: (props) => (props.bgcolor),
+            border: (props) => (`1px solid ${props.brcolor} !important`),
+            borderWidth: '1px !important',
+            borderColor: `${BG_COLOR_LITTLE_GRAY} !important`,
+        },
+        '&:hover > fieldset': {
+            opacity: '.7',
+            borderColor: `${BG_COLOR_BULE} !important`,
+        },
     },
     end: {
         marginTop: 40,
@@ -77,8 +93,8 @@ const useStyles = makeStyles({
     },
     star:{
         position: 'absolute',
-        top: -3,
-        right: -8,
+        top: -1,
+        right: -5,
     }
 });
 
@@ -94,7 +110,7 @@ const ColorButton = withStyles((theme) => ({
         border: (props) => (`1px solid ${props.brcolor} !important`),
         '&:hover': {
             opacity: '.7',
-            borderColor: (props) => (`${props.brcolor} !important`),
+            borderColor: (props) => (`${props.hrcolor} !important`),
         },
     },
 }))(Button);
@@ -171,7 +187,7 @@ export const SetupSiteBar = forwardRef((props, ref) => {
 
     return (
         <>
-            <div className={classes.Root} style={{backgroundColor: bgcolor}}>
+            <div className={classes.root} style={{backgroundColor: bgcolor}}>
                 <div className={classes.container}>
                     <div className={classes.setupbar}>
                         {(siteInfo && Object.keys(siteInfo).length === 0)?'Setup a new site':'Edit Site'}
@@ -179,12 +195,12 @@ export const SetupSiteBar = forwardRef((props, ref) => {
 
                     <div className={classes.text}>
                         <span style = {{position: 'relative'}}>Site Name<Star className = {classes.star}/></span>
-                        <OutlinedInput className = {classes.fullWidth} value={siteName} onChange={handleSiteName} />
+                        <OutlinedInput className = {classes.input} value={siteName} onChange={handleSiteName} />
                     </div>
 
                     <div className={classes.text}>
                         <span style = {{position: 'relative'}}>Site Address<Star className = {classes.star}/></span>
-                        <OutlinedInput className = {classes.fullWidth} value={siteAddress} onChange={handleSiteAddress} />
+                        <OutlinedInput className = {classes.input} value={siteAddress} onChange={handleSiteAddress} />
                     </div>
                     {isMapLoading?<Loading />:(
                         <div className = {classes.end}>
@@ -194,11 +210,12 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                                         width = '80%'
                                         onClick={() => editPolygon()} 
                                         bgcolor = {BG_COLOR_WHITE}
-                                        brcolor = {BG_COLOR_BULE}
+                                        brcolor = {BG_COLOR_LITTLE_GRAY}
                                         txtcolor = {BG_COLOR_BLACK}
+                                        hrcolor = {BG_COLOR_BULE_LITTLE}
                                     >
                                         Edit Site Boundary
-                                        <EditIcon style = {{marginLeft: 10}}/>
+                                        <EditIcon style = {{marginLeft: 35}}/>
                                     </ColorButton>
                                     <IconButton aria-label="delete" onClick = {() => {deletePolygon(); setBdStatus(BOUNDARY_NONE);}}>
                                         <DeleteIcon />
@@ -207,13 +224,14 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                             ):(<>
                                 <ColorButton 
                                     onClick={() => setPolygon()} 
-                                    width = '100%' 
+                                    width = '305px' 
                                     bgcolor = {(bdStatus === BOUNDARY_NONE)?BG_COLOR_WHITE:BG_COLOR_BULE}
                                     brcolor = {BG_COLOR_GRAY}
                                     txtcolor = {(bdStatus === BOUNDARY_NONE)?BG_COLOR_BLACK:BG_COLOR_WHITE}
+                                    hrcolor = {BG_COLOR_BULE_LITTLE}
                                 >
-                                    Set site boundary
-                                    <EditIcon style = {{marginLeft: 10}}/>
+                                    Set site boundary 
+                                    {(bdStatus === BOUNDARY_NONE)?<EditIcon style = {{marginLeft: 14}}/>:<WhiteEditIcon style = {{marginLeft: 14}} />}
                                 </ColorButton>
                             </>)}
                         </div>
@@ -228,9 +246,10 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                                 bgcolor = {BG_COLOR_WHITE}
                                 brcolor = {BG_COLOR_GRAY}
                                 txtcolor = {BG_COLOR_BLACK}
+                                hrcolor = {BG_COLOR_BULE}
                             >
                                 <span>Markup site</span>
-                                <MarkupIcon  s  tyle = {{marginLeft: 10}}/>
+                                <MarkupIcon  style = {{marginLeft: 19}}/>
                             </ColorButton>
                         ):(
                             <>
@@ -238,8 +257,9 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                                     onClick={() => editPolygon()} 
                                     width = '80%' 
                                     bgcolor = {BG_COLOR_WHITE}
-                                    brcolor = {BG_COLOR_BULE}
+                                    brcolor = {BG_COLOR_LITTLE_GRAY}
                                     txtcolor = {BG_COLOR_BLACK}
+                                    hrcolor = {BG_COLOR_BULE}
                                 >
                                     Edit Site Markup
                                     <MarkupIcon  style = {{marginLeft: 10}}/>

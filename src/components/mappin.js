@@ -1,6 +1,9 @@
 import React from "react";
 import { createStyles, makeStyles } from '@mui/styles';
-import CollectionsBookmarkOutlinedIcon from '@mui/icons-material/CollectionsBookmarkOutlined';
+import { ReactComponent as MapPinIcon } from '../images/mappin.svg';
+import { ReactComponent as WhiteMapPinIcon } from '../images/whitemappin.svg';
+
+import { BG_COLOR_WHITE } from '../constant';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -55,9 +58,15 @@ const useStyles = makeStyles((theme) =>
           right: '-1px'
       },
   },
-    messageContent: {
+    messageContentBlue: {
       padding: 0,
-      marginLeft: 10
+      marginLeft: 10,
+      color: BG_COLOR_WHITE,
+    },
+    messageContentWhite: {
+      padding: 0,
+      marginLeft: 10,
+      color: 'black',
     },
     displayName: {
       marginLeft: "20px"
@@ -71,8 +80,8 @@ export default function MapPin(props){
   return (
     <>
           <div className={(props.isSelec === true)?classes.messageBlue:classes.messageWhite}>
-            <CollectionsBookmarkOutlinedIcon />
-            <p className={classes.messageContent}>{message}</p>
+            {(props.isSelec === true)?<WhiteMapPinIcon />: <MapPinIcon />}
+            <span className={(props.isSelec === true)?classes.messageContentBlue:classes.messageContentWhite}>{message}</span>
           </div>
     </>
   );

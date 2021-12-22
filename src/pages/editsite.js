@@ -24,6 +24,8 @@ const useStyles = makeStyles({
   root: {
     display: 'flex',
     flexDirection: 'row',
+    flexGrow: 1,
+    overflow: 'hidden'
   },
 
 });
@@ -66,6 +68,15 @@ function EditSite() {
   }
 
   const createSite = async () => {
+    console.log(currentSite);
+    if( !isExistPolygon ){
+      addToast('You should draw polygon!', {
+        appearance: 'warning',
+        autoDismiss: true,
+      })
+      return;
+    }
+
     if( !siteName || !siteAddress ){
       addToast('input site name and site address!', {
         appearance: 'warning',
@@ -143,6 +154,7 @@ function EditSite() {
   }
   
   const saveBoundary = (polygon) => {
+    console.log(polygon);
     if(!polygon || Object.keys(polygon).length === 0){
       addToast('You should draw the polygon', {
         appearance: 'warning',
@@ -150,7 +162,6 @@ function EditSite() {
       })
       return;
     }
-    
     setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: polygon, markup: (currentSite)?currentSite?.iconList:[], centroid: polygon.center});
     setEditingStatus(BOUNDARY_SAVE);
   }
@@ -172,18 +183,29 @@ function EditSite() {
     (async () => {
       if(id !== undefined && id !== null){
         let res = await getSite(id);
-        setCurrentSite(res?.data);
-        setSiteInfo(res?.data);
-        setSiteName(res?.data?.Sitename);
-        setSiteAddress(res?.data?.Siteaddress);
-        setExistPolygon(true);
-        setExistMakrup(true);
+        if(res.status === 200){
+          setCurrentSite(res?.data?.data);
+          setSiteInfo(res?.data?.data);
+          setSiteName(res?.data?.data?.Sitename);
+          setSiteAddress(res?.data?.data?.Siteaddress);
+          setExistPolygon(true);
+          setExistMakrup(true);
+          localStorage.setItem("markups", JSON.stringify(res?.data?.data.markup));
+        }
+        else{
+          localStorage.setItem("markups", JSON.stringify([]));
+        }
+      }
+      else{
+        localStorage.setItem("markups", JSON.stringify([]));
       }
       setLoading(false);
     })()
   }, [])
 
   useEffect(() => {
+    // var storedPolygons = JSON.parse(localStorage.getItem("polygons"));
+
     // console.log(editingStatus);
   }, [editingStatus])
 

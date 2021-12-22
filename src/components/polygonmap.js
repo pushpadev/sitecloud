@@ -78,8 +78,7 @@ const PolygonMap = forwardRef((props, ref) => {
           var trufpolygon = turf.polygon(points);
           var center = turf.centerOfMass(trufpolygon);
           setPolygon({"id": polyID, "points": points, "center": center.geometry.coordinates});
-          props.setExistPolygon(true);
-          props.setEditingStatus(BOUNDARY_CREATE);
+          props.editPolygon({"id": polyID, "points": points, "center": center.geometry.coordinates});
       }
       props.endDrawPolygon();
   };
@@ -105,12 +104,6 @@ const PolygonMap = forwardRef((props, ref) => {
     });
     map.addControl(geocoder);
     map.setZoom(6.5);
-
-    // if(props.siteID === undefined || props.siteID === null)
-    //   map.panTo(MAP_CENTER_COORDINATE);
-    // else
-    //   map.flyTo({center: currentSite?.centroid, zoom:6});
-      // map.panTo(currentSite?.centroid);
     props.setMapLoading(false);
     if( currentSite && Object.keys(currentSite).length !== 0){
       var storedPolygons = currentSite?.polyrings;
@@ -189,21 +182,37 @@ const PolygonMap = forwardRef((props, ref) => {
 
   const deleteSelectedPolyon = () => {
     let selectedIDs = drawControl.current.draw.getSelectedIds();
-    if(selectedIDs.length === 0)
+    if(selectedIDs.length === 0){
+      addToast('You should select polygon', {
+        appearance: 'warning',
+        autoDismiss: true,
+      })
       return false;
+    }
     drawControl.current.draw.delete(selectedIDs);
     setPolygon({});
     return true;
   }
 
   const deleteMarkup = () => {
+    let bExist = false;
     let newList = iconList.filter((item) => {
-      if(item.id === selIcon)
+      if(item.id === selIcon){
+        bExist = true;
         return false;
+      }
       else
         return true;
     })
+    if(!bExist){
+      addToast('You should select markup', {
+        appearance: 'warning',
+        autoDismiss: true,
+      })
+    }
     setIconList(newList);
+    localStorage.setItem("markups", JSON.stringify(newList));
+
   }
 
   const handleClick = (event) => {
@@ -214,6 +223,13 @@ const PolygonMap = forwardRef((props, ref) => {
     setAnchorEl(null);
   };
 
+  const saveBoundary = (event) => {
+    console.log('save', polygon)
+    props.saveBoundary(polygon);
+    setMsg(SAVE_BOUNDARY_MSG);
+    handleClick(event)
+  }
+
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
@@ -221,7 +237,7 @@ const PolygonMap = forwardRef((props, ref) => {
 
   useEffect(() => {
     if (currentSite && Array.isArray(currentSite?.markup)) {
-      setIconList(currentSite?.markup);
+      setIconList(JSON.parse(localStorage.getItem("markups")));
       setPolygon(currentSite?.polyrings);
       props.setExistMakrup(true);
     }
@@ -239,7 +255,7 @@ const PolygonMap = forwardRef((props, ref) => {
                 onStyleLoad={onStyleLoaded}
                 containerStyle={{
                   height: `calc(100vh - 84px)`,
-                  width: `calc(100vw - ${SIDEBAR_WIDTH}px)`,
+                  width: `calc(100vw - ${SIDEBAR_WIDTH}px - 20px)`,
                   position: 'relative',
                 }}
                 center={(props.siteID === undefined || props.siteInfo === null)?MAP_CENTER_COORDINATE:currentSite?.centroid}
@@ -263,24 +279,18 @@ const PolygonMap = forwardRef((props, ref) => {
                               icon = {item.icon}
                               isSelec = {(item.id === selIcon)?true:false}
                             />
-                            {/* <div style={{position: 'absolute', right: 0, top: 0}}>
-                                <img src =  alt="close"/>
-                            </div> */}
                           </div>
                     </Marker>
                   )
                 }): (<></>)}
               </Map>
-              {console.log(props.editingStatus)}
-              {/* <IconBar dragItem = {dragItem} /> */}
-              <div style={{ position: 'absolute', display: 'flex', justifyContent: 'center', top: 620, width: '80%' }}>
-                <div>
+              <div style={{ position: 'absolute', display: 'flex', justifyContent: 'center', bottom: 30, width: '80%' }}>
+                <div style={{paddingTop: 23}} aria-describedby={id} onClick={(event) => {props.saveMarkup(iconList);setMsg(SAVE_MARKUP_MSG);handleClick(event)}}>
                   {(props.editingStatus === STATUS_NONE)?
                     ((props.isExistMarkup?(
                       <ColorButton 
                           aria-describedby={id} 
                           variant="contained" 
-                          onClick={(event) => {props.saveMarkup(iconList);setMsg(SAVE_MARKUP_MSG);handleClick(event)}}
                         >
                           <CheckCircleRoundedIcon 
                             style = {{marginRight: 10}} 
@@ -293,7 +303,7 @@ const PolygonMap = forwardRef((props, ref) => {
                     (<ColorButton 
                       aria-describedby={id} 
                       variant="contained" 
-                      onClick={(event) => {props.saveBoundary(polygon);setMsg(SAVE_BOUNDARY_MSG);handleClick(event)}}
+                      onClick={saveBoundary}
                     >
                       <CheckCircleRoundedIcon 
                         style = {{marginRight: 10}} 
@@ -303,7 +313,7 @@ const PolygonMap = forwardRef((props, ref) => {
                     (<ColorButton 
                       aria-describedby={id} 
                       variant="contained" 
-                      onClick={(event) => {props.saveMarkup(iconList);setMsg(SAVE_MARKUP_MSG);handleClick(event)}}
+                      // onClick={(event) => {props.saveMarkup(iconList);setMsg(SAVE_MARKUP_MSG);handleClick(event)}}
                     >
                       <CheckCircleRoundedIcon 
                         style = {{marginRight: 10}} 
@@ -311,7 +321,8 @@ const PolygonMap = forwardRef((props, ref) => {
                       <span>Save Markup</span>
                     </ColorButton>))
                   }
-                  <Popover
+                </div>
+                <Popover
                     id={id}
                     open={open}
                     anchorEl={anchorEl}
@@ -325,12 +336,11 @@ const PolygonMap = forwardRef((props, ref) => {
                       horizontal: 'center',
                     }}
                     PaperProps={{
-                      style: { width: 350, textAlign: 'center' },
+                      style: { width: 350, textAlign: 'center'},
                     }}
                   >
                     <Typography sx={{ p: 2 }}>{msg}</Typography>
                   </Popover>
-                </div>
               </div>
               {(props.showMarkup || props.isExistMarkup) && <IconBar dragItem = {dragItem} />}
             </div>

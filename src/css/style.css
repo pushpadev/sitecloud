@@ -4,12 +4,28 @@ p{
 .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
     margin: 0px !important;
     top: 10px !important;
-    right: calc(100% + 200px) !important;
+    right: calc((100vw - 365px)/2 - 160px) !important;
     border-radius: 10px;
     border-color: #ffffff;
+    width: 320px !important;  
 }
 
 .mapboxgl-ctrl-geocoder--input {
     border-color: #ffffff;
-    border-radius: 10px;    
+    border-radius: 10px;  
+    width: 320px !important;  
+ }
+
+@media only screen and (max-width: 1000px) {
+    .mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+       display: none;
+    }
+}
+
+/* 
+ .list{
+     padding-top: 0px;
+ } */
+ .css-h4y409-MuiList-root{
+     padding-top: 0px !important;
  }
