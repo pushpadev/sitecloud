@@ -19,10 +19,13 @@ import * as turf from "@turf/turf";
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import IconPin from './iconpin';
 import { CurrentSiteContext } from "../contexts/currentsite";
-// import MapboxGeocoder from 'mapbox-gl-geocoder';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import { useToasts } from 'react-toast-notifications'
+
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '../css/style.css';
 
 const useStyles = makeStyles({
     root: {
@@ -92,6 +95,19 @@ const PolygonMap = forwardRef((props, ref) => {
 
  const onStyleLoaded = (map, event)  => {
     setMap(map);
+    const geocoder = new MapboxGeocoder({
+      // Initialize the geocoder
+      accessToken: "pk.eyJ1IjoiZmFrZXVzZXJnaXRodWIiLCJhIjoiY2pwOGlneGI4MDNnaDN1c2J0eW5zb2ZiNyJ9.mALv0tCpbYUPtzT7YysA2g", // Set the access token
+      mapboxgl: map, // Set the mapbox-gl instance
+      placeholder: 'Search here', // Placeholder text for the search bar
+      // bbox: [-122.30937, 37.84214, -122.23715, 37.89838], // Boundary for Berkeley
+      // proximity: {
+      //   longitude: -122.25948,
+      //   latitude: 37.87221
+      // } // Coordinates of UC Berkeley
+    });
+    map.addControl(geocoder);
+
     if(props.siteID === undefined || props.siteID === null)
       map.panTo(MAP_CENTER_COORDINATE);
     else

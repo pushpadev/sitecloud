@@ -10,7 +10,11 @@ import { useNavigate } from "react-router-dom";
 import { makeStyles, withStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 import { SitesContext } from "../contexts/sites";
-import SearchBox from './searchbox';
+// import SearchBox from './searchbox';
+
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '../css/style.css';
 
 const useStyles = makeStyles({
   root: {
@@ -69,7 +73,19 @@ const MarkerMap = forwardRef((props, ref) => {
 
   const onStyleLoaded = (map)  => {
     setMapObj(map);
-    console.log(props.selId);
+    const geocoder = new MapboxGeocoder({
+      // Initialize the geocoder
+      accessToken: "pk.eyJ1IjoiZmFrZXVzZXJnaXRodWIiLCJhIjoiY2pwOGlneGI4MDNnaDN1c2J0eW5zb2ZiNyJ9.mALv0tCpbYUPtzT7YysA2g", // Set the access token
+      mapboxgl: map, // Set the mapbox-gl instance
+      placeholder: 'Search here', // Placeholder text for the search bar
+      // bbox: [-122.30937, 37.84214, -122.23715, 37.89838], // Boundary for Berkeley
+      // proximity: {
+      //   longitude: -122.25948,
+      //   latitude: 37.87221
+      // } // Coordinates of UC Berkeley
+    });
+
+    map.addControl(geocoder);
     if(props.selId === 0){
       map.panTo(MAP_CENTER_COORDINATE);
     }
@@ -84,7 +100,7 @@ const MarkerMap = forwardRef((props, ref) => {
   }
   const goToInitialPos = () => {
     if(mapObj){
-        mapObj.panTo([149.012375, -35.473469]);
+        mapObj.panTo(MAP_CENTER_COORDINATE);
     }
   }
   // [149.012375, -35.473469]
@@ -137,7 +153,7 @@ const MarkerMap = forwardRef((props, ref) => {
       <ColorButton onClick={() => addNewSite()}>
         Add New Site
       </ColorButton>
-      <div style = {{display: 'flex', justifyContent: 'center'}}><SearchBox /></div>
+      {/* <div style = {{display: 'flex', justifyContent: 'center'}}><SearchBox /></div> */}
     </div>
   );
 })

@@ -22,7 +22,7 @@ import { ReactComponent as Star } from '../images/star.svg'
 import { ReactComponent as EditIcon } from '../images/edit.svg'
 import { ReactComponent as MarkupIcon } from '../images/markup.svg'
 import { ReactComponent as DeleteIcon } from '../images/delete.svg'
-
+import Loading from './Spinner';
 
 const useStyles = makeStyles({
     Root: {
@@ -186,7 +186,7 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                         <span style = {{position: 'relative'}}>Site Address<Star className = {classes.star}/></span>
                         <OutlinedInput className = {classes.fullWidth} value={siteAddress} onChange={handleSiteAddress} />
                     </div>
-                    {!isMapLoading && 
+                    {isMapLoading?<Loading />:(
                         <div className = {classes.end}>
                             {(isExistPolygon === true)?(
                                 <>
@@ -217,7 +217,8 @@ export const SetupSiteBar = forwardRef((props, ref) => {
                                 </ColorButton>
                             </>)}
                         </div>
-                    }
+                    )}
+                    
                     <span style={{fontSize: 10, fontWeight: 300, color: BG_COLOR_BLACK, marginTop: 40, paddingBottom: 10}}>Site boundary must be set before markup can be added</span>
                     <div className={classes.markup}>
                         {(isExistMarkup === false)?(
