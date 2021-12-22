@@ -1,11 +1,11 @@
-import GroupsIcon from '@mui/icons-material/Groups';
-import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
-import LocalParkingIcon from '@mui/icons-material/LocalParking';
-import { Icon } from '@iconify/react';
-import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
-import RemoveCircleOutlineTwoToneIcon from '@mui/icons-material/RemoveCircleOutlineTwoTone';
-import LabelIcon from '@mui/icons-material/Label';
-import HighlightIcon from '@mui/icons-material/Highlight';
+import { ReactComponent as MustterIcon } from '../images/markups/mustter.svg';
+import { ReactComponent as EntryIcon } from '../images/markups/entry.svg';
+import { ReactComponent as ParkingIcon } from '../images/markups/parking.svg';
+import { ReactComponent as HazardsIcon } from '../images/markups/hazards.svg';
+import { ReactComponent as CrossIcon } from '../images/markups/cross.svg';
+import { ReactComponent as StopIcon } from '../images/markups/stop.svg';
+import { ReactComponent as LabelIcon } from '../images/markups/label.svg';
+import { ReactComponent as HighlightIcon } from '../images/markups/highlight.svg';
 
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
@@ -25,104 +25,104 @@ export const APP_NAME = 'Site Management System';
 export const SERVER_URL = 'https://vuvqkquws0.execute-api.ap-southeast-1.amazonaws.com/test/sitemap';
 export const SITE_LIST = [
     {
-        "data":{
-            "polyrings":[],
-            "markup":[],
-            "Sitename":"Site Overview",
-            "Siteaddress":"sdnn",
-            "centroid":[-1.81747846041145,53.3233379650232],
+        "data": {
+            "polyrings": [],
+            "markup": [],
+            "Sitename": "Site Overview",
+            "Siteaddress": "sdnn",
+            "centroid": [-1.81747846041145, 53.3233379650232],
             'worker': 12,
             'visitor': 13,
             'hazard': 23,
         },
-        "sitemappingId":"1138fe25-21e2-4bad-8c11-ed201c4093fe"
+        "sitemappingId": "1138fe25-21e2-4bad-8c11-ed201c4093fe"
     },
     {
-        "data":{
-            "polyrings":[],
-            "markup":[],
-            "Sitename":"Site One",
-            "Siteaddress":"sdnn",
-            "centroid":[-0.21747846041145,59.3233379650232],
+        "data": {
+            "polyrings": [],
+            "markup": [],
+            "Sitename": "Site One",
+            "Siteaddress": "sdnn",
+            "centroid": [-0.21747846041145, 59.3233379650232],
             'worker': 12,
             'visitor': 13,
             'hazard': 23,
         },
-        "sitemappingId":"1138fe25-21e2-4bad-8c11-ed201c4093ff"
+        "sitemappingId": "1138fe25-21e2-4bad-8c11-ed201c4093ff"
     },
     {
-        "data":{
-            "polyrings":[],
-            "markup":[],
-            "Sitename":"Site Two",
-            "Siteaddress":"sdnn",
-            "centroid":[-1.5747846041145,60.3233379650232],
+        "data": {
+            "polyrings": [],
+            "markup": [],
+            "Sitename": "Site Two",
+            "Siteaddress": "sdnn",
+            "centroid": [-1.5747846041145, 60.3233379650232],
             'worker': 12,
             'visitor': 13,
             'hazard': 23,
         },
-        "sitemappingId":"1138fe25-21e2-4bad-8c11-ed201c4093fd"
+        "sitemappingId": "1138fe25-21e2-4bad-8c11-ed201c4093fd"
     },
     {
-        "data":{
-            "polyrings":[],
-            "markup":[],
-            "Sitename":"Site Third",
-            "Siteaddress":"sdnn",
-            "centroid":[-0.91747846041145,55.3233379650232],
+        "data": {
+            "polyrings": [],
+            "markup": [],
+            "Sitename": "Site Third",
+            "Siteaddress": "sdnn",
+            "centroid": [-0.91747846041145, 55.3233379650232],
             'worker': 12,
             'visitor': 13,
             'hazard': 23,
         },
-        "sitemappingId":"1138fe25-21e2-4bad-8c11-ed201c4093fa"
+        "sitemappingId": "1138fe25-21e2-4bad-8c11-ed201c4093fa"
     },
 ]
 export const ICON_LIST = [
     {
         'id': 1,
         'value': 'Mustter Points',
-        'icon':  <GroupsIcon />,
+        'icon': <MustterIcon />,
     },
     {
         'id': 2,
         'value': 'Entry',
-        'icon':  <PrecisionManufacturingIcon />,
+        'icon': <EntryIcon />,
     },
     {
         'id': 3,
         'value': 'Parking',
-        'icon':  <LocalParkingIcon />,
+        'icon': <ParkingIcon />,
     },
     {
         'id': 4,
         'value': 'Hazards',
-        'icon':  <Icon icon="mdi:radioactive" />,
+        'icon': <HazardsIcon />,
     },
     {
         'id': 5,
         'value': 'Cross',
-        'icon':  <AddTwoToneIcon />,
+        'icon': <CrossIcon />,
     },
     {
         'id': 6,
         'value': 'Stop',
-        'icon':  <RemoveCircleOutlineTwoToneIcon />,
+        'icon': <StopIcon />,
     },
     {
         'id': 7,
         'value': 'Add Label',
-        'icon':  <LabelIcon />,
+        'icon': <LabelIcon />,
     },
     {
         'id': 8,
         'value': 'Highlight',
-        'icon':  <HighlightIcon />,
+        'icon': <HighlightIcon />,
     },
 
 ]
 
 export const MAP_VIEW = {
-    data:{
+    data: {
         Sitename: 'Site Overview',
         Siteaddress: '12 Aughtie Dr, Albert Park VIC 3206, Australia',
     }
@@ -169,7 +169,7 @@ export const SHOW_SITE_BAR = [
         lableText: 'Hazard and Issues',
         icon: ErrorOutlineIcon,
     },
-   
+
 ]
 
 export const SHOW_SITE_BAR_CHILD = [
@@ -199,6 +199,7 @@ export const SAVE_MARKUP_MSG = 'Site markup will be visibile to workers and visi
 export const SAVE_BOUNDARY_MSG = 'The site boundary must be a contained area';
 export const SIDEBAR_WIDTH = 320;
 export const ICONBAR_WIDTH = 180;
+export const MENUBAR_WIDTH = 260;
 
 export const STATUS_NONE = -1;
 export const BOUNDARY_NONE = 0;
@@ -213,7 +214,7 @@ export const MARKUP_NONE = 5;
 export const MARKUP_SET = 6;
 export const MARKUP_EDIT = 7;
 export const MARKUP_DELETE = 8;
-export const MARKUP_SAVE= 9;
+export const MARKUP_SAVE = 9;
 export const MARKUP_CREATE = 11;
 
 export const BG_COLOR_WHITE = '#ffffff';

@@ -38,7 +38,10 @@ const useStyles = makeStyles({
         textAlign: 'center',
         boxShadow: '3px 3px 2px 1px rgb(242, 242,242)',
         position: 'absolute',
-        top: 500,
+        bottom: 30,
+        ['@media (max-width:1250px)']: { // eslint-disable-line no-useless-computed-key
+            display: 'none',
+        },
     },
     column: {
         display: 'flex',
@@ -55,14 +58,21 @@ const useStyles = makeStyles({
         marginRight: 10,
     }
 });
+
+const workers = 32;
+const visitors = 12;
+const hazards = 2;
+
 export default function PopOver(props){
     const siteInfo = props.siteInfo;
-    const sitemappingId  = props.sitemappingId;
-    const isRoot = (siteInfo?.Sitename === 'Site Overview'?true: false);
+    const sitemappingId  = props.siteInfo.sitemappingId;
+    const isRoot = (siteInfo?.data?.Sitename === 'Site Overview'?true: false);
 
     const classes = useStyles();
     let history = useNavigate();
 
+
+    console.log(props.siteInfo);
     const manageSite = () => {
         history(`/showsite/${sitemappingId}`);
     }
@@ -88,24 +98,27 @@ export default function PopOver(props){
                             <div style = {{marginLeft: 20}} className={classes.column}>
                                 <div className={classes.row}>
                                     <GroupsIcon className={classes.icon}/>
-                                    <p style={{color: 'blue'}}>{"Total workers on Sites: " + siteInfo?.data?.worker}</p>
+                                    <p style={{color: '#1875F0'}}>{"Total workers on Sites: " + workers}</p>
                                 </div>
                                 <div className={classes.row}>
                                     <VisibilityOutlinedIcon className={classes.icon}/>
-                                    <p style={{color: 'blue'}}>{"Total visitors on Sites: " + siteInfo?.data?.visitor}</p>
+                                    <p style={{color: '#1875F0'}}>{"Total visitors on Sites: " + visitors}</p>
                                 </div>
                                 <div className={classes.row}>
                                     <ReportGmailerrorredOutlinedIcon className={classes.icon} />
-                                    <p style = {{color: 'red'}}>{"Total open hazards on Sites: " + siteInfo?.data?.hazard}</p>
+                                    <p style = {{color: '#EF4F4F'}}>{"Total open hazards on Sites: " + hazards}</p>
                                 </div>
                             </div>
                         </div>
                     </Col>
-                    <Col sm = {12} xs = {12} md = {2} lg = {2} style={{display: isRoot?'none':'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <ColorButton onClick={() => manageSite()}>
-                            <SettingsIcon style = {{marginRight: 10}} /><span>Manage</span><ArrowForwardIosIcon style = {{marginLeft: 10}} />
-                        </ColorButton>
-                    </Col>
+                    {!isRoot && 
+                        <Col sm = {12} xs = {12} md = {2} lg = {2} style={{display: isRoot?'none':'flex', justifyContent: 'center', alignItems: 'center'}}>
+                            <ColorButton onClick={() => manageSite()}>
+                                <SettingsIcon style = {{marginRight: 10}} /><span>Manage</span><ArrowForwardIosIcon style = {{marginLeft: 10}} />
+                            </ColorButton>
+                        </Col>
+                    }
+                    
                 </Row>
             </Container>
         </div>

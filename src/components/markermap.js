@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { makeStyles, withStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 import { SitesContext } from "../contexts/sites";
+import SearchBox from './searchbox';
 
 const useStyles = makeStyles({
   root: {
@@ -82,6 +83,7 @@ const MarkerMap = forwardRef((props, ref) => {
   useEffect(() => {
     setSiteInfo(MAP_VIEW);
   }, [])
+        // center = {[149.012375, -35.473469]}
 
   return (
     <div className={classes.root}>
@@ -93,7 +95,6 @@ const MarkerMap = forwardRef((props, ref) => {
           width: `calc(100vw - ${SIDEBAR_WIDTH}px)`
         }}
       >
-        {/* defaultMode = 'draw_polygon' */}
         <DrawControl ref={drawControl} displayControlsDefault={false} />
         {(sites.length > 0)? sites.map((item, index) => {
           return(
@@ -106,7 +107,6 @@ const MarkerMap = forwardRef((props, ref) => {
               offsetLeft={-15}
             >
                   <div className='custom-pin'
-                    // ref = {refCallback}
                     onDoubleClick={() => handleDoubleClick(item.sitemappingId)}
                     onClick={() => handleClick(index)}
                   >
@@ -127,6 +127,7 @@ const MarkerMap = forwardRef((props, ref) => {
       <ColorButton onClick={() => addNewSite()}>
         Add New Site
       </ColorButton>
+      <div style = {{display: 'flex', justifyContent: 'center'}}><SearchBox /></div>
     </div>
   );
 })
