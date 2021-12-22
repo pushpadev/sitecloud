@@ -18,7 +18,7 @@ const Login = () => {
                 </Col>
                 {/*login form*/}
                 <Col lg={6} md={6} sm={12} >
-                    
+
                     <div className="row ">
                         <div className="col-1 "></div>
                         <div className="col-10 ">
@@ -29,7 +29,7 @@ const Login = () => {
                                 </div>
                                 <div className="pt-4 ">
                                     <h4>Login</h4>
-                                    <Form className="pt-3">
+                                    <Form className="pt-3 pr-5">
                                         <Form.Group className="mb-3" controlId="formGroupEmail">
                                             <Form.Label className="color_two">Email address</Form.Label>
                                             <Form.Control type="email" placeholder="&nbsp;&nbsp;Enter email" />
@@ -43,7 +43,7 @@ const Login = () => {
 
                                     <p className="color_three">Forgot Password?</p>
                                 </div>
-                                <div className="text-center justify-content-center pt-4 ">
+                                <div className="text-center justify-content-center pt-3 ">
                                     <Button >Login</Button>
                                 </div>
                             </div>
