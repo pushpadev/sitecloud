@@ -100,6 +100,7 @@ const MarkerMap = forwardRef((props, ref) => {
     }
   }
   const goToInitialPos = () => {
+    setSiteInfo(MAP_VIEW);
     if(mapObj){
         mapObj.panTo(MAP_CENTER_COORDINATE);
     }

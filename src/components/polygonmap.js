@@ -276,7 +276,19 @@ const PolygonMap = forwardRef((props, ref) => {
               <div style={{ position: 'absolute', display: 'flex', justifyContent: 'center', top: 620, width: '80%' }}>
                 <div>
                   {(props.editingStatus === STATUS_NONE)?
-                    (<></>):
+                    ((props.isExistMarkup?(
+                      <ColorButton 
+                          aria-describedby={id} 
+                          variant="contained" 
+                          onClick={(event) => {props.saveMarkup(iconList);setMsg(SAVE_MARKUP_MSG);handleClick(event)}}
+                        >
+                          <CheckCircleRoundedIcon 
+                            style = {{marginRight: 10}} 
+                          />
+                          <span>Save Markup</span>
+                        </ColorButton>
+                        ):(<></>)
+                    )):
                     ((props.editingStatus === BOUNDARY_CREATE)?
                     (<ColorButton 
                       aria-describedby={id} 
