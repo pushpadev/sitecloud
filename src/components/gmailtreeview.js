@@ -108,7 +108,7 @@ export default function GmailTreeView({siteName}) {
         nodeId={rootItem.nodeId} 
         labelText={siteName} 
         labelIcon={rootItem.icon}
-        color={BG_COLOR_BLACK}
+        color={BG_COLOR_WHITE}
         bgColor={BG_COLOR_BULE_LITTLE}
         onClick = {() => history('/')}
       />
@@ -116,7 +116,7 @@ export default function GmailTreeView({siteName}) {
         return (
           <div key = {item.lableText}>
             {item.nodeId === '2'?(
-              <StyledTreeItem nodeId={item.nodeId} labelText={item.lableText} labelIcon={item.icon}>
+              <StyledTreeItem nodeId={item.nodeId} labelText={item.lableText} labelIcon={item.icon} color={BG_COLOR_WHITE} bgColor={BG_COLOR_BULE}>
                 {SHOW_SITE_BAR_CHILD.map((item) => {
                   return (
                     <StyledTreeItem
@@ -124,7 +124,7 @@ export default function GmailTreeView({siteName}) {
                       nodeId={item.nodeId}
                       labelText={item.lableText}
                       labelIcon={item.icon}
-                      color={BG_COLOR_BLACK}
+                      color={BG_COLOR_WHITE}
                       bgColor={BG_COLOR_BULE_LITTLE}
                     />
                   )

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,17 +8,14 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { APP_NAME } from '../constant';
-import { Link } from "react-router-dom"
-
 
 export default function PrimarySearchAppBar() {
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+  const pathName = window.location.pathname;
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -49,11 +46,8 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
-      {/* <MenuItem onClick={handleMenuClose}>Log out</MenuItem> */}
-      <Link to="/login" className='link_text'>
-        <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
-      </Link>
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
 
@@ -89,20 +83,18 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
-
-
   return (
     <>
-
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" style={{ backgroundColor: 'white', color: 'black' }}>
+    {pathName !== '/login' &&
+      <Box>
+        <AppBar position="static" style = {{backgroundColor: 'white', color: 'black'}}>
           <Toolbar>
-            <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style={{ alignItems: 'center' }}>
-              <a href='/'><img style={{ width: '40px', marginRight: 5 }} src='/logo.png' alt='logo' /></a>
+            <Box sx={{display: {xs: 'flex', md: 'flex'}}} style = {{alignItems: 'center'}}>
+              <a href = '/'><img style = {{width: '40px', marginRight: 5}} src = '/logo.png' alt = 'logo'/></a>
               <span>{APP_NAME}</span>
             </Box>
             <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style={{ alignItems: 'center' }}>
+            <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style = {{alignItems: 'center'}}>
               <Typography>Account Settings</Typography>
               <IconButton
                 size="large"
@@ -121,7 +113,8 @@ export default function PrimarySearchAppBar() {
         {renderMobileMenu}
         {renderMenu}
       </Box>
+    }
     </>
-
+    
   );
 }
