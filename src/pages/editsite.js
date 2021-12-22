@@ -150,7 +150,8 @@ function EditSite() {
       })
       return;
     }
-    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: polygon, markup: (currentSite)?currentSite?.iconList:[], centroid: polygon.points[0][0]});
+    
+    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: polygon, markup: (currentSite)?currentSite?.iconList:[], centroid: polygon.center});
     setEditingStatus(BOUNDARY_SAVE);
   }
 

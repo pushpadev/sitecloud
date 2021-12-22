@@ -75,8 +75,9 @@ const PolygonMap = forwardRef((props, ref) => {
       if (features.length > 0) {
           let polyID = features[0].id;
           let points = features[0].geometry.coordinates;
-          console.log(points)
-          setPolygon({"id": polyID, "points": points});
+          var trufpolygon = turf.polygon(points);
+          var center = turf.centerOfMass(trufpolygon);
+          setPolygon({"id": polyID, "points": points, "center": center.geometry.coordinates});
           props.setExistPolygon(true);
           props.setEditingStatus(BOUNDARY_CREATE);
       }
@@ -87,9 +88,10 @@ const PolygonMap = forwardRef((props, ref) => {
     if (features.length > 0) {
       let polyID = features[0].id;
       let points = features[0].geometry.coordinates;
-      console.log(points);
-      setPolygon({"id": polyID, "points": points});
-      props.editPolygon({"id": polyID, "points": points});
+      var trufpolygon = turf.polygon(points);
+      var center = turf.centerOfMass(trufpolygon);
+      setPolygon({"id": polyID, "points": points, "center": center.geometry.coordinates});
+      props.editPolygon({"id": polyID, "points": points, "center": center.geometry.coordinates});
     }
   };
 
@@ -100,18 +102,15 @@ const PolygonMap = forwardRef((props, ref) => {
       accessToken: "pk.eyJ1IjoiZmFrZXVzZXJnaXRodWIiLCJhIjoiY2pwOGlneGI4MDNnaDN1c2J0eW5zb2ZiNyJ9.mALv0tCpbYUPtzT7YysA2g", // Set the access token
       mapboxgl: map, // Set the mapbox-gl instance
       placeholder: 'Search here', // Placeholder text for the search bar
-      // bbox: [-122.30937, 37.84214, -122.23715, 37.89838], // Boundary for Berkeley
-      // proximity: {
-      //   longitude: -122.25948,
-      //   latitude: 37.87221
-      // } // Coordinates of UC Berkeley
     });
     map.addControl(geocoder);
+    map.setZoom(6.5);
 
-    if(props.siteID === undefined || props.siteID === null)
-      map.panTo(MAP_CENTER_COORDINATE);
-    else
-      map.panTo(currentSite?.centroid);
+    // if(props.siteID === undefined || props.siteID === null)
+    //   map.panTo(MAP_CENTER_COORDINATE);
+    // else
+    //   map.flyTo({center: currentSite?.centroid, zoom:6});
+      // map.panTo(currentSite?.centroid);
     props.setMapLoading(false);
     if( currentSite && Object.keys(currentSite).length !== 0){
       var storedPolygons = currentSite?.polyrings;
@@ -224,7 +223,6 @@ const PolygonMap = forwardRef((props, ref) => {
     if (currentSite && Array.isArray(currentSite?.markup)) {
       setIconList(currentSite?.markup);
       setPolygon(currentSite?.polyrings);
-      props.setEditingStatus(MARKUP_CREATE);
       props.setExistMakrup(true);
     }
   }, [currentSite, props])
@@ -244,6 +242,7 @@ const PolygonMap = forwardRef((props, ref) => {
                   width: `calc(100vw - ${SIDEBAR_WIDTH}px)`,
                   position: 'relative',
                 }}
+                center={(props.siteID === undefined || props.siteInfo === null)?MAP_CENTER_COORDINATE:currentSite?.centroid}
               >
                 <DrawControl ref={drawControl} displayControlsDefault={false} onDrawCreate={onDrawCreate} onDrawUpdate={onDrawUpdate}/>
                 {(iconList.length > 0)?iconList.map((item, index) => {
@@ -272,6 +271,7 @@ const PolygonMap = forwardRef((props, ref) => {
                   )
                 }): (<></>)}
               </Map>
+              {console.log(props.editingStatus)}
               {/* <IconBar dragItem = {dragItem} /> */}
               <div style={{ position: 'absolute', display: 'flex', justifyContent: 'center', top: 620, width: '80%' }}>
                 <div>

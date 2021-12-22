@@ -84,6 +84,7 @@ const MarkerMap = forwardRef((props, ref) => {
       //   latitude: 37.87221
       // } // Coordinates of UC Berkeley
     });
+    map.setZoom(6);
 
     map.addControl(geocoder);
     if(props.selId === 0){
@@ -120,6 +121,7 @@ const MarkerMap = forwardRef((props, ref) => {
           height: `calc(100vh - 84px)`,
           width: `calc(100vw - ${SIDEBAR_WIDTH}px)`
         }}
+        center={MAP_CENTER_COORDINATE}
       >
         <DrawControl ref={drawControl} displayControlsDefault={false} />
         {(sites.length > 0)? sites.map((item, index) => {

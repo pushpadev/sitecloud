@@ -49,7 +49,6 @@ export const SideBar = ({ getSelectedItem, sites }) => {
         setSelected(id);
         getSelectedItem(id, item);
     }
-
     
     // useEffect(() => {
     //     console.log('width', sideBarEl.current ? sideBarEl.current.offsetWidth : 0);

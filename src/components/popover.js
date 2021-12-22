@@ -71,8 +71,6 @@ export default function PopOver(props){
     const classes = useStyles();
     let history = useNavigate();
 
-
-    console.log(props.siteInfo);
     const manageSite = () => {
         history(`/showsite/${sitemappingId}`);
     }
