@@ -60,12 +60,14 @@ export const MenuBar = (props) => {
         >
             <span className="sideMenu_bar">
                 <List className="list" component="nav" >
-                    <ListItem button >
-                        <ListItemIcon>
-                            <ArrowBackIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={props.siteName} />
-                    </ListItem>
+                    <Link to="/home" className='link_text'>
+                        <ListItem button >
+                            <ListItemIcon>
+                                <ArrowBackIcon />
+                            </ListItemIcon>
+                            <ListItemText primary={props.siteName} />
+                        </ListItem>
+                    </Link>
                     <Divider />
                     <ListItem button >
                         <ListItemIcon>

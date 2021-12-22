@@ -32,30 +32,30 @@ export default function PrimarySearchAppBar() {
   };
 
   const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right',
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <Link to="/profie" className='link_text'>
-        <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
-      </Link>
-      <Link to="/login" className='link_text'>
-        <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
-      </Link>
-    </Menu>
-  );
+  // const renderMenu = (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{
+  //       vertical: 'top',
+  //       horizontal: 'right',
+  //     }}
+  //     id={menuId}
+  //     keepMounted
+  //     transformOrigin={{
+  //       vertical: 'top',
+  //       horizontal: 'right',
+  //     }}
+  //     open={isMenuOpen}
+  //     onClose={handleMenuClose}
+  //   >
+  //     <Link to="/profie" className='link_text'>
+  //       <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
+  //     </Link>
+  //     <Link to="/login" className='link_text'>
+  //       <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+  //     </Link>
+  //   </Menu>
+  // );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -113,7 +113,7 @@ export default function PrimarySearchAppBar() {
                 aria-label="account of current user"
                 aria-controls={menuId}
                 aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
+                // onClick={handleProfileMenuOpen}
                 color="inherit"
               >
                 <AccountCircle />
@@ -122,7 +122,7 @@ export default function PrimarySearchAppBar() {
           </Toolbar>
         </AppBar>
         {renderMobileMenu}
-        {renderMenu}
+        {/* {renderMenu} */}
       </Box>
     </>
 
