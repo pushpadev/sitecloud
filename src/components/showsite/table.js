@@ -16,6 +16,12 @@ import { makeStyles } from '@mui/styles';
 
 import { ReactComponent as OnlineIcon } from '../../images/table/online.svg';
 import { ReactComponent as OfflineIcon } from '../../images/table/offline.svg';
+import { 
+  CLICK_ATTENDENCE_DAILY, 
+  CLICK_ATTENDENCE_LIVE, 
+  CLICK_ATTENDENCE_HISTORY 
+} from '../../constant';
+import SearchBox from '../searchbox';
 
 const useStyles = makeStyles({
     tableHeader: {
@@ -48,6 +54,14 @@ const useStyles = makeStyles({
         borderRadius: 27.5,
         width: 30, 
         objectFit: 'cover'
+    },
+
+    searchbar: {
+      backgroundColor: '#FAFAFA',
+      height: 46,
+      display: 'flex',
+      flexDirection: 'row',
+      borderBottom: '1px solid #DDE4EE',
     }
  });
 
@@ -144,7 +158,7 @@ function stableSort(array, comparator) {
 }
 
 function EnhancedTableHead(props) {
-    const { order, orderBy, onRequestSort } =
+    const { order, orderBy, onRequestSort, clickedItem} =
         props;
 
     const classes = useStyles();
@@ -156,27 +170,37 @@ function EnhancedTableHead(props) {
   return (
     <TableHead className={classes.tableHeader}>
       <TableRow>
-        {headCells.map((headCell) => (
-          <TableCell
-            key={headCell.id}
-            align={'center'}
-            // padding={headCell.disablePadding ? 'none' : 'normal'}
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
-            >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </Box>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
-        ))}
+        {headCells.map((headCell, index) => {
+          if(clickedItem === CLICK_ATTENDENCE_LIVE){
+            if(index > 4)
+              return <></>
+          }
+          if(clickedItem === CLICK_ATTENDENCE_DAILY){
+            if(index > 6)
+              return <></>
+          }
+          return(
+              <TableCell
+                key={headCell.id}
+                align={'center'}
+                // padding={headCell.disablePadding ? 'none' : 'normal'}
+                sortDirection={orderBy === headCell.id ? order : false}
+              >
+                <TableSortLabel
+                  active={orderBy === headCell.id}
+                  direction={orderBy === headCell.id ? order : 'asc'}
+                  onClick={createSortHandler(headCell.id)}
+                >
+                  {headCell.label}
+                  {orderBy === headCell.id ? (
+                    <Box component="span" sx={visuallyHidden}>
+                      {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                    </Box>
+                  ) : null}
+                </TableSortLabel>
+              </TableCell>
+          )
+        })}
       </TableRow>
     </TableHead>
   );
@@ -191,7 +215,17 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable() {
+
+export const SearchBar = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.searchbar}>
+      <SearchBox />
+    </div>
+  )
+}
+
+export default function EnhancedTable({clickedItem}) {
     const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -250,79 +284,86 @@ export default function EnhancedTable() {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <Box sx={{ width: '100%', boxShadow: 'none', border: 'none', overflow: 'auto'}}>
-      <Paper sx={{ width: '100%', mb: 2, boxShadow: 'none', border: 'none'}}>
-        <TableContainer>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-            size={'medium'}
-          >
-            <EnhancedTableHead
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
-            />
-            <TableBody>
-              {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-                 rows.slice().sort(getComparator(order, orderBy)) */}
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+    <>
+      {clickedItem === CLICK_ATTENDENCE_HISTORY?<SearchBar></SearchBar>:<></>}
+      <Box sx={{ width: '100%', boxShadow: 'none', border: 'none', overflow: 'auto'}}>
+        <Paper sx={{ width: '100%', mb: 2, boxShadow: 'none', border: 'none'}}>
+          <TableContainer>
+            <Table
+              sx={{ minWidth: 750 }}
+              aria-labelledby="tableTitle"
+              size={'medium'}
+            >
+              <EnhancedTableHead
+                numSelected={selected.length}
+                order={order}
+                orderBy={orderBy}
+                onSelectAllClick={handleSelectAllClick}
+                onRequestSort={handleRequestSort}
+                rowCount={rows.length}
+                clickedItem = {clickedItem}
+              />
+              <TableBody>
+                {/* if you don't need to support IE11, you can replace the `stableSort` call with:
+                  rows.slice().sort(getComparator(order, orderBy)) */}
+                {stableSort(rows, getComparator(order, orderBy))
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => {
+                    const isItemSelected = isSelected(row.name);
 
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.name)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.name}
-                      selected={isItemSelected}
-                      className={classes.tableRow}
-                    >
-                        <TableCell align="left">
-                            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginLeft: 28}}>
-                                <img src = {`/avatars/${row.imageId}.png`} alt='avatar' className={classes.avatar}/>
-                                <div className={classes.name}>{row.name}</div>
-                            </div>
-                        </TableCell>
-                        <TableCell align="center"><div className={classes.company}>{row.company}</div></TableCell>
-                        <TableCell align="center"><div className={classes.worker}>{row.worker}</div></TableCell>
-                        <TableCell align="center">{row.inducted?<OnlineIcon/>:<OfflineIcon/>}</TableCell>
-                        <TableCell align="center">{row.daily?<OnlineIcon/>:<OfflineIcon/>}</TableCell>
-                        <TableCell align="center"><div className={classes.normal}>{row.timein}</div></TableCell>
-                        <TableCell align="center"><div className={classes.normal}>{row.timeout}</div></TableCell>
-                        <TableCell align="center"><div className={classes.normal}>{row.hours}</div></TableCell>
-                    </TableRow>
-                  );
-                })}
-              {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: (53) * emptyRows,
-                  }}
-                >
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
-    </Box>
+                    return (
+                      <TableRow
+                        hover
+                        onClick={(event) => handleClick(event, row.name)}
+                        role="checkbox"
+                        aria-checked={isItemSelected}
+                        tabIndex={-1}
+                        key={row.name}
+                        selected={isItemSelected}
+                        className={classes.tableRow}
+                      >
+                          <TableCell align="left">
+                              <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', marginLeft: 28}}>
+                                  <img src = {`/avatars/${row.imageId}.png`} alt='avatar' className={classes.avatar}/>
+                                  <div className={classes.name}>{row.name}</div>
+                              </div>
+                          </TableCell>
+                          <TableCell align="center"><div className={classes.company}>{row.company}</div></TableCell>
+                          <TableCell align="center"><div className={classes.worker}>{row.worker}</div></TableCell>
+                          <TableCell align="center">{row.inducted?<OnlineIcon/>:<OfflineIcon/>}</TableCell>
+                          <TableCell align="center">{row.daily?<OnlineIcon/>:<OfflineIcon/>}</TableCell>
+                          {(clickedItem === CLICK_ATTENDENCE_DAILY || clickedItem === CLICK_ATTENDENCE_HISTORY)?(
+                            <>
+                              <TableCell align="center"><div className={classes.normal}>{row.timein}</div></TableCell>
+                              <TableCell align="center"><div className={classes.normal}>{row.timeout}</div></TableCell>
+                            </>):(<></>)}
+                          {(clickedItem === CLICK_ATTENDENCE_HISTORY)?(<TableCell align="center"><div className={classes.normal}>{row.hours}</div></TableCell>):(<></>)}
+                      </TableRow>
+                    );
+                  })}
+                {emptyRows > 0 && (
+                  <TableRow
+                    style={{
+                      height: (53) * emptyRows,
+                    }}
+                  >
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Paper>
+      </Box>
+    </>
   );
 }

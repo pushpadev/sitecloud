@@ -10,10 +10,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { SHOW_SITE_BAR, SHOWBAR_WIDTH, SHOW_SITE_BAR_CHILD, BG_COLOR_BLACK, BG_COLOR_WHITE, BG_COLOR_BULE, BG_COLOR_BULE_LITTLE} from '../constant';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
-import AccountSettings from "../pages/accountsettings"
-import AttendenceDetails from '../components/AttendenceDetails';
-
-
+import { CLICK_ATTENDENCE_LIVE, CLICK_ATTENDENCE_DAILY, CLICK_ATTENDENCE_HISTORY } from '../constant';
 
 const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
   color: theme.palette.text.secondary,
@@ -96,9 +93,30 @@ const rootItem = {
   nodeId: '0',
   icon: ArrowBackIcon,
 }
-export default function GmailTreeView({siteName}) {
+export default function GmailTreeView({
+  siteName, 
+  liveAttendenceClick, 
+  historyAttendenceClick, 
+  dailyAttendenceClick
+}) {
   const history = useNavigate();
+  const handleClick = (txt) => {
+    if(txt === CLICK_ATTENDENCE_LIVE)
+      liveAttendenceClick();
+    else{
+      if(txt === CLICK_ATTENDENCE_DAILY)
+        dailyAttendenceClick();
+      else{
+        if(txt === CLICK_ATTENDENCE_HISTORY){
+          historyAttendenceClick();
+        }
+        else{
+          console.log('others');
+        }
+      }
+    }
 
+  }
   return (
     <>
     <TreeView
@@ -122,16 +140,17 @@ export default function GmailTreeView({siteName}) {
           <div key = {item.lableText}>
             {item.nodeId === '2'?(
               <StyledTreeItem nodeId={item.nodeId} labelText={item.lableText} labelIcon={item.icon} color={BG_COLOR_WHITE} bgColor={BG_COLOR_BULE}>
-                {SHOW_SITE_BAR_CHILD.map((item) => {
+                {SHOW_SITE_BAR_CHILD.map((item, index) => {
                   return (
                     <StyledTreeItem
                       style = {{width: 244}}
-                      key = {item.lableText}
+                      key = {index}
                       nodeId={item.nodeId}
                       labelText={item.lableText}
                       labelIcon={item.icon}
                       color={BG_COLOR_WHITE}
                       bgColor={BG_COLOR_BULE_LITTLE}
+                      onClick = {() => handleClick(item.lableText)}
                     />
                   )
                 })}

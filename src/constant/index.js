@@ -195,6 +195,10 @@ export const SHOW_SITE_BAR_CHILD = [
     },
 ]
 
+export const CLICK_ATTENDENCE_LIVE = 'Live Attendence';
+export const CLICK_ATTENDENCE_DAILY = 'Daily Attendence';
+export const CLICK_ATTENDENCE_HISTORY = 'Attendence History';
+
 export const SAVE_MARKUP_MSG = 'Site markup will be visibile to workers and visitors on the mobile application';
 export const SAVE_BOUNDARY_MSG = 'The site boundary must be a contained area';
 export const SIDEBAR_WIDTH = 356;
