@@ -87,7 +87,6 @@ const PolygonMap = forwardRef((props, ref) => {
           var center = turf.centerOfMass(trufpolygon);
           let poly = {"id": polyID, "points": points, "center": center.geometry.coordinates};
           setPolygonNew(poly);
-          props.setIsSavedPolygon(false);
       }
       props.endDrawPolygon();
   };
@@ -100,7 +99,6 @@ const PolygonMap = forwardRef((props, ref) => {
       var center = turf.centerOfMass(trufpolygon);
       let poly = {"id": polyID, "points": points, "center": center.geometry.coordinates};
       setPolygonNew(poly);
-      props.setIsSavedPolygon(false);
     }
   };
 
@@ -108,7 +106,7 @@ const PolygonMap = forwardRef((props, ref) => {
     () => {
       let isNew = (JSON.stringify(polygonNew) !== JSON.stringify(polygonOld));
       setIsNewPolygon(isNew);
-      props.setIsSavedMarkup(!isNew);
+      props.setIsSavedPolygon(!isNew);
       },
     [polygonNew, polygonOld, props]
   );
