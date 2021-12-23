@@ -3,11 +3,14 @@ import { makeStyles } from '@mui/styles';
 import GmailTreeView from '../components/gmailtreeview';
 import { useParams } from "react-router-dom";
 import { getSite} from '../actions'
+import LiveAttendence from '../components/showsite/liveattendence';
 
 const useStyles = makeStyles({
   root: {
     display: 'flex',
     flexDirection: 'row',
+    backgroundColor: '#FAFAFA',
+    overflow: 'auto',
   },
 
 });
@@ -22,20 +25,22 @@ function ShowSite() {
     (async () => {
       if(id !== undefined && id !== null){
         let res = await getSite(id);
-        setSiteInfo(res.data.data);
+        setSiteInfo(res?.data?.data);
       }
       setLoading(false);
     })()
   }, [id])
 
   return (
-      <>
-        {!isLoading && 
-          <div className = {classes.root} >
-              <GmailTreeView siteName={siteInfo.Sitename}/>
-          </div>
-        }
-      </>
+    <>
+      {!isLoading && 
+        <div className = {classes.root} >
+            <GmailTreeView siteName={siteInfo?.Sitename}/>
+            <LiveAttendence siteInfo = {siteInfo} />
+        </div>
+      }
+    </>
+       
   );
 }
 

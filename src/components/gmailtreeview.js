@@ -17,6 +17,7 @@ import AttendenceDetails from '../components/AttendenceDetails';
 
 const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
   color: theme.palette.text.secondary,
+  backgroundColor: 'white',
   [`& .${treeItemClasses.content}`]: {
     color: theme.palette.text.secondary,
     paddingRight: theme.spacing(1),
@@ -24,6 +25,10 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
     height: 50,
     display: 'flex',
     alignItems: 'center',
+    '&.MuiTreeItem-content': {
+      padding: 0,
+      margin: 0,
+    },
     '&.Mui-expanded': {
       fontWeight: theme.typography.fontWeightRegular,
     },
@@ -120,6 +125,7 @@ export default function GmailTreeView({siteName}) {
                 {SHOW_SITE_BAR_CHILD.map((item) => {
                   return (
                     <StyledTreeItem
+                      style = {{width: 244}}
                       key = {item.lableText}
                       nodeId={item.nodeId}
                       labelText={item.lableText}
