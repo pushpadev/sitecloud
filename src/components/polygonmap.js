@@ -236,11 +236,12 @@ const PolygonMap = forwardRef((props, ref) => {
       else
         return true;
     })
-    if(!bExist){
+    if(!bExist || selIcon === null){
       addToast('You should select markup', {
         appearance: 'warning',
         autoDismiss: true,
       })
+      return;
     }
     setIconListNew(newList);
     setSelIcon(null);
