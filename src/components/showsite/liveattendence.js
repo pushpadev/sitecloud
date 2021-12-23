@@ -14,13 +14,13 @@ const useStyles = makeStyles({
   },
 });
 
-export default function LiveAttendence({siteInfo}) {
+export default function LiveAttendence({siteInfo, clickedItem}) {
   const classes = useStyles();
 
   return (
     <div className = {classes.root} >
         <AttendenceTitle siteInfo = {siteInfo} />
-        <EnhancedTable />
+        <EnhancedTable clickedItem = {clickedItem}/>
     </div>
   );
 }

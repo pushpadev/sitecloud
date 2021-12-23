@@ -43,7 +43,27 @@ const useStyles = makeStyles({
         bottom: 30,
         borderRadius: 10,
         ['@media (max-width:1250px)']: { // eslint-disable-line no-useless-computed-key
-            display: 'none',
+            height:180,
+            width:'65%'
+        },
+        ['@media (max-width:1175px)']: { // eslint-disable-line no-useless-computed-key
+            height:190,
+            width:'65%'
+        },
+        ['@media (max-width:1100px)']: { // eslint-disable-line no-useless-computed-key
+            height:200,
+            width:'62%'
+        },
+        ['@media (max-width:1055px)']: { // eslint-disable-line no-useless-computed-key
+            height:220,
+            width:'60%'
+        },
+        ['@media (max-width:950px)']: { // eslint-disable-line no-useless-computed-key
+            height:250,
+            width:'55%'
+        },
+        ['@media (max-width:945px)']: { // eslint-disable-line no-useless-computed-key
+            display: 'none'
         },
     },
     column: {
