@@ -150,15 +150,7 @@ export default function GmailTreeView({siteName}) {
       })}
     </TreeView>
     
-    <div>
-{/* if profile account settings clicked here then call this componets */}
-    <AccountSettings />
-{/* Live attendace */}
-{/* if side menu live attendance click then call this components  */}
-    <AttendenceDetails />
-
-   
-    </div>
+  
     
     </>
 
