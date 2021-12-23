@@ -45,6 +45,11 @@ function EditSite() {
   const [isMapLoading, setMapLoading] = useState(true);
   const [isExistPolygon, setExistPolygon] = useState(false);
   const [isExistMarkup, setExistMakrup] = useState(false);
+
+  const [isSavedPolygon, setIsSavedPolygon] = useState(true);
+  const [isSavedMarkup, setIsSavedMarkup] = useState(true);
+
+
   const { addToast } = useToasts();
   const history = useNavigate();
 
@@ -56,9 +61,10 @@ function EditSite() {
 
   const endDrawPolygon = () => {
     setupEl.current.setBdStatus(BOUNDARY_NONE);
+    setExistPolygon(true);
   }
 
-  const editPolygon = (polygon) => {
+  const editPolygon = () => {
     setExistPolygon(true);
     setEditingStatus(BOUNDARY_CREATE);
   }
@@ -68,7 +74,18 @@ function EditSite() {
   }
 
   const createSite = async () => {
-    console.log(currentSite);
+    let storedIcon = JSON.parse(localStorage.getItem("markups"));
+    let storedPolygon = JSON.parse(localStorage.getItem("polygon"));
+    let rt;
+    let info = {
+      "Sitename": siteName, 
+      "Siteaddress": siteAddress, 
+      "polyrings": storedPolygon, 
+      "markup": storedIcon, 
+      "centroid": storedPolygon?.center
+    };
+    setCurrentSite(info);
+
     if( !isExistPolygon ){
       addToast('You should draw polygon!', {
         appearance: 'warning',
@@ -84,31 +101,20 @@ function EditSite() {
       })
       return;
     }
-    if(!currentSite || !currentSite.polyrings ){
+    if(!isSavedPolygon ){
       addToast('you should save polygon!', {
         appearance: 'warning',
         autoDismiss: true,
       })
       return;
     }
-    if(!currentSite || !currentSite.markup ){
+    if(!isSavedMarkup ){
       addToast('you should save markup!', {
         appearance: 'warning',
         autoDismiss: true,
       })
       return;
     }
-    let rt;
-    let info = {
-      "Sitename": siteName, 
-      "Siteaddress": siteAddress, 
-      "polyrings": currentSite?.polyrings, 
-      "markup": currentSite?.markup, 
-      "centroid": currentSite?.centroid
-    };
-
-    setCurrentSite(info);
-    console.log(info);
 
     if(id === undefined || id === null){
       rt = await saveSite(info);
@@ -140,6 +146,8 @@ function EditSite() {
         })
       }
     }
+    setIsSavedPolygon(false);
+    setIsSavedMarkup(false);
     history('/');
   }
 
@@ -153,21 +161,11 @@ function EditSite() {
     polygonEl.current.deleteMarkup();
   }
   
-  const saveBoundary = (polygon) => {
-    console.log(polygon);
-    if(!polygon || Object.keys(polygon).length === 0){
-      addToast('You should draw the polygon', {
-        appearance: 'warning',
-        autoDismiss: true,
-      })
-      return;
-    }
-    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: polygon, markup: (currentSite)?currentSite?.iconList:[], centroid: polygon.center});
+  const saveBoundary = () => {
     setEditingStatus(BOUNDARY_SAVE);
   }
 
-  const saveMarkup = (iconList) => {
-    setCurrentSite({Sitename: siteName, Siteaddress: siteAddress, polyrings: (currentSite)?currentSite?.polyrings:{}, markup: iconList, centroid: (currentSite)?currentSite?.centroid:[]});
+  const saveMarkup = () => {
     setEditingStatus(MARKUP_SAVE);
   }
 
@@ -191,23 +189,26 @@ function EditSite() {
           setExistPolygon(true);
           setExistMakrup(true);
           localStorage.setItem("markups", JSON.stringify(res?.data?.data.markup));
+          localStorage.setItem("polygon", JSON.stringify(res?.data?.data.polyrings));
+          setIsSavedMarkup(true);
+          setIsSavedPolygon(true);
         }
         else{
           localStorage.setItem("markups", JSON.stringify([]));
+          localStorage.setItem("polygon", JSON.stringify([]));
+          setIsSavedMarkup(false);
+          setIsSavedPolygon(false);
         }
       }
       else{
         localStorage.setItem("markups", JSON.stringify([]));
+        localStorage.setItem("polygon", JSON.stringify([]));
+        setIsSavedMarkup(false);
+        setIsSavedPolygon(false);
       }
       setLoading(false);
     })()
   }, [])
-
-  useEffect(() => {
-    // var storedPolygons = JSON.parse(localStorage.getItem("polygons"));
-
-    // console.log(editingStatus);
-  }, [editingStatus])
 
   return (
       <>
@@ -241,10 +242,12 @@ function EditSite() {
               setMapLoading = {setMapLoading}
               setExistPolygon = {setExistPolygon}
               setExistMakrup = {setExistMakrup}
-              isExistMarkup = {isExistMarkup}
               endDrawPolygon = {endDrawPolygon}
               editPolygon = {editPolygon}
+              setIsSavedMarkup = {setIsSavedMarkup}
+              setIsSavedPolygon = {setIsSavedPolygon}
               siteID = {id}
+              isExistMarkup = {isExistMarkup}
             />
         </div>
       )}
