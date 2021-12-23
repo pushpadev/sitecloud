@@ -153,7 +153,11 @@ const PolygonMap = forwardRef((props, ref) => {
       currentCenterPixel.y = event.clientY - rect.offsetTop + window.scrollY;
       let iconInfo = mapObj.unproject(currentCenterPixel);
       if(checkCoordinate(iconInfo.lng, iconInfo.lat) === true) {
-        setIconListNew([...iconListNew, {id: iconListNew.length, icon: selItem.value, position: iconInfo}]);
+        if(iconListNew.length === 0)
+          setIconListNew([...iconListNew, {id: iconListNew.length, icon: selItem.value, position: iconInfo}]);
+        else
+          setIconListNew([...iconListNew, {id: iconListNew[iconListNew.length - 1].id + 1, icon: selItem.value, position: iconInfo}]);
+        props.setExistMakrup(true);
       }
     }
   }
@@ -323,7 +327,6 @@ const PolygonMap = forwardRef((props, ref) => {
                 }}
                 center={(props.siteID === undefined || props.siteInfo === null)?MAP_CENTER_COORDINATE:currentSite?.centroid}
               >
-                {console.log(iconListNew)}
                 <DrawControl ref={drawControl} displayControlsDefault={false} onDrawCreate={onDrawCreate} onDrawUpdate={onDrawUpdate}/>
                 {(iconListNew.length > 0)?iconListNew.map((item, index) => {
                   return(
