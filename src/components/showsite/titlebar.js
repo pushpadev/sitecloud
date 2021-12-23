@@ -5,8 +5,8 @@ const useStyles = makeStyles({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    height: 193,
-    padding: '21px 0px 23px 23px',
+    height: '193px !important',
+    padding: '21px 0px 0px 23px',
     backgroundColor: 'white',
     color: '#33323D',
   },
