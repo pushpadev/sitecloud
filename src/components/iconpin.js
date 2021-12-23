@@ -68,12 +68,12 @@ export default function IconPin(props){
   useEffect(() => {
     ICON_LIST.forEach(item => {
       if(item.value === props.icon)
-        setIcon(item.icon);
+        setIcon(item);
     })
   }, [props])
   return (
     <div className={(props.isSelec === true)?classes.messageBlue:classes.messageWhite}>
-      {icon && icon}
+      {icon && ((props.isSelec !== true)?icon.icon:icon.whiteicon)}
     </div>
   );
 };

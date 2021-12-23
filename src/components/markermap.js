@@ -34,6 +34,7 @@ const ColorButton = withStyles((theme) => ({
       paddingTop: '2px',
       paddingBottom: '2px',
       textTransform: 'none',
+      borderRadius: 0,
       backgroundColor: '#0066ffef !important',
       borderRadius: '0px',
       border: '2px solid #0066ffef',

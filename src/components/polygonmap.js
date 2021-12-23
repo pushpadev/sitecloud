@@ -41,6 +41,7 @@ const ColorButton = withStyles((theme) => ({
       paddingTop: '2px',
       paddingBottom: '2px',
       textTransform: 'none',
+      borderRadius: 0,
       backgroundColor: '#18941D !important',
       border: '2px solid #18941D',
       '&:hover': {
@@ -144,20 +145,24 @@ const PolygonMap = forwardRef((props, ref) => {
   }
 
   const dragEnd = (event) => {
-    if (mapRef.current) {
-      const rect = mapRef.current.container;
-      const currentCenterPixel = mapObj.project(mapObj.getCenter());
-      currentCenterPixel.x = event.clientX - rect.offsetLeft;
-      currentCenterPixel.y = event.clientY - rect.offsetTop + window.scrollY;
-      let iconInfo = mapObj.unproject(currentCenterPixel);
-      if(checkCoordinate(iconInfo.lng, iconInfo.lat) === true) {
-        if(iconListNew.length === 0)
-          setIconListNew([...iconListNew, {id: iconListNew.length, icon: selItem.value, position: iconInfo}]);
-        else
-          setIconListNew([...iconListNew, {id: iconListNew[iconListNew.length - 1].id + 1, icon: selItem.value, position: iconInfo}]);
-        props.setExistMakrup(true);
+    
+    if(selItem && Object.keys(selItem).length !== 0){
+      if (mapRef.current) {
+        const rect = mapRef.current.container;
+        const currentCenterPixel = mapObj.project(mapObj.getCenter());
+        currentCenterPixel.x = event.clientX - rect.offsetLeft;
+        currentCenterPixel.y = event.clientY - rect.offsetTop + window.scrollY;
+        let iconInfo = mapObj.unproject(currentCenterPixel);
+        if(checkCoordinate(iconInfo.lng, iconInfo.lat) === true) {
+          if(iconListNew.length === 0)
+            setIconListNew([...iconListNew, {id: iconListNew.length, icon: selItem.value, position: iconInfo}]);
+          else
+            setIconListNew([...iconListNew, {id: iconListNew[iconListNew.length - 1].id + 1, icon: selItem.value, position: iconInfo}]);
+          props.setExistMakrup(true);
+        }
       }
     }
+    setItem({});
   }
 
   const checkCoordinate = (lat, lon) => {
@@ -341,7 +346,7 @@ const PolygonMap = forwardRef((props, ref) => {
                             style={{position: 'relative'}}
                             onClick={() => handleIcon(item.id)}
                           >
-                            <IconPin 
+                            <IconPin
                               icon = {item.icon}
                               isSelec = {(item.id === selIcon)?true:false}
                             />

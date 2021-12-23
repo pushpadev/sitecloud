@@ -6,12 +6,12 @@ import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useNavigate } from "react-router-dom";
 import Divider from '@mui/material/Divider';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import { ReactComponent as WorkersIcon } from '../images/workers.svg';
 import { ReactComponent as VisitorsIcon } from '../images/visitors.svg';
 import { ReactComponent as WarningIcon } from '../images/warning.svg';
 import { ReactComponent as PinIcon } from '../images/pin.svg';
+import { ReactComponent as WhiteArrowIcon } from '../images/whitearrow.svg';
 
 import '../css/style.css';
 
@@ -23,6 +23,7 @@ const ColorButton = withStyles((theme) => ({
         paddingTop: '2px',
         paddingBottom: '2px',
         textTransform: 'none',
+        borderRadius: 0,
         backgroundColor: '#0066ffef !important',
         border: '2px solid #0066ffef',
         '&:hover': {
@@ -135,7 +136,7 @@ export default function PopOver(props){
                     {!isRoot && 
                         <Col sm = {12} xs = {12} md = {2} lg = {2} style={{display: isRoot?'none':'flex', justifyContent: 'center', alignItems: 'center'}}>
                             <ColorButton onClick={() => manageSite()}>
-                                <SettingsIcon style = {{marginRight: 10}} /><span>Manage</span><ArrowForwardIosIcon style = {{marginLeft: 10}} />
+                                <SettingsIcon style = {{marginRight: 10}} /><span>Manage</span><WhiteArrowIcon style = {{marginLeft: 10}} />
                             </ColorButton>
                         </Col>
                     }
