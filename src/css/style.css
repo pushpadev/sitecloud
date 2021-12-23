@@ -5,6 +5,8 @@
   --primary-blue: #1875f0;
   --dark-pink: #ec4e86;
   --dark-violet: #753af4;
+  --light-green: #70cf73;
+  --light-red: #ef7474;
 }
 
 p {
@@ -33,6 +35,7 @@ p {
   width: 100%;
   height: 100vh;
   font-family: Riviera-Font;
+  overflow: hidden;
 }
 
 .login_forms {
@@ -235,6 +238,118 @@ p {
 .worker_progress {
   width: 28%;
   background-color: var(--dark-violet);
+}
+
+.attendence_table {
+  margin: 0 10px;
+  font-family: "RivieraNightsTrial";
+}
+
+.attendence_table .table > tbody {
+  background-color: #ffff;
+}
+
+.attendence_table .table > tbody tr {
+  border-bottom: 1px solid #dde4ee;
+}
+
+.attendence_table .table > tbody tr td {
+  vertical-align: middle;
+}
+
+.attendence_table .table > thead th {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.065em;
+  text-align: left;
+  color: var(--secondary-grey-text);
+}
+
+.active_indicator,
+.inactive_indicator {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.table_user_avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: wheat;
+  float: left;
+  margin-right: 10px;
+}
+
+.attendance_username,
+.attendance_companyName {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 16px;
+  letter-spacing: 0.065em;
+}
+
+.attendance_companyName {
+  color: var(--primary-text);
+}
+
+.attendance_username {
+  float: left;
+  color: var(--primary-blue);
+  margin-top: 12px;
+  font-family: Riviera-Font;
+}
+
+.worker_visitor {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.065em;
+  text-align: left;
+}
+
+.active_indicator {
+  background-color: var(--light-green);
+}
+
+.inactive_indicator {
+  background-color: var(--light-red);
+}
+
+.share_icon_btn .btn,
+.download_icon_btn .btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.share_icon_btn .btn-primary {
+  background-color: var(--primary-blue);
+  border-color: var(--primary-blue);
+}
+
+.share_icon_btn {
+  position: absolute;
+  bottom: calc(100vh - 95vh);
+  left: 85vw;
+}
+
+.share_icon_btn svg {
+  -ms-transform: rotate(-55deg); /* IE 9 */
+  transform: rotate(-55deg);
+}
+
+.download_icon_btn {
+  position: absolute;
+  bottom: calc(100vh - 95vh);
+  left: 90vw;
 }
 
 /** Media Queries **/

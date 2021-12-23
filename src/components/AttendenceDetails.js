@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap"
 import { MENUBAR_WIDTH } from "../constant";
 import { useNavigate } from "react-router-dom";
 import { makeStyles, withStyles } from '@mui/styles';
-
+import AttendanceTable from "./AttendanceTable";
 
 const useStyles = makeStyles({
     root: {
@@ -78,6 +78,8 @@ const MarkerMap = () => {
 
                     </div>
                 </div>
+
+                <AttendanceTable />
             </div>
 
         </section>
