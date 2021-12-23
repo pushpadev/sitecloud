@@ -35,6 +35,7 @@ const ColorButton = withStyles((theme) => ({
       paddingBottom: '2px',
       textTransform: 'none',
       backgroundColor: '#0066ffef !important',
+      borderRadius: '0px',
       border: '2px solid #0066ffef',
       '&:hover': {
           opacity: '.7',
