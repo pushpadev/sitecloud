@@ -27,7 +27,6 @@ const useStyles = makeStyles({
     flexGrow: 1,
     overflow: 'hidden'
   },
-
 });
 
 function EditSite() {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@mui/styles';
 import GmailTreeView from '../components/gmailtreeview';
 import { useParams } from "react-router-dom";
-import { getSite, saveSite, modifySite} from '../actions'
+import { getSite} from '../actions'
 
 const useStyles = makeStyles({
   root: {
@@ -22,7 +22,7 @@ function ShowSite() {
     (async () => {
       if(id !== undefined && id !== null){
         let res = await getSite(id);
-        setSiteInfo(res.data);
+        setSiteInfo(res.data.data);
       }
       setLoading(false);
     })()

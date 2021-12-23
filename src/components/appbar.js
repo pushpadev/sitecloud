@@ -86,7 +86,7 @@ export default function PrimarySearchAppBar() {
   return (
     <>
     {pathName !== '/login' &&
-      <Box sx={{ flexGrow: 1 }}>
+      <Box>
         <AppBar position="static" style = {{backgroundColor: 'white', color: 'black'}}>
           <Toolbar>
             <Box sx={{display: {xs: 'flex', md: 'flex'}}} style = {{alignItems: 'center'}}>
