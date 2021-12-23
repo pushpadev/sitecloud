@@ -11,12 +11,13 @@ p {
   margin: 0 !important;
 }
 
-/* Font css for Riviera Nights Trial */
-@font-face {
-  font-family: Riviera-Font;
+/* Font css for Riviera Nights Trial 
+ @font-face {
+   font-family: Riviera-Font; 
+  font-family: "RivieraNightsTrial";
   src: url(../fonts/RivieraNightsTrial-Regular.otf);
-}
-
+} 
+*/
 .login_forgotpassword_bg {
   width: 100%;
   height: 100vh;
