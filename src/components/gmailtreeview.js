@@ -7,16 +7,16 @@ import TreeItem, { treeItemClasses } from '@mui/lab/TreeItem';
 import Typography from '@mui/material/Typography';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import { SHOW_SITE_BAR, SHOWBAR_WIDTH, SHOW_SITE_BAR_CHILD, BG_COLOR_BLACK, BG_COLOR_WHITE, BG_COLOR_BULE, BG_COLOR_BULE_LITTLE} from '../constant';
+import { SHOW_SITE_BAR, SHOWBAR_WIDTH, SHOW_SITE_BAR_CHILD, BG_COLOR_BLACK, BG_COLOR_WHITE, BG_COLOR_BULE, BG_COLOR_BULE_LITTLE } from '../constant';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useNavigate } from 'react-router-dom';
 import { CLICK_ATTENDENCE_LIVE, CLICK_ATTENDENCE_DAILY, CLICK_ATTENDENCE_HISTORY } from '../constant';
 
 const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
-  color: theme.palette.text.secondary,
+  color: '#33323d',
   backgroundColor: 'white',
   [`& .${treeItemClasses.content}`]: {
-    color: theme.palette.text.secondary,
+    color: '#33323d',
     paddingRight: theme.spacing(1),
     fontWeight: theme.typography.fontWeightMedium,
     height: 50,
@@ -94,23 +94,23 @@ const rootItem = {
   icon: ArrowBackIcon,
 }
 export default function GmailTreeView({
-  siteName, 
-  liveAttendenceClick, 
-  historyAttendenceClick, 
+  siteName,
+  liveAttendenceClick,
+  historyAttendenceClick,
   dailyAttendenceClick,
 }) {
   const history = useNavigate();
   const handleClick = (txt) => {
-    if(txt === CLICK_ATTENDENCE_LIVE)
+    if (txt === CLICK_ATTENDENCE_LIVE)
       liveAttendenceClick();
-    else{
-      if(txt === CLICK_ATTENDENCE_DAILY)
+    else {
+      if (txt === CLICK_ATTENDENCE_DAILY)
         dailyAttendenceClick();
-      else{
-        if(txt === CLICK_ATTENDENCE_HISTORY){
+      else {
+        if (txt === CLICK_ATTENDENCE_HISTORY) {
           historyAttendenceClick();
         }
-        else{
+        else {
           console.log('others');
         }
       }
@@ -125,39 +125,40 @@ export default function GmailTreeView({
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
       sx={{ width: SHOWBAR_WIDTH }}
+      className='menubar_site'
     >
       <StyledTreeItem
-        nodeId={rootItem.nodeId} 
-        labelText={siteName} 
+        nodeId={rootItem.nodeId}
+        labelText={siteName}
         labelIcon={rootItem.icon}
         color={BG_COLOR_WHITE}
         bgColor={BG_COLOR_BULE_LITTLE}
-        onClick = {() => history('/')}
+        onClick={() => history('/')}
       />
       {SHOW_SITE_BAR.map((item) => {
         return (
-          <div key = {item.lableText}>
-            {item.nodeId === '2'?(
+          <div key={item.lableText}>
+            {item.nodeId === '2' ? (
               <StyledTreeItem nodeId={item.nodeId} labelText={item.lableText} labelIcon={item.icon} color={BG_COLOR_WHITE} bgColor={BG_COLOR_BULE}>
                 {SHOW_SITE_BAR_CHILD.map((item, index) => {
                   return (
                     <StyledTreeItem
-                      style = {{width: 244}}
-                      key = {index}
+                      style={{ width: 244 }}
+                      key={index}
                       nodeId={item.nodeId}
                       labelText={item.lableText}
                       labelIcon={item.icon}
                       color={BG_COLOR_WHITE}
                       bgColor={BG_COLOR_BULE_LITTLE}
-                      onClick = {() => handleClick(item.lableText)}
+                      onClick={() => handleClick(item.lableText)}
                     />
                   )
                 })}
               </StyledTreeItem>
-            ):(
+            ) : (
               <StyledTreeItem
-                nodeId={item.nodeId} 
-                labelText={item.lableText} 
+                nodeId={item.nodeId}
+                labelText={item.lableText}
                 labelIcon={item.icon}
                 color={BG_COLOR_WHITE}
                 bgColor={BG_COLOR_BULE}
@@ -167,5 +168,6 @@ export default function GmailTreeView({
         )
       })}
     </TreeView>
+
   );
 }
