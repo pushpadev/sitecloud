@@ -7,6 +7,16 @@ import { ReactComponent as StopIcon } from '../images/markups/stop.svg';
 import { ReactComponent as LabelIcon } from '../images/markups/label.svg';
 import { ReactComponent as HighlightIcon } from '../images/markups/highlight.svg';
 
+import { ReactComponent as WhiteMustterIcon } from '../images/whitemarkups/mustter.svg';
+import { ReactComponent as WhiteEntryIcon } from '../images/whitemarkups/entry.svg';
+import { ReactComponent as WhiteParkingIcon } from '../images/whitemarkups/parking.svg';
+import { ReactComponent as WhiteHazardsIcon } from '../images/whitemarkups/hazards.svg';
+import { ReactComponent as WhiteCrossIcon } from '../images/whitemarkups/cross.svg';
+import { ReactComponent as WhiteStopIcon } from '../images/whitemarkups/stop.svg';
+import { ReactComponent as WhiteLabelIcon } from '../images/whitemarkups/label.svg';
+import { ReactComponent as WhiteHighlightIcon } from '../images/whitemarkups/highlight.svg';
+
+
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
 import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
@@ -82,41 +92,49 @@ export const ICON_LIST = [
         'id': 1,
         'value': 'Mustter Points',
         'icon':  <MustterIcon />,
+        'whiteicon': <WhiteMustterIcon />,
     },
     {
         'id': 2,
         'value': 'Entry',
         'icon':  <EntryIcon />,
+        'whiteicon': <WhiteEntryIcon />,
     },
     {
         'id': 3,
         'value': 'Parking',
         'icon':  <ParkingIcon />,
+        'whiteicon': <WhiteParkingIcon />,
     },
     {
         'id': 4,
         'value': 'Hazards',
         'icon':  <HazardsIcon />,
+        'whiteicon': <WhiteHazardsIcon />,
     },
     {
         'id': 5,
         'value': 'Cross',
         'icon':  <CrossIcon />,
+        'whiteicon': <WhiteCrossIcon />,
     },
     {
         'id': 6,
         'value': 'Stop',
         'icon':  <StopIcon />,
+        'whiteicon': <WhiteStopIcon />,
     },
     {
         'id': 7,
         'value': 'Add Label',
         'icon':  <LabelIcon />,
+        'whiteicon': <WhiteLabelIcon />,
     },
     {
         'id': 8,
         'value': 'Highlight',
         'icon':  <HighlightIcon />,
+        'whiteicon': <WhiteHighlightIcon />,
     },
 
 ]
