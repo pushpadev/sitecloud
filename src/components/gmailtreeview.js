@@ -123,9 +123,10 @@ export default function GmailTreeView({
       defaultEndIcon={<div style={{ width: 24 }} />}
       sx={{ width: SHOWBAR_WIDTH }}
     >
+      {/* {siteName} */}
       <StyledTreeItem
         nodeId={rootItem.nodeId} 
-        labelText={siteName} 
+        labelText= 'Site 1'
         labelIcon={rootItem.icon}
         color={BG_COLOR_WHITE}
         bgColor={BG_COLOR_BULE_LITTLE}
