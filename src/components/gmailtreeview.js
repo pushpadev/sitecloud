@@ -94,28 +94,25 @@ const rootItem = {
   icon: ArrowBackIcon,
 }
 export default function GmailTreeView({
-  siteName, 
-  liveAttendenceClick, 
-  historyAttendenceClick, 
-  dailyAttendenceClick,
+  siteName
 }) {
+  
   const history = useNavigate();
   const handleClick = (txt) => {
     if(txt === CLICK_ATTENDENCE_LIVE)
-      liveAttendenceClick();
+      history('/showsite/attendence/1');
     else{
       if(txt === CLICK_ATTENDENCE_DAILY)
-        dailyAttendenceClick();
+        history('/showsite/attendence/2');
       else{
         if(txt === CLICK_ATTENDENCE_HISTORY){
-          historyAttendenceClick();
+          history('/showsite/attendence/3');
         }
         else{
           console.log('others');
         }
       }
     }
-
   }
   return (
     <TreeView

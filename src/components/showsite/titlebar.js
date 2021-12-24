@@ -48,8 +48,8 @@ function AttendenceTitle({siteInfo}) {
 
   return (
     <div className = {classes.root} >
-        <div className={classes.title}>{`Site Attendence: ${siteInfo.Sitename}`}</div>
-        <div className={classes.address}>{`address: ${siteInfo.Siteaddress}`}</div>
+        <div className={classes.title}>{`Site Attendence: ${siteInfo?.Sitename}`}</div>
+        <div className={classes.address}>{`address: ${siteInfo?.Siteaddress}`}</div>
         <div className={classes.numberline}>
             <div className={classes.number}>
                 <div style = {{color: '#33323D', fontSize: 18}}>214</div>

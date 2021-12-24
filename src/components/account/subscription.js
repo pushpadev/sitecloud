@@ -192,7 +192,6 @@ function Subscription({siteInfo}) {
               hrcolor = {BG_COLOR_BULE_LITTLE}
               width = '155px'
               height = '35px'
-              onClick={handleClickOpen}
             >
               <EditIcon style = {{marginRight: 14}} /><span>Change Plan</span>
             </ColorButton>

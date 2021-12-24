@@ -22,26 +22,10 @@ function ShowSite() {
   const classes = useStyles();
   const [isLoading, setLoading] = useState(true);
   const [siteInfo, setSiteInfo] = useState({});
-  const [isAccount, setIsAccount] = useState(false);
-  const [siteId, setSiteId] =  useContext(ShowSiteContext);
 
   const { id } = useParams();
 
   // Attendence
-  const [clickedItem, setClickedItem] = useState(null);
-
-  const liveAttendenceClick = () => {
-    setClickedItem(CLICK_ATTENDENCE_LIVE);
-  }
-
-  const dailyAttendenceClick = () => {
-
-    setClickedItem(CLICK_ATTENDENCE_DAILY);
-  }
-
-  const historyAttendenceClick = () => {
-    setClickedItem(CLICK_ATTENDENCE_HISTORY);
-  }
 
   useEffect(() => {
     (async () => {
@@ -51,15 +35,8 @@ function ShowSite() {
       }
       setLoading(false);
     })()
-    let pathName = window.location.pathname;
-    if(pathName.indexOf('showsite/accountsetting/') >= 0){
-      setIsAccount(true);
-    }
-    else{
-      setIsAccount(false);
-    }
-    setSiteId(id);
-  }, [id, setSiteId])
+    
+  }, [id])
 
   return (
     <>
@@ -67,18 +44,11 @@ function ShowSite() {
         <div className = {classes.root} >
             <GmailTreeView 
               siteName={siteInfo?.Sitename}
-              liveAttendenceClick = {liveAttendenceClick}
-              historyAttendenceClick = {historyAttendenceClick}
-              dailyAttendenceClick = {dailyAttendenceClick}
             />
-            {isAccount?(<AccountSetting />):(
-              (clickedItem === CLICK_ATTENDENCE_DAILY || clickedItem === CLICK_ATTENDENCE_LIVE || clickedItem === CLICK_ATTENDENCE_HISTORY)?(
-                <LiveAttendence 
-                  siteInfo = {siteInfo}
-                  clickedItem = {clickedItem}
-                />
-              ):(<></>)
-            )}
+            <AccountSetting />
+            <LiveAttendence 
+              siteInfo = {siteInfo}
+            />
         </div>
       }
     </>

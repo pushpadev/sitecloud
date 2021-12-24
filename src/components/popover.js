@@ -96,7 +96,7 @@ export default function PopOver(props){
     let history = useNavigate();
 
     const manageSite = () => {
-        history(`/showsite/${sitemappingId}`);
+        history(`/showsite/managesite/${sitemappingId}`);
     }
     return (
         <div className={classes.root}>
