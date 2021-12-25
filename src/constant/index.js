@@ -222,6 +222,7 @@ export const SAVE_BOUNDARY_MSG = 'The site boundary must be a contained area';
 export const SIDEBAR_WIDTH = 356;
 export const SHOWBAR_WIDTH = 260;
 export const ICONBAR_WIDTH = 230;
+export const MENUBAR_WIDTH = 222;
 
 export const STATUS_NONE = -1;
 export const BOUNDARY_NONE = 0;
