@@ -97,7 +97,7 @@ export default function GmailTreeView({
   siteName, 
   liveAttendenceClick, 
   historyAttendenceClick, 
-  dailyAttendenceClick
+  dailyAttendenceClick,
 }) {
   const history = useNavigate();
   const handleClick = (txt) => {
@@ -118,7 +118,6 @@ export default function GmailTreeView({
 
   }
   return (
-    <>
     <TreeView
       aria-label="gmail"
       defaultExpanded={['3']}
@@ -168,11 +167,5 @@ export default function GmailTreeView({
         )
       })}
     </TreeView>
-    
-  
-    
-    </>
-
-
   );
 }
