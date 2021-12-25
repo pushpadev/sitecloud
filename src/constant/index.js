@@ -248,6 +248,5 @@ export const BG_COLOR_BULE_LITTLE = '#1875F0';
 export const BG_COLOR_LITTLE_GRAY = '#E4E4E4';
 
 export const BG_COLOR_BOUNDARY_BTN = '#1875F0';
-export const BG_COLOR_WARNING = '#EF4F4F';
 
 export const MAP_CENTER_COORDINATE = [149.012375, -35.473469];

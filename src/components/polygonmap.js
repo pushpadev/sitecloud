@@ -8,6 +8,9 @@ import { makeStyles, withStyles } from '@mui/styles';
 import { 
   MAP_CENTER_COORDINATE,
   SIDEBAR_WIDTH, 
+  STATUS_NONE, 
+  BOUNDARY_CREATE, 
+  MARKUP_CREATE,
   SAVE_MARKUP_MSG,
   SAVE_BOUNDARY_MSG,
 } from "../constant";
@@ -17,6 +20,7 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import IconPin from './iconpin';
 import { CurrentSiteContext } from "../contexts/currentsite";
 import {Snackbar} from '@mui/material';
+import Typography from '@mui/material/Typography';
 import { useToasts } from 'react-toast-notifications'
 
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';

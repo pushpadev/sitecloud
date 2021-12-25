@@ -6,8 +6,12 @@ import { makeStyles, withStyles } from '@mui/styles';
 import IconButton from '@mui/material/IconButton';
 import { 
     BOUNDARY_NONE,
+    BOUNDARY_EDIT,
     BOUNDARY_SET,
     MARKUP_NONE,
+    MARKUP_SET,
+    MARKUP_DELETE,
+    MARKUP_EDIT,
     BG_COLOR_WHITE, 
     BG_COLOR_GRAY,
     BG_COLOR_BLACK,
