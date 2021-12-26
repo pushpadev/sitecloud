@@ -13,27 +13,27 @@ export default function PrimarySearchAppBar() {
   const pathName = window.location.pathname;
   const history = useNavigate();
 
-  
+
   const accountClick = () => {
     history(`/showsite/accountsetting/`)
   }
 
   return (
     <>
-    {pathName !== '/login' &&
+
       <Box>
-        <AppBar position="static" style = {{backgroundColor: 'white', color: 'black'}}>
+        <AppBar position="static" style={{ backgroundColor: 'white', color: 'black' }}>
           <Toolbar>
-            <Box sx={{display: {xs: 'flex', md: 'flex'}}} style = {{alignItems: 'center'}}>
-              <a href = '/'><img style = {{width: '40px', marginRight: 5}} src = '/logo.png' alt = 'logo'/></a>
+            <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style={{ alignItems: 'center' }}>
+              <a href='/'><img style={{ width: '40px', marginRight: 5 }} src='/logo.png' alt='logo' /></a>
               <span>{APP_NAME}</span>
             </Box>
             <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style = {{alignItems: 'center'}}>
+            <Box sx={{ display: { xs: 'flex', md: 'flex' } }} style={{ alignItems: 'center' }}>
               <Typography>Account Settings</Typography>
-              <IconButton 
-                color="primary" 
-                aria-label="upload picture" 
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
                 component="span"
                 onClick={accountClick}
               >
@@ -43,8 +43,8 @@ export default function PrimarySearchAppBar() {
           </Toolbar>
         </AppBar>
       </Box>
-    }
+
     </>
-    
+
   );
 }

@@ -7,7 +7,7 @@ import TreeItem, { treeItemClasses } from '@mui/lab/TreeItem';
 import Typography from '@mui/material/Typography';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import { 
+import {
   SHOW_SITE_BAR,
   SHOWBAR_WIDTH,
   SHOW_SITE_BAR_CHILD,
@@ -32,13 +32,13 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme, ...props }) => ({
   color: '#33323D',
   // backgroundColor: 'white',
   [`& .${treeItemClasses.content}`]: {
-    color: (props.active === 'true')? 'white': '#33323D',
+    color: (props.active === 'true') ? 'white' : '#33323D',
     paddingRight: theme.spacing(1),
     fontWeight: theme.typography.fontWeightMedium,
     height: 50,
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: (props.active === 'true')?  BG_COLOR_BULE: 'white',
+    backgroundColor: (props.active === 'true') ? BG_COLOR_BULE : 'white',
     '&.MuiTreeItem-content': {
       padding: 0,
       margin: 0,
@@ -194,102 +194,102 @@ const rootItem = {
 export default function GmailTreeView({
   siteName
 }) {
-  
+
   const history = useNavigate();
   const { id } = useParams();
   const url = window.location.pathname;
   const [currentItem, setItem] = useState(CLICK_MANAGE_SITE);
 
   const handleClick = (txt) => {
-    if(txt === CLICK_ATTENDENCE_LIVE)
+    if (txt === CLICK_ATTENDENCE_LIVE)
       history(`/showsite/attendence/live/${id}`);
-    else{
-      if(txt === CLICK_ATTENDENCE_DAILY)
+    else {
+      if (txt === CLICK_ATTENDENCE_DAILY)
         history(`/showsite/attendence/daily/${id}`);
-      else{
-        if(txt === CLICK_ATTENDENCE_HISTORY){
+      else {
+        if (txt === CLICK_ATTENDENCE_HISTORY) {
           history(`/showsite/attendence/history/${id}`);
         }
-        else{
-          if(txt === CLICK_MANAGE_SITE){
+        else {
+          if (txt === CLICK_MANAGE_SITE) {
             history(`/showsite/managesite/${id}`);
           }
-          else{
-            if(txt === CLICK_INDUCTIONS){
+          else {
+            if (txt === CLICK_INDUCTIONS) {
               history(`/showsite/inductions/${id}`);
             }
-            else{
-              if(txt === CLICK_BRIEFING){
+            else {
+              if (txt === CLICK_BRIEFING) {
                 history(`/showsite/briefing/${id}`);
               }
-              else{
-                if(txt === CLICK_NOTICE){
+              else {
+                if (txt === CLICK_NOTICE) {
                   history(`/showsite/notice/${id}`);
                 }
-                else{
-                  if(txt === CLICK_WORK_METHOD){
+                else {
+                  if (txt === CLICK_WORK_METHOD) {
                     history(`/showsite/workmethod/${id}`);
                   }
-                  else{
-                    if(txt === CLICK_PERMITS){
+                  else {
+                    if (txt === CLICK_PERMITS) {
                       history(`/showsite/permits/${id}`);
                     }
-                    else{
-                      if(txt === CLICK_HAZARD){
+                    else {
+                      if (txt === CLICK_HAZARD) {
                         history(`/showsite/hazard/${id}`);
                       }
-                      else{
-                        if(txt === CLICK_ATTENDENCE){
+                      else {
+                        if (txt === CLICK_ATTENDENCE) {
                           history(`/showsite/attendence/${id}`);
                         }
-                        else{
+                        else {
                           console.log('others');
-                        } 
-                      } 
-                    } 
-                  } 
-                } 
-              } 
-            } 
-          }        
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
   }
 
   useEffect(() => {
-    if(url.indexOf('attendence') >= 0){
+    if (url.indexOf('attendence') >= 0) {
       setItem(CLICK_ATTENDENCE);
     }
-    else{
-      if(url.indexOf('managesite') >= 0){
+    else {
+      if (url.indexOf('managesite') >= 0) {
         setItem(CLICK_MANAGE_SITE);
       }
-      else{
-        if(url.indexOf('inductions') >= 0){
+      else {
+        if (url.indexOf('inductions') >= 0) {
           setItem(CLICK_INDUCTIONS);
         }
-        else{
-          if(url.indexOf('breifing') >= 0){
+        else {
+          if (url.indexOf('breifing') >= 0) {
             setItem(CLICK_BRIEFING);
           }
-          else{
-            if(url.indexOf('notice') >= 0){
+          else {
+            if (url.indexOf('notice') >= 0) {
               setItem(CLICK_NOTICE);
             }
-            else{
-              if(url.indexOf('workmethod') >= 0){
+            else {
+              if (url.indexOf('workmethod') >= 0) {
                 setItem(CLICK_WORK_METHOD);
               }
-              else{
-                if(url.indexOf('permits') >= 0){
+              else {
+                if (url.indexOf('permits') >= 0) {
                   setItem(CLICK_PERMITS);
                 }
-                else{
-                  if(url.indexOf('hazard') >= 0){
+                else {
+                  if (url.indexOf('hazard') >= 0) {
                     setItem(CLICK_HAZARD);
                   }
-                  else{
+                  else {
                     setItem('');
                   }
                 }
@@ -311,49 +311,49 @@ export default function GmailTreeView({
       sx={{ width: SHOWBAR_WIDTH }}
     >
       <StyledTreeItem
-        nodeId={rootItem.nodeId} 
-        labelText= {siteName}
+        nodeId={rootItem.nodeId}
+        labelText={siteName}
         labelIcon={rootItem.icon}
         color={BG_COLOR_WHITE}
         bgColor={BG_COLOR_BULE_LITTLE}
-        onClick = {() => history('/')}
+        onClick={() => history('/home')}
       />
       {SHOW_SITE_BAR.map((item) => {
         return (
-          <div key = {item.lableText}>
-            {item.nodeId === '2'?(
-              <StyledTreeItem 
-                nodeId={item.nodeId} 
-                labelText={item.lableText} 
-                labelIcon={item.icon} 
-                color={BG_COLOR_WHITE} 
+          <div key={item.lableText}>
+            {item.nodeId === '2' ? (
+              <StyledTreeItem
+                nodeId={item.nodeId}
+                labelText={item.lableText}
+                labelIcon={item.icon}
+                color={BG_COLOR_WHITE}
                 bgColor={BG_COLOR_BULE}
-                onClick = {() => handleClick(item.lableText)}
-                active = {(item.lableText === currentItem)?'true':'false'}
+                onClick={() => handleClick(item.lableText)}
+                active={(item.lableText === currentItem) ? 'true' : 'false'}
               >
                 {SHOW_SITE_BAR_CHILD.map((item, index) => {
                   return (
                     <StyledChildTreeItem
-                      key = {index}
+                      key={index}
                       nodeId={item.nodeId}
                       labelText={item.lableText}
                       labelIcon={item.icon}
                       color={BG_COLOR_WHITE}
                       bgColor={BG_COLOR_BULE_LITTLE}
-                      onClick = {() => handleClick(item.lableText)}
+                      onClick={() => handleClick(item.lableText)}
                     />
                   )
                 })}
               </StyledTreeItem>
-            ):(
+            ) : (
               <StyledTreeItem
-                nodeId={item.nodeId} 
-                labelText={item.lableText} 
+                nodeId={item.nodeId}
+                labelText={item.lableText}
                 labelIcon={item.icon}
                 color={BG_COLOR_WHITE}
                 bgColor={BG_COLOR_BULE}
-                onClick = {() => handleClick(item.lableText)}
-                active = {(item.lableText === currentItem)?'true':'false'}
+                onClick={() => handleClick(item.lableText)}
+                active={(item.lableText === currentItem) ? 'true' : 'false'}
               />
             )}
           </div>

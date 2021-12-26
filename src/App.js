@@ -5,6 +5,7 @@ import { SitesProvider } from './contexts/sites';
 import { CurrentSiteProvider } from './contexts/currentsite';
 import { ToastProvider } from 'react-toast-notifications';
 import { ShowSiteProvider } from './contexts/showsite';
+import "bootstrap/dist/css/bootstrap.min.css"
 import './App.css';
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
         </ShowSiteProvider>
       </ToastProvider>
     </div>
-    
+
   );
 }
 
