@@ -1,4 +1,5 @@
 import React from 'react';
+import PrimarySearchAppBar from '../components/appbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Home from '../pages/home';
 import AccountSettings from '../pages/accountsettings';

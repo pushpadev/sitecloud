@@ -247,14 +247,14 @@ export const MARKUP_EDIT = 7;
 export const MARKUP_DELETE = 8;
 export const MARKUP_SAVE = 9;
 export const MARKUP_CREATE = 11;
-
+ 
 export const BG_COLOR_WHITE = '#ffffff';
 export const BG_COLOR_GRAY = '#aaafb8ef';
 export const BG_COLOR_BULE = '#0066ffef';
 export const BG_COLOR_BLACK = '#413B5A';
 export const BG_COLOR_BULE_LITTLE = '#1875F0';
 export const BG_COLOR_LITTLE_GRAY = '#E4E4E4';
-
+export const BG_COLOR_WARNING = '#EF4F4F';
 export const BG_COLOR_BOUNDARY_BTN = '#1875F0';
 
 export const MAP_CENTER_COORDINATE = [149.012375, -35.473469];
