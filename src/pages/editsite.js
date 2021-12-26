@@ -3,20 +3,20 @@ import PolygonMap from '../components/polygonmap';
 import { makeStyles } from '@mui/styles';
 import { SetupSiteBar } from '../components/setup';
 import { useParams } from "react-router-dom";
-import { 
-  BOUNDARY_EDIT, 
-  BOUNDARY_NONE, 
-  BOUNDARY_SET, 
-  MARKUP_NONE, 
-  MARKUP_SET, 
-  MARKUP_EDIT, 
-  STATUS_NONE, 
+import {
+  BOUNDARY_EDIT,
+  BOUNDARY_NONE,
+  BOUNDARY_SET,
+  MARKUP_NONE,
+  MARKUP_SET,
+  MARKUP_EDIT,
+  STATUS_NONE,
   MARKUP_SAVE,
   BOUNDARY_SAVE,
   BOUNDARY_CREATE,
 } from '../constant';
 import { CurrentSiteContext } from "../contexts/currentsite";
-import { getSite, saveSite, modifySite} from '../actions'
+import { getSite, saveSite, modifySite } from '../actions'
 import { useNavigate } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications'
 
@@ -77,15 +77,15 @@ function EditSite() {
     let storedPolygon = JSON.parse(localStorage.getItem("polygon"));
     let rt;
     let info = {
-      "Sitename": siteName, 
-      "Siteaddress": siteAddress, 
-      "polyrings": storedPolygon, 
-      "markup": storedIcon, 
+      "Sitename": siteName,
+      "Siteaddress": siteAddress,
+      "polyrings": storedPolygon,
+      "markup": storedIcon,
       "centroid": storedPolygon?.center
     };
     setCurrentSite(info);
 
-    if( !isExistPolygon ){
+    if (!isExistPolygon) {
       addToast('You should draw polygon!', {
         appearance: 'warning',
         autoDismiss: true,
@@ -93,21 +93,21 @@ function EditSite() {
       return;
     }
 
-    if( !siteName || !siteAddress ){
+    if (!siteName || !siteAddress) {
       addToast('input site name and site address!', {
         appearance: 'warning',
         autoDismiss: true,
       })
       return;
     }
-    if(!isSavedPolygon ){
+    if (!isSavedPolygon) {
       addToast('you should save polygon!', {
         appearance: 'warning',
         autoDismiss: true,
       })
       return;
     }
-    if(!isSavedMarkup ){
+    if (!isSavedMarkup) {
       addToast('you should save markup!', {
         appearance: 'warning',
         autoDismiss: true,
@@ -115,30 +115,30 @@ function EditSite() {
       return;
     }
 
-    if(id === undefined || id === null){
+    if (id === undefined || id === null) {
       rt = await saveSite(info);
-      if(rt.status === 'success'){
+      if (rt.status === 'success') {
         addToast('save success', {
           appearance: 'success',
           autoDismiss: true,
         })
       }
-      else{
+      else {
         addToast('save error', {
           appearance: 'error',
           autoDismiss: true,
         })
       }
     }
-    else{
+    else {
       rt = await modifySite(id, info);
-      if(rt === 'updated success'){
+      if (rt === 'updated success') {
         addToast('update success', {
           appearance: 'success',
           autoDismiss: true,
         })
       }
-      else{
+      else {
         addToast('update error', {
           appearance: 'error',
           autoDismiss: true,
@@ -147,11 +147,11 @@ function EditSite() {
     }
     setIsSavedPolygon(false);
     setIsSavedMarkup(false);
-    history('/');
+    history('/home');
   }
 
   const deletePolygon = () => {
-    if(polygonEl.current.deleteSelectedPolyon()){
+    if (polygonEl.current.deleteSelectedPolyon()) {
       setEditingStatus(STATUS_NONE);
       setExistPolygon(false);
     }
@@ -159,7 +159,7 @@ function EditSite() {
   const deleteMarkup = () => {
     polygonEl.current.deleteMarkup();
   }
-  
+
   const saveBoundary = () => {
     setEditingStatus(BOUNDARY_SAVE);
   }
@@ -178,9 +178,9 @@ function EditSite() {
 
   useEffect(() => {
     (async () => {
-      if(id !== undefined && id !== null){
+      if (id !== undefined && id !== null) {
         let res = await getSite(id);
-        if(res.status === 200){
+        if (res.status === 200) {
           setCurrentSite(res?.data?.data);
           setSiteInfo(res?.data?.data);
           setSiteName(res?.data?.data?.Sitename);
@@ -192,14 +192,14 @@ function EditSite() {
           setIsSavedMarkup(true);
           setIsSavedPolygon(true);
         }
-        else{
+        else {
           localStorage.setItem("markups", JSON.stringify([]));
           localStorage.setItem("polygon", JSON.stringify([]));
           setIsSavedMarkup(false);
           setIsSavedPolygon(false);
         }
       }
-      else{
+      else {
         localStorage.setItem("markups", JSON.stringify([]));
         localStorage.setItem("polygon", JSON.stringify([]));
         setIsSavedMarkup(false);
@@ -210,48 +210,48 @@ function EditSite() {
   }, [])
 
   return (
-      <>
-      {(isLoading)?(<></>):(
-        <div className = {classes.root} >
-            <SetupSiteBar 
-              ref = {setupEl}
-              drawPolygon = {drawPolygon} 
-              editPolygon = {editPolygon} 
-              markupSite = {markupSite} 
-              createSite = {createSite}
-              deletePolygon = {deletePolygon}
-              deleteMarkup = {deleteMarkup}
-              getAddress = {handleAddress}
-              getSiteName = {handleSiteName}
-              siteName = {siteName}
-              siteAddress = {siteAddress}
-              siteInfo = {siteInfo}
-              isMapLoading = {isMapLoading}
-              isExistPolygon = {isExistPolygon}
-              isExistMarkup = {isExistMarkup}
-              siteID = {id}
-            />
-            <PolygonMap
-              ref = {polygonEl}
-              showMarkup = {showMarkup}
-              editingStatus = {editingStatus}
-              setEditingStatus = {setEditingStatus}
-              saveBoundary = {saveBoundary}
-              saveMarkup = {saveMarkup}
-              setMapLoading = {setMapLoading}
-              setExistPolygon = {setExistPolygon}
-              setExistMakrup = {setExistMakrup}
-              endDrawPolygon = {endDrawPolygon}
-              editPolygon = {editPolygon}
-              setIsSavedMarkup = {setIsSavedMarkup}
-              setIsSavedPolygon = {setIsSavedPolygon}
-              siteID = {id}
-              isExistMarkup = {isExistMarkup}
-            />
+    <>
+      {(isLoading) ? (<></>) : (
+        <div className={classes.root} >
+          <SetupSiteBar
+            ref={setupEl}
+            drawPolygon={drawPolygon}
+            editPolygon={editPolygon}
+            markupSite={markupSite}
+            createSite={createSite}
+            deletePolygon={deletePolygon}
+            deleteMarkup={deleteMarkup}
+            getAddress={handleAddress}
+            getSiteName={handleSiteName}
+            siteName={siteName}
+            siteAddress={siteAddress}
+            siteInfo={siteInfo}
+            isMapLoading={isMapLoading}
+            isExistPolygon={isExistPolygon}
+            isExistMarkup={isExistMarkup}
+            siteID={id}
+          />
+          <PolygonMap
+            ref={polygonEl}
+            showMarkup={showMarkup}
+            editingStatus={editingStatus}
+            setEditingStatus={setEditingStatus}
+            saveBoundary={saveBoundary}
+            saveMarkup={saveMarkup}
+            setMapLoading={setMapLoading}
+            setExistPolygon={setExistPolygon}
+            setExistMakrup={setExistMakrup}
+            endDrawPolygon={endDrawPolygon}
+            editPolygon={editPolygon}
+            setIsSavedMarkup={setIsSavedMarkup}
+            setIsSavedPolygon={setIsSavedPolygon}
+            siteID={id}
+            isExistMarkup={isExistMarkup}
+          />
         </div>
       )}
-        
-      </>
+
+    </>
   );
 }
 

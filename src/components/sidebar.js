@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { SIDEBAR_WIDTH, SITE_LIST, MAP_VIEW} from '../constant';
+import { SIDEBAR_WIDTH, SITE_LIST, MAP_VIEW } from '../constant';
 import { Divider } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
@@ -27,6 +27,9 @@ const useStyles = makeStyles({
         backgroundColor: '#0066ffef',
         borderColor: '#0066ffef',
         color: 'white',
+    },
+    divider: {
+        borderBottom: '1px solid #DDE4EE',
     }
 });
 
@@ -49,7 +52,7 @@ export const SideBar = ({ getSelectedItem, sites }) => {
         setSelected(id);
         getSelectedItem(id, item);
     }
-    
+
     // useEffect(() => {
     //     console.log('width', sideBarEl.current ? sideBarEl.current.offsetWidth : 0);
     // }, [])
@@ -61,29 +64,29 @@ export const SideBar = ({ getSelectedItem, sites }) => {
             <List className="list" component="nav" >
                 <ListItem
                     className={isSelected(0) ? classes.hrselected : null}
-                    style = {mapStyle}
+                    style={mapStyle}
                     onClick={() => onSelected(0, MAP_VIEW)}
                 >
-                    {isSelected(0)?<img src = '/map.png' alt='map' />:<></>}
+                    {isSelected(0) ? <img src='/map.png' alt='map' /> : <></>}
                     <ListItemText primary='Map View'></ListItemText>
                 </ListItem>
-                <Divider/>
+                <Divider className={classes.divider} />
                 {(sites.length > 0) && sites.map((item, i) => {
-                        return (
-                            <React.Fragment key={i}>
-                                {/* {console.log("item " + i + '====' + isSelected(i) ? 'selected' : null)} */}
-                                <ListItem
-                                    button={true} 
-                                    className={isSelected(i + 1) ? classes.selected : null} 
-                                    onClick={() => onSelected(i + 1, item)}
-                                    onDoubleClick={() => history(`/showsite/managesite/${item.sitemappingId}`)}
-                                >
-                                    <ListItemText primary={item.data.Sitename} ></ListItemText>
-                                </ListItem>
-                                <Divider/>
-                            </React.Fragment>
-                        )
-                    })
+                    return (
+                        <React.Fragment key={i}>
+                            {/* {console.log("item " + i + '====' + isSelected(i) ? 'selected' : null)} */}
+                            <ListItem
+                                button={true}
+                                className={isSelected(i + 1) ? classes.selected : null}
+                                onClick={() => onSelected(i + 1, item)}
+                                onDoubleClick={() => history(`/showsite/managesite/${item.sitemappingId}`)}
+                            >
+                                <ListItemText primary={item.data.Sitename} ></ListItemText>
+                            </ListItem>
+                            <Divider className={classes.divider} />
+                        </React.Fragment>
+                    )
+                })
                 }
             </List>
         </div>
