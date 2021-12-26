@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { createStyles, makeStyles } from '@mui/styles';
 import { ICON_LIST } from "../constant";
+import { MDBBtn } from 'mdb-react-ui-kit';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -74,6 +75,7 @@ export default function IconPin(props){
   return (
     <div className={(props.isSelec === true)?classes.messageBlue:classes.messageWhite}>
       {icon && ((props.isSelec !== true)?icon.icon:icon.whiteicon)}
+      <MDBBtn className="btn-close" color="none" aria-label="Close" />
     </div>
   );
 };
