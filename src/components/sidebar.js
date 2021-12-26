@@ -70,7 +70,7 @@ export const SideBar = ({ getSelectedItem, sites }) => {
                     {isSelected(0) ? <img src='/map.png' alt='map' /> : <></>}
                     <ListItemText primary='Map View'></ListItemText>
                 </ListItem>
-                <Divider className={classes.divider} />
+                <div className={classes.divider} />
                 {(sites.length > 0) && sites.map((item, i) => {
                     return (
                         <React.Fragment key={i}>
@@ -83,7 +83,7 @@ export const SideBar = ({ getSelectedItem, sites }) => {
                             >
                                 <ListItemText primary={item.data.Sitename} ></ListItemText>
                             </ListItem>
-                            <Divider className={classes.divider} />
+                            <div className={classes.divider} />
                         </React.Fragment>
                     )
                 })

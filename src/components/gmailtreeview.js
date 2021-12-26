@@ -240,7 +240,7 @@ export default function GmailTreeView({
                       }
                       else {
                         if (txt === CLICK_ATTENDENCE) {
-                          history(`/showsite/attendence/${id}`);
+                          history(`/showsite/attendence/live/${id}`);
                         }
                         else {
                           console.log('others');
