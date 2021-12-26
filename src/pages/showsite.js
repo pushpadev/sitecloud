@@ -4,7 +4,7 @@ import GmailTreeView from '../components/gmailtreeview';
 import { useParams } from "react-router-dom";
 import { getSite} from '../actions'
 import LiveAttendence from '../components/showsite/liveattendence';
-import { CLICK_ATTENDENCE_LIVE, CLICK_ATTENDENCE_DAILY, CLICK_ATTENDENCE_HISTORY } from '../constant';
+import AccountSetting from '../components/account';
 
 const useStyles = makeStyles({
   root: {
@@ -20,27 +20,10 @@ function ShowSite() {
   const classes = useStyles();
   const [isLoading, setLoading] = useState(true);
   const [siteInfo, setSiteInfo] = useState({});
+
   const { id } = useParams();
 
   // Attendence
-  const [clickedItem, setClickedItem] = useState(null);
-
-  const liveAttendenceClick = () => {
-    console.log('live');
-    setClickedItem(CLICK_ATTENDENCE_LIVE);
-  }
-
-  const dailyAttendenceClick = () => {
-    console.log('daily');
-
-    setClickedItem(CLICK_ATTENDENCE_DAILY);
-  }
-
-  const historyAttendenceClick = () => {
-    console.log('history');
-
-    setClickedItem(CLICK_ATTENDENCE_HISTORY);
-  }
 
   useEffect(() => {
     (async () => {
@@ -50,6 +33,7 @@ function ShowSite() {
       }
       setLoading(false);
     })()
+    
   }, [id])
 
   return (
@@ -58,17 +42,11 @@ function ShowSite() {
         <div className = {classes.root} >
             <GmailTreeView 
               siteName={siteInfo?.Sitename}
-              liveAttendenceClick = {liveAttendenceClick}
-              historyAttendenceClick = {historyAttendenceClick}
-              dailyAttendenceClick = {dailyAttendenceClick}
             />
-            {(clickedItem === CLICK_ATTENDENCE_DAILY || clickedItem === CLICK_ATTENDENCE_LIVE || clickedItem === CLICK_ATTENDENCE_HISTORY)?(
-              <LiveAttendence 
-                siteInfo = {siteInfo}
-                clickedItem = {clickedItem}
-              />
-            ):(<></>)}
-            
+            <AccountSetting />
+            <LiveAttendence 
+              siteInfo = {siteInfo}
+            />
         </div>
       }
     </>

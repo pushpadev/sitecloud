@@ -213,9 +213,17 @@ export const SHOW_SITE_BAR_CHILD = [
     },
 ]
 
+export const CLICK_MANAGE_SITE = 'Manage Site';
+export const CLICK_ATTENDENCE = 'Attendence';
 export const CLICK_ATTENDENCE_LIVE = 'Live Attendence';
 export const CLICK_ATTENDENCE_DAILY = 'Daily Attendence';
 export const CLICK_ATTENDENCE_HISTORY = 'Attendence History';
+export const CLICK_INDUCTIONS = 'Inductions';
+export const CLICK_BRIEFING = 'Pre-Start and Daily Briefing';
+export const CLICK_NOTICE = 'Safety and Notices';
+export const CLICK_WORK_METHOD = 'Safety Work Method Statements';
+export const CLICK_PERMITS = 'Site Permits';
+export const CLICK_HAZARD = 'Hazard and Issues';
 
 export const SAVE_MARKUP_MSG = 'Site markup will be visibile to workers and visitors on the mobile application';
 export const SAVE_BOUNDARY_MSG = 'The site boundary must be a contained area';

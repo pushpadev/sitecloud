@@ -76,7 +76,7 @@ export const SideBar = ({ getSelectedItem, sites }) => {
                                     button={true} 
                                     className={isSelected(i + 1) ? classes.selected : null} 
                                     onClick={() => onSelected(i + 1, item)}
-                                    onDoubleClick={() => history(`/showsite/${item.sitemappingId}`)}
+                                    onDoubleClick={() => history(`/showsite/managesite/${item.sitemappingId}`)}
                                 >
                                     <ListItemText primary={item.data.Sitename} ></ListItemText>
                                 </ListItem>

@@ -8,10 +8,17 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { APP_NAME } from '../constant';
+import { useNavigate } from 'react-router-dom';
 
 export default function PrimarySearchAppBar() {
 
   const pathName = window.location.pathname;
+  const history = useNavigate();
+
+  
+  const accountClick = () => {
+    history(`/showsite/accountsetting/`)
+  }
 
   return (
     <>
