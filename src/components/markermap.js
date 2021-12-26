@@ -133,8 +133,9 @@ const MarkerMap = forwardRef((props, ref) => {
               coordinates={item?.data?.centroid}
               captureClick={false}
               draggable={false}
-              offsetTop={-30}
+              offsetTop={-50}
               offsetLeft={-15}
+              anchor="bottom"
             >
                   <div className='custom-pin'
                     onDoubleClick={() => handleDoubleClick(item.sitemappingId)}
