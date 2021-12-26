@@ -62,11 +62,18 @@ const useStyles = makeStyles((theme) =>
       padding: 0,
       marginLeft: 10,
       color: BG_COLOR_WHITE,
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
     },
     messageContentWhite: {
       padding: 0,
       marginLeft: 10,
       color: 'black',
+      width: 110,
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
     },
     displayName: {
       marginLeft: "20px"
