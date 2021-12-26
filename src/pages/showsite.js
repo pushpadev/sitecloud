@@ -4,9 +4,7 @@ import GmailTreeView from '../components/gmailtreeview';
 import { useParams } from "react-router-dom";
 import { getSite} from '../actions'
 import LiveAttendence from '../components/showsite/liveattendence';
-import { CLICK_ATTENDENCE_LIVE, CLICK_ATTENDENCE_DAILY, CLICK_ATTENDENCE_HISTORY } from '../constant';
 import AccountSetting from '../components/account';
-import { ShowSiteContext } from '../contexts/showsite';
 
 const useStyles = makeStyles({
   root: {

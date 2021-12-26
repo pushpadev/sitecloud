@@ -7,17 +7,15 @@ import Typography from '@mui/material/Typography';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { APP_NAME } from '../constant';
 import { useNavigate } from 'react-router-dom';
-import { ShowSiteContext } from '../contexts/showsite';
 
 export default function PrimarySearchAppBar() {
 
   const pathName = window.location.pathname;
   const history = useNavigate();
-  const [siteId] =  useContext(ShowSiteContext);
 
   
   const accountClick = () => {
-    history(`/showsite/accountsetting/${siteId}`)
+    history(`/showsite/accountsetting/`)
   }
 
   return (

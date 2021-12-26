@@ -45,12 +45,10 @@ const useStyles = makeStyles({
 
 function AttendenceTitle({siteInfo}) {
   const classes = useStyles();
-  // {`Site Attendence: ${siteInfo?.Sitename}`}
-  // {`address: ${siteInfo?.Siteaddress}`}
   return (
     <div className = {classes.root} >
-        <div className={classes.title}>{`Site Attendence: Melbourne F1 Track`}</div>
-        <div className={classes.address}>{`address: 12 Aughtie Dr, Albert Park VIC 3206, Australia`}</div>
+        <div className={classes.title}>{`Site Attendence: ${siteInfo?.Sitename}`}</div>
+        <div className={classes.address}>{`address: ${siteInfo?.Siteaddress}`}</div>
         <div className={classes.numberline}>
             <div className={classes.number}>
                 <div style = {{color: '#33323D', fontSize: 18}}>214</div>

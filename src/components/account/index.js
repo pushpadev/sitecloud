@@ -118,15 +118,15 @@ export default function AccountSetting({siteInfo, clickedItem}) {
         <>
           <div style={{marginTop: 35}}>
               <p className={classes.contentTxt}>{changePasswordDialog.currentPassword}</p>
-              <OutlinedInput className = {classes.input}  />
+              <OutlinedInput className = {classes.input} type = 'password'/>
           </div>
           <div style={{marginTop: 24}}>
               <p className={classes.contentTxt}>{changePasswordDialog.newPassword}</p>
-              <OutlinedInput className = {classes.input}  />
+              <OutlinedInput className = {classes.input} type = 'password'/>
           </div>
           <div style={{marginTop: 24}}>
               <p className={classes.contentTxt}>{changePasswordDialog.rePassword}</p>
-              <OutlinedInput className = {classes.input}  />
+              <OutlinedInput className = {classes.input} type = 'password'/>
               {/* value={accountName} onChange={handleAccountName} */}
           </div>
         </>
