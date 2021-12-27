@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) =>
       textAlign: "left",
       font: "400 .9em 'Open Sans', sans-serif",
       border: "1px solid #0066ffef",
-      right: 90,
+      right: 80,
       bottom: 25,
       "&:after": {
         content: "''",
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) =>
       textAlign: "left",
       font: "400 .9em 'Open Sans', sans-serif",
       border: "1px solid white",
-      right: 90,
+      right: 80,
       bottom: 25,
       "&:after": {
         content: "''",
