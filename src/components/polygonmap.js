@@ -49,7 +49,7 @@ const ColorButton = withStyles((theme) => ({
 
 const Map = ReactMapboxGl({
   accessToken:
-    "pk.eyJ1IjoiZmFrZXVzZXJnaXRodWIiLCJhIjoiY2pwOGlneGI4MDNnaDN1c2J0eW5zb2ZiNyJ9.mALv0tCpbYUPtzT7YysA2g"
+    "pk.eyJ1IjoiZmFrZXVzZXJnaXRodWIiLCJhIjoiY2pwOGlneGI4MDNnaDN1c2J0eW5zb2ZiNyJ9.mALv0tCpbYUPtzT7YysA2g",
 });
 
 const PolygonMap = forwardRef((props, ref) => {
@@ -64,6 +64,8 @@ const PolygonMap = forwardRef((props, ref) => {
   const [selIcon, setSelIcon] = useState(null);
   const [msg, setMsg] = useState(SAVE_BOUNDARY_MSG);
   const [msgActive, setMsgActive] = useState(false);
+  const [zTile, setZTile]= useState(0);
+  console.log('total',zTile)
 
   // Compare New Data
   const [isNewPolygon, setIsNewPolygon] = useState(false);
@@ -126,7 +128,7 @@ const PolygonMap = forwardRef((props, ref) => {
       placeholder: 'Search here', // Placeholder text for the search bar
     });
     map.addControl(geocoder);
-    map.setZoom(6.5);
+    map.setZoom(17);
     props.setMapLoading(false);
     if( currentSite && Object.keys(currentSite).length !== 0){
       var storedPolygons = currentSite?.polyrings;
@@ -309,7 +311,6 @@ const PolygonMap = forwardRef((props, ref) => {
   useEffect(() => {
     getPolyAndMark();
   }, [])
-
   return (
     <Dropzone>
       {({ getRootProps, getInputProps }) => (
@@ -325,18 +326,18 @@ const PolygonMap = forwardRef((props, ref) => {
                   width: `calc(100vw - ${SIDEBAR_WIDTH}px - 20px)`,
                   position: 'relative',
                 }}
+                onZoom={(e) => setZTile(e.transform.tileZoom)}
                 center={(props.siteID === undefined || props.siteInfo === null)?MAP_CENTER_COORDINATE:currentSite?.centroid}
               >
                 <DrawControl ref={drawControl} displayControlsDefault={false} onDrawCreate={onDrawCreate} onDrawUpdate={onDrawUpdate}/>
-                {(iconListNew.length > 0)?iconListNew.map((item, index) => {
+                {(iconListNew.length > 0)?iconListNew.map((item, index,a) => {
                   return(
                     <Marker
                       key = {index}
                       coordinates={[item.position.lng, item.position.lat]}
                       captureClick={false}
                       draggable={false}
-                      offsetTop={0}
-                      offsetLeft={10}
+                      offset={[zTile > 12 ? 0 : index+(20-zTile)]}
                     >
                           <div className='custom-pin'
                             style={{position: 'relative'}}
